@@ -1,3 +1,10 @@
+create a workspace: e.g. /Users/xuhaizhi/workplace
+
+git clone https://github.com/FTC12457/SkyStone.git
+
+install AndroidStudio at https://developer.android.com/studio/index.html
+
+
 ## NOTICE
 
 This repository contains the public FTC SDK for the SKYSTONE (2019-2020) competition season.  
