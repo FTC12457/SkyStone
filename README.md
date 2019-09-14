@@ -6,6 +6,7 @@ install AndroidStudio at https://developer.android.com/studio/index.html
 
 ## Contributors check-in
 Alex Du
+Benjamin Li
 
 ## NOTICE
 
