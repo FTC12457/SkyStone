@@ -4,6 +4,8 @@ git clone https://github.com/FTC12457/SkyStone.git
 
 install AndroidStudio at https://developer.android.com/studio/index.html
 
+## Contributors check-in
+Alex Du
 
 ## NOTICE
 
