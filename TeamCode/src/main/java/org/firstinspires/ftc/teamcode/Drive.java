@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import java.lang.Math;
 
 @TeleOp(name = "Drive", group = "Mechanisms")
@@ -22,21 +23,21 @@ public class Drive extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            drive();
+            drive(gamepad1);
 
             telemetry.update();
             sleep(25);
         }
     }
 
-    public void drive(){
+    public void drive(Gamepad gamepad){
 
         /* Three components of robot movement: Forwards/Backwards, Left/Right, and Turning.
          */
 
-        double FORWARDNESS = gamepad1.left_stick_y * FORWARDNESS_MULTIPLIER;
-        double STRAFENESS = gamepad1.left_stick_x * STRAFENESS_MULTIPLIER;
-        double TURNYNESS = gamepad1.right_stick_x * TURNYNESS_MULTIPLIER;
+        double FORWARDNESS = gamepad.left_stick_y * FORWARDNESS_MULTIPLIER;
+        double STRAFENESS = gamepad.left_stick_x * STRAFENESS_MULTIPLIER;
+        double TURNYNESS = gamepad.right_stick_x * TURNYNESS_MULTIPLIER;
 
 
         /* All three components of robot movement are combined into smooth motion in the motors.
