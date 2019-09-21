@@ -15,7 +15,7 @@ public class ArmTest extends LinearOpMode {
 
         robot.init(hardwareMap);
 
-        robot.arm = hardwareMap.get(DcMotor.class, "ARM");
+        robot.arm = hardwareMap.get(DcMotor.class, "MS_KOL");
         robot.arm.setDirection(DcMotor.Direction.FORWARD);
 
         waitForStart();
@@ -24,8 +24,8 @@ public class ArmTest extends LinearOpMode {
 
             drive.drive();
 
-            robot.arm.setPower(gamepad1.right_stick_y);
-            telemetry.addData("ARM", robot.arm.getPower());
+            robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
+            telemetry.addData("MS_KOL", robot.arm.getPower());
 
             telemetry.update();
             sleep(25);
