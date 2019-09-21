@@ -33,5 +33,9 @@ public class Hardware {
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
         backLeftDrive.  setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRightDrive. setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
+
+        // Initialize the arm motor.
+        arm = hwMap.get(DcMotor.class, "MS_KOL");
+        arm.setDirection(DcMotor.Direction.FORWARD);
     }
 }

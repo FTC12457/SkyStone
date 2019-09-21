@@ -25,7 +25,6 @@ public class Drive extends LinearOpMode {
 
             drive(gamepad1);
 
-            telemetry.update();
             sleep(25);
         }
     }
@@ -75,5 +74,6 @@ public class Drive extends LinearOpMode {
         telemetry.addData("LEFT FRONT", robot.frontLeftDrive.getPower());
         telemetry.addData("RIGHT FRONT", robot.frontRightDrive.getPower());
 
+        telemetry.update();
     }
 }

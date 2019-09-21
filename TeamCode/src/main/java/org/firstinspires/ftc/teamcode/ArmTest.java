@@ -13,15 +13,11 @@ public class ArmTest extends LinearOpMode {
     public void runOpMode() {
 
         robot.init(hardwareMap);
-
-        robot.arm = hardwareMap.get(DcMotor.class, "MS_KOL");
-        robot.arm.setDirection(DcMotor.Direction.FORWARD);
-
         waitForStart();
 
         while(opModeIsActive()) {
 
-            //drive.drive(gamepad1);
+            drive.drive(gamepad1);
 
             robot.arm.setPower(gamepad1.right_trigger*0.2); //added a multiplier of 0.2
 
