@@ -24,7 +24,7 @@ public class ArmTest extends LinearOpMode {
 
             drive.drive();
 
-            robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
+            robot.arm.setPower(gamepad1.right_trigger*0.2); //added a multiplier of 0.2
             telemetry.addData("MS_KOL", robot.arm.getPower());
 
             telemetry.update();
