@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Arm Test", group = "Experimental")
 public class ArmTest extends LinearOpMode {
@@ -22,14 +21,17 @@ public class ArmTest extends LinearOpMode {
 
         while(opModeIsActive()) {
 
-            drive.drive();
+            drive.drive(gamepad1);
 
+<<<<<<< HEAD
             robot.arm.setPower(gamepad1.right_trigger*0.2); //added a multiplier of 0.2
+=======
+            robot.arm.setPower(gamepad1.right_trigger * 0.2); //added a multiplier of 0.2
+>>>>>>> 7f710fe4a604a71ebdbdfa2fd788974fb8c1e93e
             telemetry.addData("MS_KOL", robot.arm.getPower());
 
             telemetry.update();
             sleep(25);
         }
-
     }
 }
