@@ -36,7 +36,7 @@ public class Drive extends LinearOpMode {
 
         double FORWARDNESS = gamepad1.left_stick_y * FORWARDNESS_MULTIPLIER;
         double STRAFENESS = gamepad1.left_stick_x * STRAFENESS_MULTIPLIER;
-        double TURNYNESS = (gamepad1.right_stick_x * TURNYNESS_MULTIPLIER);
+        double TURNYNESS = gamepad1.right_stick_x * TURNYNESS_MULTIPLIER;
 
 
         /* All three components of robot movement are combined into smooth motion in the motors.
@@ -47,8 +47,8 @@ public class Drive extends LinearOpMode {
         double FL = -FORWARDNESS + STRAFENESS - TURNYNESS;
         double FR = -FORWARDNESS - STRAFENESS + TURNYNESS;
 
-            /* MAX value ensures the motors are not told to run beyond their peaks while maintaining
-            proportions between three components of movement. */
+        /* MAX value ensures the motors are not told to run beyond their peaks while maintaining
+        proportions between three components of movement. */
 
         double MAX = Math.abs(Math.max(Math.max(BL, BR), Math.max(FL, FR)));
 
@@ -65,6 +65,7 @@ public class Drive extends LinearOpMode {
         }
 
         /* Telemetry for reference. (Mostly debugging.) */
+
         telemetry.addData("Forwardness%3A", FORWARDNESS);
         telemetry.addData("Strafeness%3A", STRAFENESS);
         telemetry.addData("Turnyness%3A", TURNYNESS);
