@@ -9,6 +9,8 @@ public class Hardware {
     public DcMotor backLeftDrive = null;
     public DcMotor backRightDrive = null;
 
+    public DcMotor arm = null; // Experimental for ArmTest class
+
     HardwareMap hwMap = null;
 
     public Hardware()
@@ -31,6 +33,5 @@ public class Hardware {
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
         backLeftDrive.  setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRightDrive. setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
-
     }
 }
