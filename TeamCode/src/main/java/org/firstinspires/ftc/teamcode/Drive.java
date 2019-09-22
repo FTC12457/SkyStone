@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import java.lang.Math;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp(name = "Drive", group = "Mechanisms")
 public class Drive extends LinearOpMode {
@@ -33,7 +34,11 @@ public class Drive extends LinearOpMode {
         }
     }
 
-    public void drive(Gamepad gamepad){
+    public void drive(Gamepad gamepad) {
+        this.drive(gamepad, telemetry);
+    }
+
+    public void drive(Gamepad gamepad, Telemetry telemetryInstance){
 
         /* Three components of robot movement: Forwards/Backwards, Left/Right, and Turning.
          */
@@ -70,14 +75,14 @@ public class Drive extends LinearOpMode {
 
         /* Telemetry for reference. (Mostly debugging.) */
 
-        telemetry.addData("Forwardness%3A", FORWARDNESS);
-        telemetry.addData("Strafeness%3A", STRAFENESS);
-        telemetry.addData("Turnyness%3A", TURNYNESS);
-        telemetry.addData("LEFT REAR", robot.backLeftDrive.getPower());
-        telemetry.addData("RIGHT REAR", robot.backRightDrive.getPower());
-        telemetry.addData("LEFT FRONT", robot.frontLeftDrive.getPower());
-        telemetry.addData("RIGHT FRONT", robot.frontRightDrive.getPower());
+        telemetryInstance.addData("Forwardness%3A", FORWARDNESS);
+        telemetryInstance.addData("Strafeness%3A", STRAFENESS);
+        telemetryInstance.addData("Turnyness%3A", TURNYNESS);
+        telemetryInstance.addData("LEFT REAR", robot.backLeftDrive.getPower());
+        telemetryInstance.addData("RIGHT REAR", robot.backRightDrive.getPower());
+        telemetryInstance.addData("LEFT FRONT", robot.frontLeftDrive.getPower());
+        telemetryInstance.addData("RIGHT FRONT", robot.frontRightDrive.getPower());
 
-        telemetry.update();
+        telemetryInstance.update();
     }
 }

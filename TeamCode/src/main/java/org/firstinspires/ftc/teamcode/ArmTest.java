@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Arm Test", group = "Experimental")
 public class ArmTest extends LinearOpMode {
@@ -19,7 +16,7 @@ public class ArmTest extends LinearOpMode {
 
         while(opModeIsActive()) {
 
-            drive.drive(gamepad1);
+            drive.drive(gamepad1, telemetry);
 
             robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
 
