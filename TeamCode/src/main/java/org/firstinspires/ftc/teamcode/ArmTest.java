@@ -9,18 +9,19 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @TeleOp(name = "Arm Test", group = "Experimental")
 public class ArmTest extends LinearOpMode {
     Hardware robot = new Hardware();
-    Drive drive = new Drive();
+    Drive drive = new Drive(robot);
 
     public void runOpMode() {
 
         robot.init(hardwareMap);
+
         waitForStart();
 
         while(opModeIsActive()) {
 
             drive.drive(gamepad1);
 
-            robot.arm.setPower(gamepad2.right_stick_y*0.2); //added a multiplier of 0.2
+            robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
 
             telemetry.addData("MS_KOL", robot.arm.getPower());
 

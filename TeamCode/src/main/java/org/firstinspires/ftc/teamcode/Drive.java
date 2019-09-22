@@ -14,6 +14,10 @@ public class Drive extends LinearOpMode {
     float STRAFENESS_MULTIPLIER = 1f;
     float TURNYNESS_MULTIPLIER = 0.7f;
 
+    public Drive (Hardware hardware) {
+        robot = hardware;
+    }
+
     @Override
     public void runOpMode() {
 
