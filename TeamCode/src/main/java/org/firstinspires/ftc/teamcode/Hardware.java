@@ -9,6 +9,9 @@ public class Hardware {
     public DcMotor backLeftDrive = null;
     public DcMotor backRightDrive = null;
 
+    public Servo clawLeft = null; //added by brian
+    public Servo clawRight = null; //added by brian
+
     public DcMotor arm = null; // Experimental for ArmTest class
 
     HardwareMap hwMap = null;
@@ -29,6 +32,9 @@ public class Hardware {
         backLeftDrive       = hwMap.get(DcMotor.class,    "RL");
         backRightDrive      = hwMap.get(DcMotor.class,    "RR");
 
+        clawLeft = hwMap.get(Servo.class, "CL"); //added by brian
+        clawRight = hwMap.get(Servo.class, "CR"); //added by brian
+
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
         backLeftDrive.  setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
@@ -37,5 +43,8 @@ public class Hardware {
         // Initialize the arm motor.
         arm = hwMap.get(DcMotor.class, "MS_KOL");
         arm.setDirection(DcMotor.Direction.FORWARD);
+
+        clawLeft.setPower(0); //added by brian
+        clawRight.setPower(0); //added by brian
     }
 }

@@ -10,17 +10,19 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Drive extends LinearOpMode {
     Hardware robot = new Hardware();
 
-    float MASTER_DRIVE_MULTIPLIER = 0.6f;
+    float MASTER_DRIVE_MULTIPLIER = 0.6f; //multipliers
     float FORWARDNESS_MULTIPLIER = 0.7f;
     float STRAFENESS_MULTIPLIER = 1f;
     float TURNYNESS_MULTIPLIER = 0.7f;
 
-    public Drive (Hardware hardware) {
+    public Drive (Hardware hardware) { //i think this is for when the program is run not as an opmode but when inherited from another opmode
+
         robot = hardware;
+
     }
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() { //this is if the program is run as a normal opmode
 
         robot.init(hardwareMap);
 
@@ -34,11 +36,13 @@ public class Drive extends LinearOpMode {
         }
     }
 
-    public void drive(Gamepad gamepad) {
+    public void drive(Gamepad gamepad) { //this is if the proogram is run as a normal opmode
+
         this.drive(gamepad, telemetry);
+
     }
 
-    public void drive(Gamepad gamepad, Telemetry telemetryInstance){
+    public void drive(Gamepad gamepad, Telemetry telemetryInstance){ //this the instructions that work even if this is not run as an opmode and instead is accessed from another opmode (for example from armtest)
 
         /* Three components of robot movement: Forwards/Backwards, Left/Right, and Turning.
          */
