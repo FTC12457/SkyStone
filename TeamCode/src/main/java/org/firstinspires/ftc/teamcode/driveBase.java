@@ -6,8 +6,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import java.lang.Math;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-@TeleOp(name = "Drive", group = "Mechanisms")
-public class Drive extends LinearOpMode {
+public class driveBase {
     Hardware robot = new Hardware();
 
     float MASTER_DRIVE_MULTIPLIER = 0.6f; //multipliers
@@ -15,30 +14,9 @@ public class Drive extends LinearOpMode {
     float STRAFENESS_MULTIPLIER = 1f;
     float TURNYNESS_MULTIPLIER = 0.7f;
 
-    public Drive (Hardware hardware) { //i think this is for when the program is run not as an opmode but when inherited from another opmode
+    public driveBase(Hardware hardware) { //i think this is for when the program is run not as an opmode but when inherited from another opmode
 
         robot = hardware;
-
-    }
-
-    @Override
-    public void runOpMode() { //this is if the program is run as a normal opmode
-
-        robot.init(hardwareMap);
-
-        waitForStart();
-
-        while (opModeIsActive()) {
-
-            drive(gamepad1);
-
-            sleep(25);
-        }
-    }
-
-    public void drive(Gamepad gamepad) { //this is if the proogram is run as a normal opmode
-
-        this.drive(gamepad, telemetry);
 
     }
 

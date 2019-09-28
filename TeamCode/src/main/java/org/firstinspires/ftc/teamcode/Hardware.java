@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo; //added by brian
 
 public class Hardware {
     public DcMotor frontLeftDrive = null;
@@ -44,7 +45,7 @@ public class Hardware {
         arm = hwMap.get(DcMotor.class, "MS_KOL");
         arm.setDirection(DcMotor.Direction.FORWARD);
 
-        clawLeft.setPower(0); //added by brian
-        clawRight.setPower(0); //added by brian
+        clawLeft.setPosition(0); //added by brian
+        clawRight.setPosition(0); //added by brian
     }
 }

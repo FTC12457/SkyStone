@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 //Test
 //Hi
-@TeleOp(name = "Arm Test", group = "Experimental")
-public class ArmTest extends LinearOpMode {
+@TeleOp(name = "teleopDrive", group = "Experimental")
+public class teleopDrive extends LinearOpMode {
     Hardware robot = new Hardware();
     driveBase drive = new driveBase(robot);
 
@@ -19,11 +19,6 @@ public class ArmTest extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
-
-            telemetry.addData("MS_KOL", robot.arm.getPower());
-
-            telemetry.update();
             sleep(25);
         }
     }
