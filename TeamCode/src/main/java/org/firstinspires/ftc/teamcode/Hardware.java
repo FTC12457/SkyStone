@@ -44,6 +44,7 @@ public class Hardware {
         // Initialize the arm motor.
         arm = hwMap.get(DcMotor.class, "MS_KOL");
         arm.setDirection(DcMotor.Direction.FORWARD);
+        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         clawLeft.setPosition(0.8); //added by brian
         clawRight.setPosition(0.2); //added by brian
