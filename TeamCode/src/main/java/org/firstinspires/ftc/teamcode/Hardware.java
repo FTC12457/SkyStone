@@ -45,7 +45,7 @@ public class Hardware {
         arm = hwMap.get(DcMotor.class, "MS_KOL");
         arm.setDirection(DcMotor.Direction.FORWARD);
 
-        clawLeft.setPosition(0); //added by brian
-        clawRight.setPosition(0); //added by brian
+        clawLeft.setPosition(0.8); //added by brian
+        clawRight.setPosition(0.2); //added by brian
     }
 }

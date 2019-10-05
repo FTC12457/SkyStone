@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 //Test
 //Hi
-@TeleOp(name = "Arm Test", group = "Experimental")
+@TeleOp(name = "Claw Test", group = "Experimental")
 public class clawTest extends LinearOpMode {
     Hardware robot = new Hardware();
     driveBase drive = new driveBase(robot);
@@ -20,11 +20,16 @@ public class clawTest extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
+            //robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
 
-            telemetry.addData("MS_KOL", robot.arm.getPower());
+            if (gamepad1.y) {
+                robot.clawLeft.setPosition(0.65);
+                robot.clawRight.setPosition(0.35);
+            } else {
+                robot.clawLeft.setPosition(0.8);
+                robot.clawRight.setPosition(0.2);
+            }
 
-            telemetry.update();
             sleep(25);
         }
     }
