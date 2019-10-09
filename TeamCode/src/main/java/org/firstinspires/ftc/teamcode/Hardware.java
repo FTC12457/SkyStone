@@ -10,10 +10,12 @@ public class Hardware {
     public DcMotor backLeftDrive = null;
     public DcMotor backRightDrive = null;
 
-    public Servo clawLeft = null; //added by brian
-    public Servo clawRight = null; //added by brian
+    public Servo clawLeft = null;
+    public Servo clawRight = null;
 
     public DcMotor arm = null; // Experimental for ArmTest class
+    public DcMotor rise = null; // Experimental for ArmTest class
+
 
     HardwareMap hwMap = null;
 
@@ -45,6 +47,10 @@ public class Hardware {
         arm = hwMap.get(DcMotor.class, "MS_KOL");
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        rise = hwMap.get(DcMotor.class, "RRISE");
+        rise.setDirection(DcMotor.Direction.FORWARD);
+        rise.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         clawLeft.setPosition(0.8); //added by brian
         clawRight.setPosition(0.2); //added by brian
