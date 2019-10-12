@@ -2,12 +2,15 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-//Test
-//Hi
-@TeleOp(name = "teleopDrive", group = "Experimental")
-public class teleopDrive extends LinearOpMode {
+
+/*
+Basic class calls only the drive functionality.
+ */
+
+@TeleOp(name = "TeleopDrive", group = "Experimental")
+public class TeleopDrive extends LinearOpMode {
     Hardware robot = new Hardware();
-    driveBase drive = new driveBase(robot);
+    Drive drive = new Drive(robot);
 
     public void runOpMode() {
 
@@ -18,6 +21,8 @@ public class teleopDrive extends LinearOpMode {
         while(opModeIsActive()) {
 
             drive.drive(gamepad1, telemetry);
+
+            telemetry.update();
 
             sleep(25);
         }

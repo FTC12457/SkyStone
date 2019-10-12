@@ -30,13 +30,13 @@ public class Hardware {
 
         // At convenience, change names and config of RL and RR to BL and BR, respectively.
 
-        frontLeftDrive      = hwMap.get(DcMotor.class,    "FL");
-        frontRightDrive     = hwMap.get(DcMotor.class,    "FR");
-        backLeftDrive       = hwMap.get(DcMotor.class,    "RL");
-        backRightDrive      = hwMap.get(DcMotor.class,    "RR");
+        frontLeftDrive      = hwMap.get(DcMotor.class, "FL");
+        frontRightDrive     = hwMap.get(DcMotor.class, "FR");
+        backLeftDrive       = hwMap.get(DcMotor.class, "RL");
+        backRightDrive      = hwMap.get(DcMotor.class, "RR");
 
-        clawLeft = hwMap.get(Servo.class, "CL"); //added by brian
-        clawRight = hwMap.get(Servo.class, "CR"); //added by brian
+        clawLeft            = hwMap.get(Servo.class,   "CL");
+        clawRight           = hwMap.get(Servo.class,   "CR");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
@@ -52,7 +52,7 @@ public class Hardware {
         rise.setDirection(DcMotor.Direction.FORWARD);
         rise.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        clawLeft.setPosition(0.8); //added by brian
-        clawRight.setPosition(0.2); //added by brian
+        clawLeft.setPosition(0.8);
+        clawRight.setPosition(0.2);
     }
 }

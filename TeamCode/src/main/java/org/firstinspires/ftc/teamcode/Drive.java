@@ -1,22 +1,23 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import java.lang.Math;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class driveBase {
+/* Class for drive functionality. Called in other classes.
+ */
+
+public class Drive {
     Hardware robot = new Hardware();
 
-    float MASTER_DRIVE_MULTIPLIER = 0.6f; //multipliers
+    float MASTER_DRIVE_MULTIPLIER = 0.6f; // Multipliers
     float FORWARDNESS_MULTIPLIER = 0.7f;
     float STRAFENESS_MULTIPLIER = 1f;
     float TURNYNESS_MULTIPLIER = 0.7f;
 
-    public driveBase(Hardware hardware) { //i think this is for when the program is run not as an opmode but when inherited from another opmode
+    public Drive(Hardware hardware) {
 
-        robot = hardware;
+        robot = hardware; // Constructor
 
     }
 
@@ -64,7 +65,5 @@ public class driveBase {
         telemetryInstance.addData("RIGHT REAR", robot.backRightDrive.getPower());
         telemetryInstance.addData("LEFT FRONT", robot.frontLeftDrive.getPower());
         telemetryInstance.addData("RIGHT FRONT", robot.frontRightDrive.getPower());
-
-        telemetryInstance.update();
     }
 }

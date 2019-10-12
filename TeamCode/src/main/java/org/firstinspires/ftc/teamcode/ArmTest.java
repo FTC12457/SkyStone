@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name = "Arm Test", group = "Experimental")
 public class ArmTest extends LinearOpMode {
     Hardware robot = new Hardware();
-    driveBase drive = new driveBase(robot);
+    Drive drive = new Drive(robot);
 
     public void runOpMode() {
 
@@ -19,11 +19,12 @@ public class ArmTest extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            robot.arm.setPower(gamepad1.right_stick_y*0.2); //added a multiplier of 0.2
+            robot.arm.setPower(gamepad1.right_stick_y * 0.2); // Multiplier of 0.2
 
-            telemetry.addData("MS_KOL", robot.arm.getPower());
+            telemetry.addData("Angular Velocity: ", robot.arm.getPower());
 
             telemetry.update();
+
             sleep(25);
         }
     }
