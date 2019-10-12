@@ -20,23 +20,23 @@ public class clawTest extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            if (gamepad1.dpad_up) {
+            if (gamepad2.dpad_up) {
                 robot.arm.setPower(-0.4); //moves away from robot
-            } else if (gamepad1.dpad_down) {
+            } else if (gamepad2.dpad_down) {
                 robot.arm.setPower(0.4); //moves towards robot
             } else {
                 robot.arm.setPower(0);
             }
 
-            if (gamepad1.dpad_left) {
+            if (gamepad2.dpad_left) {
                 robot.rise.setPower(-0.2); //moves away from robot
-            } else if (gamepad1.dpad_right) {
+            } else if (gamepad2.dpad_right) {
                 robot.rise.setPower(0.2); //moves towards robot
             } else {
                 robot.rise.setPower(0);
             }
 
-            if (gamepad1.y) {
+            if (gamepad2.y) {
                 robot.clawLeft.setPosition(0.65); //closes
                 robot.clawRight.setPosition(0.35);
             } else {
