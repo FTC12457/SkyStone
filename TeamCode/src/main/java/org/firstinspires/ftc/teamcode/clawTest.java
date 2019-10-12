@@ -29,9 +29,9 @@ public class clawTest extends LinearOpMode {
             }
 
             if (gamepad2.dpad_left) {
-                robot.rise.setPower(-0.2); //moves away from robot
+                robot.rise.setPower(-0.4); //moves away from robot
             } else if (gamepad2.dpad_right) {
-                robot.rise.setPower(0.2); //moves towards robot
+                robot.rise.setPower(0.4); //moves towards robot
             } else {
                 robot.rise.setPower(0);
             }
