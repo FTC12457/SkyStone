@@ -21,7 +21,7 @@ public class Drive {
 
     }
 
-    public void drive(Gamepad gamepad, Telemetry telemetryInstance){ //this the instructions that work even if this is not run as an opmode and instead is accessed from another opmode (for example from armtest)
+    public void drive(Gamepad gamepad, Telemetry telemetryInstance){ // The called method.
 
         /* Three components of robot movement: Forwards/Backwards, Left/Right, and Turning.
          */
