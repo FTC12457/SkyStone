@@ -2,7 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo; //added by brian
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 public class Hardware {
     public DcMotor frontLeftDrive = null;
@@ -13,7 +14,8 @@ public class Hardware {
     public Servo claw = null;
 
     public DcMotor arm = null; // Experimental for ArmTest class
-    //public DcMotor rise = null; // Experimental for ArmTest class
+
+    public CRServo rise = null; // Experimental for ArmTest class
 
 
     HardwareMap hwMap = null;
@@ -46,9 +48,9 @@ public class Hardware {
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //rise = hwMap.get(DcMotor.class, "RRISE");
-        //rise.setDirection(DcMotor.Direction.FORWARD);
-        //rise.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rise = hwMap.get(CRServo.class, "RISE");
+
+        rise.setPower(0);
 
         claw.setPosition(0.3);
     }
