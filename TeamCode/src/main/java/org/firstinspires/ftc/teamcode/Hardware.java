@@ -13,7 +13,7 @@ public class Hardware {
     public Servo claw = null;
 
     public DcMotor arm = null; // Experimental for ArmTest class
-    public DcMotor rise = null; // Experimental for ArmTest class
+    //public DcMotor rise = null; // Experimental for ArmTest class
 
 
     HardwareMap hwMap = null;
@@ -42,13 +42,13 @@ public class Hardware {
         backRightDrive. setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
 
         // Initialize the arm motor.
-        arm = hwMap.get(DcMotor.class, "MS_KOL");
+        arm = hwMap.get(DcMotor.class, "ARM");
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        rise = hwMap.get(DcMotor.class, "RRISE");
-        rise.setDirection(DcMotor.Direction.FORWARD);
-        rise.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //rise = hwMap.get(DcMotor.class, "RRISE");
+        //rise.setDirection(DcMotor.Direction.FORWARD);
+        //rise.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         claw.setPosition(0.3);
     }

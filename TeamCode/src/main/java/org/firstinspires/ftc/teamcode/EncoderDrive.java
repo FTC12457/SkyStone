@@ -127,7 +127,7 @@ public class EncoderDrive {
             while (opMode.opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (robot.frontLeftDrive.isBusy() && robot.frontRightDrive.isBusy()
-                            && robot.backRightDrive.isBusy() && robot.backRightDrive.isBusy())) {
+                            && robot.backLeftDrive.isBusy() && robot.backRightDrive.isBusy())) {
 
                 // NOTE: We use (isBusy() && isBusy()) in the loop test, which means that when
                 // EITHER motor hits its target position, the motion will stop.  This is "safer" in
