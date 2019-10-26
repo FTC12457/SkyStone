@@ -20,17 +20,17 @@ public class ClawTest extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            if (gamepad2.dpad_up) {
+            if (gamepad2.left_bumper) {
                 robot.arm.setPower(0.3); // Moves up
-            } else if (gamepad2.dpad_down) {
+            } else if (gamepad2.left_trigger > 0) {
                 robot.arm.setPower(-0.3); // Moves down
             } else {
                 robot.arm.setPower(0);
             }
 
-            if (gamepad2.right_stick_y < 0) {
+            if (gamepad2.right_bumper) {
                 robot.rise.setPower(-0.5); // Moves down
-            } else if (gamepad2.right_stick_y > 0) {
+            } else if (gamepad2.right_trigger > 0) {
                 robot.rise.setPower(0.5); // Moves up
             } else {
                 robot.rise.setPower(0);

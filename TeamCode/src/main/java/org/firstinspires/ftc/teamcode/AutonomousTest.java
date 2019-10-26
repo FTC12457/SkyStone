@@ -16,8 +16,9 @@ public class AutonomousTest extends LinearOpMode{
         telemetry.update();
         waitForStart();
 
-        //encoderDrive.encoderDrive(0.5, "Forward", 24, 10, this, telemetry);
+        encoderDrive.encoderDrive(0.2, "Forward", 24, 10, this, telemetry);
         sleep(1000);
-        encoderDrive.encoderDrive(0.1, "Turn", 24, 10, this, telemetry);
+        //encoderDrive.encoderDrive(0.1, "Turn", 24, 10, this, telemetry);
+        //encoderDrive.encoderDrive(0.5, "Strafe", 24, 10, this, telemetry);
     }
 }

@@ -126,14 +126,24 @@ public class EncoderDrive {
 
             while (opMode.opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (robot.frontLeftDrive.isBusy() && robot.frontRightDrive.isBusy()
-                            && robot.backLeftDrive.isBusy() && robot.backRightDrive.isBusy())) {
+                    (robot.frontLeftDrive.isBusy() || robot.frontRightDrive.isBusy()
+                            || robot.backLeftDrive.isBusy() || robot.backRightDrive.isBusy())) {
 
                 // NOTE: We use (isBusy() && isBusy()) in the loop test, which means that when
-                // EITHER motor hits its target position, the motion will stop.  This is "safer" in
+                // ANY of the motors hits its target position, the motion will stop.  This is "safer" in
                 // the event that the robot will always end the motion as soon as possible. However,
                 // if you require that BOTH motors have finished their moves before the robot
                 // continues onto the next step, use (isBusy() || isBusy()) in the loop test.
+
+                telemetryInstance.addData("BL Target Position:", robot.backLeftDrive.getTargetPosition());
+                telemetryInstance.addData("BL Current Position:", robot.backLeftDrive.getCurrentPosition());
+                telemetryInstance.addData("BR Target Position:", robot.backRightDrive.getTargetPosition());
+                telemetryInstance.addData("BL Current Position:", robot.backRightDrive.getCurrentPosition());
+                telemetryInstance.addData("FL Target Position:", robot.frontLeftDrive.getTargetPosition());
+                telemetryInstance.addData("FL Current Position:", robot.frontLeftDrive.getCurrentPosition());
+                telemetryInstance.addData("FR Target Position:", robot.frontRightDrive.getTargetPosition());
+                telemetryInstance.addData("FR Current Position:", robot.frontRightDrive.getCurrentPosition());
+                telemetryInstance.update();
 
             }
 

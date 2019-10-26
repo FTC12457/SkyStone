@@ -11,9 +11,11 @@ public class Drive {
     Hardware robot = new Hardware();
 
     float MASTER_DRIVE_MULTIPLIER = 0.6f; // Multipliers
-    float FORWARDNESS_MULTIPLIER = 0.7f;
+    float FORWARDNESS_MULTIPLIER = 0.5f;
     float STRAFENESS_MULTIPLIER = 1f;
-    float TURNYNESS_MULTIPLIER = 0.7f;
+    float TURNYNESS_MULTIPLIER = 0.8f;
+
+    Boolean a_pressed = false;
 
     public Drive(Hardware hardware) {
 
@@ -22,6 +24,19 @@ public class Drive {
     }
 
     public void drive(Gamepad gamepad, Telemetry telemetryInstance){ // The called method.
+
+        if (gamepad.a) {
+            if (!a_pressed) {
+                if (MASTER_DRIVE_MULTIPLIER == 0.4f) {
+                    MASTER_DRIVE_MULTIPLIER = 0.7f; // Closes
+                } else {
+                    MASTER_DRIVE_MULTIPLIER = 0.4f; // Opens
+                }
+            }
+            a_pressed = true;
+        } else {
+            a_pressed = false;
+        }
 
         /* Three components of robot movement: Forwards/Backwards, Left/Right, and Turning.
          */
