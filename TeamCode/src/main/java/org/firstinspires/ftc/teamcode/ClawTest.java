@@ -36,10 +36,10 @@ public class ClawTest extends LinearOpMode {
                 robot.rise.setPower(0);
             }
 
-            if (gamepad2.y) {
+            if (gamepad2.b) {
                 if (!y_pressed) {
                     if (robot.claw.getPosition() == 0.3) {
-                        robot.claw.setPosition(0.59); // Closes
+                        robot.claw.setPosition(0.45); // Closes
                     } else {
                         robot.claw.setPosition(0.3); // Opens
                     }
