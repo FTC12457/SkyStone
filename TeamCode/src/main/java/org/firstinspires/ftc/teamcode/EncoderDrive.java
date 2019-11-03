@@ -55,7 +55,7 @@ public class EncoderDrive {
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
                 newRightTarget     = robot.frontRightDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
-                newLeftBackTarget  = robot.backRightDrive.getCurrentPosition()
+                newLeftBackTarget  = robot.backLeftDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
                 newRightBackTarget = robot.backRightDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
@@ -68,9 +68,9 @@ public class EncoderDrive {
                 newLeftTarget      = robot.frontLeftDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
                 newRightTarget     = robot.frontRightDrive.getCurrentPosition()
-                        + (int) (-Inches * COUNTS_PER_INCH_WHEELS);
-                newLeftBackTarget  = robot.backRightDrive.getCurrentPosition()
-                        + (int) (-Inches * COUNTS_PER_INCH_WHEELS);
+                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                newLeftBackTarget  = robot.backLeftDrive.getCurrentPosition()
+                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
                 newRightBackTarget = robot.backRightDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
 
@@ -82,11 +82,11 @@ public class EncoderDrive {
                 newLeftTarget      = robot.frontLeftDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
                 newRightTarget     = robot.frontRightDrive.getCurrentPosition()
-                        + (int) (-Inches * COUNTS_PER_INCH_WHEELS);
-                newLeftBackTarget  = robot.backRightDrive.getCurrentPosition()
+                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                newLeftBackTarget  = robot.backLeftDrive.getCurrentPosition()
                         + (int) (Inches * COUNTS_PER_INCH_WHEELS);
                 newRightBackTarget = robot.backRightDrive.getCurrentPosition()
-                        + (int) (-Inches * COUNTS_PER_INCH_WHEELS);
+                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
 
             } else {
 
@@ -101,7 +101,7 @@ public class EncoderDrive {
 
             robot.frontLeftDrive.setTargetPosition(newLeftTarget);
             robot.frontRightDrive.setTargetPosition(newRightTarget);
-            robot.backRightDrive.setTargetPosition(newLeftBackTarget);
+            robot.backLeftDrive.setTargetPosition(newLeftBackTarget);
             robot.backRightDrive.setTargetPosition(newRightBackTarget);
 
             /* Turns on RUN_TO_POSITION, allowing it to use the target position determined
@@ -109,7 +109,7 @@ public class EncoderDrive {
 
             robot.frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             /* Having determined the position target, each wheel motor starts rotating until one of
@@ -121,13 +121,13 @@ public class EncoderDrive {
             runtime.reset();
             robot.frontLeftDrive.setPower(Math.abs(speed));
             robot.frontRightDrive.setPower(Math.abs(speed));
-            robot.backRightDrive.setPower(Math.abs(speed));
+            robot.backLeftDrive.setPower(Math.abs(speed));
             robot.backRightDrive.setPower(Math.abs(speed));
 
             while (opMode.opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (robot.frontLeftDrive.isBusy() || robot.frontRightDrive.isBusy()
-                            || robot.backLeftDrive.isBusy() || robot.backRightDrive.isBusy())) {
+                    (robot.frontLeftDrive.isBusy() && robot.frontRightDrive.isBusy()
+                            && robot.backLeftDrive.isBusy() && robot.backRightDrive.isBusy())) {
 
                 // NOTE: We use (isBusy() && isBusy()) in the loop test, which means that when
                 // ANY of the motors hits its target position, the motion will stop.  This is "safer" in
@@ -138,7 +138,7 @@ public class EncoderDrive {
                 telemetryInstance.addData("BL Target Position:", robot.backLeftDrive.getTargetPosition());
                 telemetryInstance.addData("BL Current Position:", robot.backLeftDrive.getCurrentPosition());
                 telemetryInstance.addData("BR Target Position:", robot.backRightDrive.getTargetPosition());
-                telemetryInstance.addData("BL Current Position:", robot.backRightDrive.getCurrentPosition());
+                telemetryInstance.addData("BR Current Position:", robot.backRightDrive.getCurrentPosition());
                 telemetryInstance.addData("FL Target Position:", robot.frontLeftDrive.getTargetPosition());
                 telemetryInstance.addData("FL Current Position:", robot.frontLeftDrive.getCurrentPosition());
                 telemetryInstance.addData("FR Target Position:", robot.frontRightDrive.getTargetPosition());
@@ -151,7 +151,7 @@ public class EncoderDrive {
 
             robot.frontLeftDrive.setPower(0);
             robot.frontRightDrive.setPower(0);
-            robot.backRightDrive.setPower(0);
+            robot.backLeftDrive.setPower(0);
             robot.backRightDrive.setPower(0);
 
             /* Telemetry for debugging. */
@@ -159,14 +159,14 @@ public class EncoderDrive {
             telemetryInstance.addData("Path2", "Running at %7d :%7d",
                     robot.frontLeftDrive.getCurrentPosition(),
                     robot.frontRightDrive.getCurrentPosition(),
-                    robot.backRightDrive.getCurrentPosition(),
+                    robot.backLeftDrive.getCurrentPosition(),
                     robot.backRightDrive.getCurrentPosition());
             telemetryInstance.update();
 
             /* Turns of RUN_TO_POSITION. */
             robot.frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }

@@ -12,7 +12,7 @@ public class ClawTest extends LinearOpMode {
 
         robot.init(hardwareMap);
 
-        Boolean y_pressed = false;
+        Boolean b_pressed = false;
 
         waitForStart();
 
@@ -21,9 +21,9 @@ public class ClawTest extends LinearOpMode {
             drive.drive(gamepad1, telemetry);
 
             if (gamepad2.left_bumper) {
-                robot.arm.setPower(0.3); // Moves up
+                robot.arm.setPower(0.5); // Moves up
             } else if (gamepad2.left_trigger > 0) {
-                robot.arm.setPower(-0.3); // Moves down
+                robot.arm.setPower(-0.5); // Moves down
             } else {
                 robot.arm.setPower(0);
             }
@@ -36,17 +36,25 @@ public class ClawTest extends LinearOpMode {
                 robot.rise.setPower(0);
             }
 
-            if (gamepad2.y) {
-                if (!y_pressed) {
+            if (gamepad2.b) {
+                if (!b_pressed) {
                     if (robot.claw.getPosition() == 0.3) {
                         robot.claw.setPosition(0.59); // Closes
                     } else {
                         robot.claw.setPosition(0.3); // Opens
                     }
                 }
-                y_pressed = true;
+                b_pressed = true;
             } else {
-                y_pressed = false;
+                b_pressed = false;
+            }
+
+            if (gamepad2.dpad_down) {
+                robot.base.setPower(0.2);
+            } else if (gamepad2.dpad_up) {
+                robot.base.setPower(-0.2);
+            } else {
+                robot.base.setPower(0);
             }
 
             telemetry.update();

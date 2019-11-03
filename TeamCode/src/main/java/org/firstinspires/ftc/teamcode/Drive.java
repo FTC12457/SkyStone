@@ -28,9 +28,11 @@ public class Drive {
         if (gamepad.a) {
             if (!a_pressed) {
                 if (MASTER_DRIVE_MULTIPLIER == 0.4f) {
-                    MASTER_DRIVE_MULTIPLIER = 0.7f; // Closes
+                    MASTER_DRIVE_MULTIPLIER = 0.7f;
+                    FORWARDNESS_MULTIPLIER  = 0.8f;
                 } else {
-                    MASTER_DRIVE_MULTIPLIER = 0.4f; // Opens
+                    MASTER_DRIVE_MULTIPLIER = 0.4f;
+                    FORWARDNESS_MULTIPLIER  = 0.6f;
                 }
             }
             a_pressed = true;

@@ -68,5 +68,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </integer-array>
 
   <string name="packageName">@string/packageNameRobotController</string>
+    <string name="team_color">Team Color</string>
+    <string name="blue">Blue</string>
+    <string name="red">Red</string>
+    <string name="platform">Platform</string>
+    <string name="near">Near</string>
+    <string name="far">Far</string>
 
 </resources>

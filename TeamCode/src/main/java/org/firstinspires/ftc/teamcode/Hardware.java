@@ -17,6 +17,8 @@ public class Hardware {
 
     public CRServo rise = null; // Experimental for ArmTest class
 
+    public DcMotor base = null;
+
 
     HardwareMap hwMap = null;
 
@@ -53,5 +55,9 @@ public class Hardware {
         rise.setPower(0);
 
         claw.setPosition(0.3);
+
+        base = hwMap.get(DcMotor.class, "BASE");
+        base.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        base.setPower(0);
     }
 }
