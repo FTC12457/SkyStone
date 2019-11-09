@@ -56,8 +56,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <string name="toastRestartingRobot">Restarting Robot</string>
   <string name="toastConfigureRobotBeforeProgrammingMode">You must Configure Robot before starting Programming Mode.</string>
   <string name="toastWifiUpBeforeProgrammingMode">The Robot Controller must be fully up and running before starting Programming Mode.  Is Wifi turned on in settings?</string>
+    <string name="blue">Blue</string>
+    <string name="red">Red</string>
+    <string name="team_color">Team Colour</string>
+    <string name="near">Near</string>
+    <string name="far">Far</string>
+    <string name="platform">Platform</string>
+    <string name="partner">Partner Team</string>
+    <string name="op">OP</string>
+    <string name="not">Not OP</string>
 
-  <!-- for interpreting pref_app_theme contents. may be override in merged resources -->
+    <!-- for interpreting pref_app_theme contents. may be override in merged resources -->
   <integer-array name="app_theme_ids">
       <item>@style/AppThemeRedRC</item>
       <item>@style/AppThemeGreenRC</item>
