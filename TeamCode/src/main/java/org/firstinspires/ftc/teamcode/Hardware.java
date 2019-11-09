@@ -54,7 +54,7 @@ public class Hardware {
 
         rise.setPower(0);
 
-        claw.setPosition(0.3);
+        claw.setPosition(0);
 
         base = hwMap.get(DcMotor.class, "BASE");
         base.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

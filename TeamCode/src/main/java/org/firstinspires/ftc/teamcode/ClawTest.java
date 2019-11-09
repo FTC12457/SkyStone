@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class ClawTest extends LinearOpMode {
     Hardware robot = new Hardware();
     Drive drive = new Drive(robot);
+    Claw claw = new Claw(robot);
 
     public void runOpMode() {
 
@@ -38,10 +39,10 @@ public class ClawTest extends LinearOpMode {
 
             if (gamepad2.b) {
                 if (!b_pressed) {
-                    if (robot.claw.getPosition() == 0.3) {
-                        robot.claw.setPosition(0.59); // Closes
+                    if (robot.claw.getPosition() == 0.5) {
+                        robot.claw.setPosition(0.7);
                     } else {
-                        robot.claw.setPosition(0.3); // Opens
+                        robot.claw.setPosition(0.5);
                     }
                 }
                 b_pressed = true;

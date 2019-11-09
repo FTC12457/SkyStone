@@ -66,7 +66,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <item>@style/AppThemeOrangeRC</item>
       <item>@style/AppThemeTealRC</item>
   </integer-array>
-
+<!--
   <string name="packageName">@string/packageNameRobotController</string>
     <string name="team_color">Team Color</string>
     <string name="blue">Blue</string>
@@ -74,5 +74,5 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="platform">Platform</string>
     <string name="near">Near</string>
     <string name="far">Far</string>
-
+-->
 </resources>
