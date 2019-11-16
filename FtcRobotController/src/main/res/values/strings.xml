@@ -62,9 +62,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="near">Near</string>
     <string name="far">Far</string>
     <string name="platform">Platform</string>
-    <string name="partner">Partner Team</string>
-    <string name="op">OP</string>
-    <string name="not">Not OP</string>
 
     <!-- for interpreting pref_app_theme contents. may be override in merged resources -->
   <integer-array name="app_theme_ids">
@@ -75,13 +72,4 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <item>@style/AppThemeOrangeRC</item>
       <item>@style/AppThemeTealRC</item>
   </integer-array>
-<!--
-  <string name="packageName">@string/packageNameRobotController</string>
-    <string name="team_color">Team Color</string>
-    <string name="blue">Blue</string>
-    <string name="red">Red</string>
-    <string name="platform">Platform</string>
-    <string name="near">Near</string>
-    <string name="far">Far</string>
--->
 </resources>

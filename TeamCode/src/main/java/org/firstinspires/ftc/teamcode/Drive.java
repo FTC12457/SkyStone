@@ -18,12 +18,13 @@ public class Drive {
     Boolean a_pressed = false;
 
     public Drive(Hardware hardware) {
-
         robot = hardware; // Constructor
-
     }
 
     public void drive(Gamepad gamepad, Telemetry telemetryInstance){ // The called method.
+
+        /* Toggle for speed control. The boolean variable compensates for driver slowness.
+         */
 
         if (gamepad.a) {
             if (!a_pressed) {
@@ -73,7 +74,8 @@ public class Drive {
             robot.frontRightDrive.setPower(MASTER_DRIVE_MULTIPLIER * FR);
         }
 
-        /* Telemetry for reference. (Mostly debugging.) */
+        /* Telemetry for reference, debugging.
+         */
 
         telemetryInstance.addData("Forwardness%3A", FORWARDNESS);
         telemetryInstance.addData("Strafeness%3A", STRAFENESS);

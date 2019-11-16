@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 Basic class calls only the drive functionality.
  */
 
-@TeleOp(name = "TeleopDrive", group = "Experimental")
-public class TeleopDrive extends LinearOpMode {
+@TeleOp(name = "DriveTest", group = "Experimental")
+public class DriveTest extends LinearOpMode {
     Hardware robot = new Hardware();
     Drive drive = new Drive(robot);
 

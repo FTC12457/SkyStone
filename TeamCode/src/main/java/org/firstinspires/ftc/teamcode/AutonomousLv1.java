@@ -7,8 +7,8 @@ import android.widget.Switch;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "Red Near", group = "Experimental")
-public class AutonomousRedNear extends LinearOpMode{
+@Autonomous(name = "LVL 1", group = "Performance")
+public class AutonomousLv1 extends LinearOpMode{
     Hardware robot = new Hardware();
     EncoderDrive encoderDrive = new EncoderDrive(robot);
     Claw claw = new Claw(robot);
@@ -23,9 +23,6 @@ public class AutonomousRedNear extends LinearOpMode{
 
         int id_c = context.getResources().getIdentifier("color", "id", context.getPackageName());
         Switch color = (((Activity)context).findViewById(id_c));
-
-        int id_t = context.getResources().getIdentifier("team", "id", context.getPackageName());
-        Switch team = (((Activity)context).findViewById(id_t));
 
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
@@ -50,34 +47,30 @@ public class AutonomousRedNear extends LinearOpMode{
 //        sleep(100);
 //        encoderDrive.encoderDrive(0.3, "Forward", -8, 10, this, telemetry);
 
-        if (team.isChecked()) {
-            if (color.isChecked()) {
-                if (platform.isChecked()) {
-                    encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
-                    sleep(100);
-                    encoderDrive.encoderDrive(0.3, "Strafe", -27, 10, this, telemetry);
-                } else {
-                    encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
-                    sleep(100);
-                    encoderDrive.encoderDrive(0.3, "Strafe", 27, 10, this, telemetry);
-                }
+        if (color.isChecked()) {
+            if (platform.isChecked()) {
+                /* Condition: Red, Near the Platform */
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                sleep(100);
+                encoderDrive.encoderDrive(0.3, "Strafe", -27, 10, this, telemetry);
             } else {
-                if (platform.isChecked()) {
-                    encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
-                    sleep(100);
-                    encoderDrive.encoderDrive(0.3, "Strafe", 27, 10, this, telemetry);
-                } else {
-                    encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
-                    sleep(100);
-                    encoderDrive.encoderDrive(0.3, "Strafe", -27, 10, this, telemetry);
-                }
+                /* Condition: Red, Far */
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                sleep(100);
+                encoderDrive.encoderDrive(0.3, "Strafe", 27, 10, this, telemetry);
             }
         } else {
-            encoderDrive.encoderDrive(0.3, "Forward", 54, 10, this, telemetry);
-            sleep(20000);
-            encoderDrive.encoderDrive(0.3, "Forward", -30, 10, this, telemetry);
-            sleep(100);
-            encoderDrive.encoderDrive(0.3, "Strafe", 18, 10, this, telemetry);
+            if (platform.isChecked()) {
+                /* Condition: Blue, Near */
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                sleep(100);
+                encoderDrive.encoderDrive(0.3, "Strafe", 27, 10, this, telemetry);
+            } else {
+                /* Condition: Blue, Far */
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                sleep(100);
+                encoderDrive.encoderDrive(0.3, "Strafe", -27, 10, this, telemetry);
+            }
         }
     }
 }

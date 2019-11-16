@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "Claw Test", group = "Experimental")
-public class ClawTest extends LinearOpMode {
+@TeleOp(name = "Controlled", group = "Performance")
+public class Controlled extends LinearOpMode {
     Hardware robot = new Hardware();
     Drive drive = new Drive(robot);
     Claw claw = new Claw(robot);
