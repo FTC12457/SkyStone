@@ -13,7 +13,7 @@ public class Controlled extends LinearOpMode {
 
         robot.init(hardwareMap);
 
-        Boolean b_pressed = false;
+        claw.init();
 
         waitForStart();
 
@@ -37,18 +37,7 @@ public class Controlled extends LinearOpMode {
                 robot.rise.setPower(0);
             }
 
-            if (gamepad2.b) {
-                if (!b_pressed) {
-                    if (robot.claw.getPosition() == 0.5) {
-                        robot.claw.setPosition(0.7);
-                    } else {
-                        robot.claw.setPosition(0.5);
-                    }
-                }
-                b_pressed = true;
-            } else {
-                b_pressed = false;
-            }
+            claw.run(gamepad2.b);
 
             if (gamepad2.dpad_down) {
                 robot.base.setPower(0.2);
