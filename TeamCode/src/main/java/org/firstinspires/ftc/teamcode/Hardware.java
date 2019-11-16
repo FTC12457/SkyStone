@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -13,11 +14,13 @@ public class Hardware {
 
     public Servo claw = null;
 
-    public DcMotor arm = null; // Experimental for ArmTest class
-
-    public CRServo rise = null; // Experimental for ArmTest class
+    public DcMotor arm = null;
+    public CRServo rise = null;
 
     public DcMotor base = null;
+
+    public Servo dArm = null;
+    public CRServo dClaw = null;
 
 
     HardwareMap hwMap = null;
@@ -39,25 +42,31 @@ public class Hardware {
         backRightDrive      = hwMap.get(DcMotor.class, "RR");
 
         claw                = hwMap.get(Servo.class,   "CL");
+        arm                 = hwMap.get(DcMotor.class, "AR");
+        rise                = hwMap.get(CRServo.class, "RS");
+        base                = hwMap.get(DcMotor.class, "BS");
+        dArm                = hwMap.get(Servo.class,   "DA");
+        dClaw               = hwMap.get(CRServo.class, "DC");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
         backLeftDrive.  setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRightDrive. setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
 
-        // Initialize the arm motor.
-        arm = hwMap.get(DcMotor.class, "ARM");
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        rise = hwMap.get(CRServo.class, "RISE");
-
+        rise.setDirection(CRServo.Direction.FORWARD);
         rise.setPower(0);
 
         claw.setPosition(0);
 
-        base = hwMap.get(DcMotor.class, "BASE");
         base.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         base.setPower(0);
+
+        dArm.setPosition(0);
+
+        dClaw.setDirection(CRServo.Direction.FORWARD);
+        dClaw.setPower(0);
     }
 }
