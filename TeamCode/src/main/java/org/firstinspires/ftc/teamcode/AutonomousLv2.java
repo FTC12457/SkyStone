@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous(name = "LVL 2", group = "Performance")
 public class AutonomousLv2 extends LinearOpMode {
     Hardware robot = new Hardware();
-    EncoderDrive encoderDrive = new EncoderDrive(robot);
+    EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Claw claw = new Claw(robot);
 
     @Override
@@ -36,19 +36,19 @@ public class AutonomousLv2 extends LinearOpMode {
                 robot.rise.setPower(0.5);
                 sleep(200);
                 robot.rise.setPower(0);
-                encoderDrive.encoderDrive(0.3, "Forward", 24, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", 24, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Turn", 22, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Turn", 22, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Forward", 8, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", 8, 10);
                 sleep(100);
                 claw.open();
                 sleep(200);
-                encoderDrive.encoderDrive(0.3, "Forward", -8, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", -8, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Strafe", 8, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Strafe", 8, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Forward", -8, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", -8, 10);
             } else {
                 // Insert
             }

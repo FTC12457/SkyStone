@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous(name = "LVL 1", group = "Performance")
 public class AutonomousLv1 extends LinearOpMode{
     Hardware robot = new Hardware();
-    EncoderDrive encoderDrive = new EncoderDrive(robot);
+    EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Claw claw = new Claw(robot);
 
     @Override
@@ -50,26 +50,26 @@ public class AutonomousLv1 extends LinearOpMode{
         if (color.isChecked()) {
             if (platform.isChecked()) {
                 /* Condition: Red, Near the Platform */
-                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Strafe", -27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Strafe", -27, 10);
             } else {
                 /* Condition: Red, Far */
-                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Strafe", 27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Strafe", 27, 10);
             }
         } else {
             if (platform.isChecked()) {
                 /* Condition: Blue, Near */
-                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Strafe", 27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Strafe", 27, 10);
             } else {
                 /* Condition: Blue, Far */
-                encoderDrive.encoderDrive(0.3, "Forward", 27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
-                encoderDrive.encoderDrive(0.3, "Strafe", -27, 10, this, telemetry);
+                encoderDrive.encoderDrive(0.3, "Strafe", -27, 10);
             }
         }
     }

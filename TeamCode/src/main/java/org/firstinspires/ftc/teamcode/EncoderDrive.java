@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.graphics.Path;
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -7,11 +10,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class EncoderDrive {
     Hardware robot = new Hardware();
+    LinearOpMode opMode;
+    Telemetry telemetryInstance;
+    Pass pass = new Pass();
 
-    public EncoderDrive(Hardware hardware) {
-
+    public EncoderDrive(Hardware hardware, LinearOpMode linearOpMode, Telemetry telemetry) {
         robot = hardware;
-
+        opMode = linearOpMode;
+        telemetryInstance = telemetry;
     }
 
     /*
@@ -23,8 +29,7 @@ public class EncoderDrive {
      *  3) Driver stops the opmode running.
      */
 
-    void encoderDrive(double speed, String type, double Inches, double timeoutS, LinearOpMode opMode,
-                      Telemetry telemetryInstance) {
+    void encoderDrive(double speed, String type, double inches, double timeoutS, EncoderDriveTask task) {
 
         double COUNTS_PER_MOTOR_REV    = 1120; // If using Tetrix motors, set number to 1440 eg: TETRIX Motor Encoder
         double DRIVE_GEAR_REDUCTION    = 0.5;  // This is < 1.0 if geared UP
@@ -52,13 +57,13 @@ public class EncoderDrive {
                 positive Inches parameter goes forwards. */
 
                 newLeftTarget      = robot.frontLeftDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newRightTarget     = robot.frontRightDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newLeftBackTarget  = robot.backLeftDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newRightBackTarget = robot.backRightDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
 
             } else if (type.equals("Strafe")) {
 
@@ -66,13 +71,13 @@ public class EncoderDrive {
                 parameter goes right. */
 
                 newLeftTarget      = robot.frontLeftDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newRightTarget     = robot.frontRightDrive.getCurrentPosition()
-                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        - (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newLeftBackTarget  = robot.backLeftDrive.getCurrentPosition()
-                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        - (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newRightBackTarget = robot.backRightDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
 
             } else if (type.equals("Turn")) {
 
@@ -80,19 +85,19 @@ public class EncoderDrive {
                 parameter turns right. */
 
                 newLeftTarget      = robot.frontLeftDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newRightTarget     = robot.frontRightDrive.getCurrentPosition()
-                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        - (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newLeftBackTarget  = robot.backLeftDrive.getCurrentPosition()
-                        + (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        + (int) (inches * COUNTS_PER_INCH_WHEELS);
                 newRightBackTarget = robot.backRightDrive.getCurrentPosition()
-                        - (int) (Inches * COUNTS_PER_INCH_WHEELS);
+                        - (int) (inches * COUNTS_PER_INCH_WHEELS);
 
             } else {
 
                 /* Error message in case of wrong implementation of method. */
 
-                telemetryInstance.addData("ERROR", "WRONG TYPE FOR ENCODERDRIVER");
+                telemetryInstance.addData("ERROR", "NON-EXISTENT TYPE FOR ENCODER DRIVER");
                 newLeftTarget = robot.frontLeftDrive.getCurrentPosition();
                 newRightTarget = robot.frontRightDrive.getCurrentPosition();
                 newLeftBackTarget = robot.backRightDrive.getCurrentPosition();
@@ -128,6 +133,8 @@ public class EncoderDrive {
                     (runtime.seconds() < timeoutS) &&
                     (robot.frontLeftDrive.isBusy() && robot.frontRightDrive.isBusy()
                             && robot.backLeftDrive.isBusy() && robot.backRightDrive.isBusy())) {
+
+                task.run();
 
                 // NOTE: We use (isBusy() && isBusy()) in the loop test, which means that when
                 // ANY of the motors hits its target position, the motion will stop.  This is "safer" in
@@ -169,5 +176,9 @@ public class EncoderDrive {
             robot.backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
+    }
+
+    void encoderDrive(double speed, String type, double inches, double timeoutS) {
+        encoderDrive(speed, type, inches, timeoutS, pass);
     }
 }
