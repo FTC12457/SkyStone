@@ -28,25 +28,6 @@ public class AutonomousLv1 extends LinearOpMode{
         telemetry.update();
         waitForStart();
 
-//        claw.close();
-//        sleep(200);
-//        robot.rise.setPower(0.5);
-//        sleep(200);
-//        robot.rise.setPower(0);
-//        encoderDrive.encoderDrive(0.3, "Forward", 24, 10, this, telemetry);
-//        sleep(100);
-//        encoderDrive.encoderDrive(0.3, "Turn", 22, 10, this, telemetry);
-//        sleep(100);
-//        encoderDrive.encoderDrive(0.3, "Forward", 8, 10, this, telemetry);
-//        sleep(100);
-//        claw.open();
-//        sleep(200);
-//        encoderDrive.encoderDrive(0.3, "Forward", -8, 10, this, telemetry);
-//        sleep(100);
-//        encoderDrive.encoderDrive(0.3, "Strafe", 8, 10, this, telemetry);
-//        sleep(100);
-//        encoderDrive.encoderDrive(0.3, "Forward", -8, 10, this, telemetry);
-
         if (color.isChecked()) {
             if (platform.isChecked()) {
                 /* Condition: Red, Near the Platform */

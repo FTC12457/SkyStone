@@ -17,7 +17,8 @@ public class Hardware {
     public DcMotor arm = null;
     public CRServo rise = null;
 
-    public DcMotor base = null;
+    public Servo baseL = null;
+    public Servo baseR = null;
 
     public Servo dArm = null;
     public CRServo dClaw = null;
@@ -44,7 +45,8 @@ public class Hardware {
         claw                = hwMap.get(Servo.class,   "CL");
         arm                 = hwMap.get(DcMotor.class, "AR");
         rise                = hwMap.get(CRServo.class, "RS");
-        base                = hwMap.get(DcMotor.class, "BS");
+        baseL               = hwMap.get(Servo.class,   "BL");
+        baseR               = hwMap.get(Servo.class,   "BR");
         dArm                = hwMap.get(Servo.class,   "DA");
         dClaw               = hwMap.get(CRServo.class, "DC");
 
@@ -61,8 +63,8 @@ public class Hardware {
 
         claw.setPosition(0);
 
-        base.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        base.setPower(0);
+        baseL.setPosition(0);
+        baseR.setPosition(0);
 
         dArm.setPosition(0);
 

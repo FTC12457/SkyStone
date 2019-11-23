@@ -1,18 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.Path;
-
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class EncoderDrive {
-    Hardware robot = new Hardware();
+    Hardware robot;
     LinearOpMode opMode;
     Telemetry telemetryInstance;
-    Pass pass = new Pass();
+    IEncoderDriveTask pass = new Pass();
 
     public EncoderDrive(Hardware hardware, LinearOpMode linearOpMode, Telemetry telemetry) {
         robot = hardware;
@@ -29,7 +26,7 @@ public class EncoderDrive {
      *  3) Driver stops the opmode running.
      */
 
-    void encoderDrive(double speed, String type, double inches, double timeoutS, EncoderDriveTask task) {
+    void encoderDrive(double speed, String type, double inches, double timeoutS, IEncoderDriveTask task) {
 
         double COUNTS_PER_MOTOR_REV    = 1120; // If using Tetrix motors, set number to 1440 eg: TETRIX Motor Encoder
         double DRIVE_GEAR_REDUCTION    = 0.5;  // This is < 1.0 if geared UP
@@ -178,7 +175,7 @@ public class EncoderDrive {
         }
     }
 
-    void encoderDrive(double speed, String type, double inches, double timeoutS) {
+    public void encoderDrive(double speed, String type, double inches, double timeoutS) {
         encoderDrive(speed, type, inches, timeoutS, pass);
     }
 }

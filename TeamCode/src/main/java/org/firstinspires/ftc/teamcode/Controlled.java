@@ -40,11 +40,11 @@ public class Controlled extends LinearOpMode {
             claw.run(gamepad2.b);
 
             if (gamepad2.dpad_down) {
-                robot.base.setPower(0.2);
+                robot.baseL.setPosition(1);
+                robot.baseR.setPosition(1);
             } else if (gamepad2.dpad_up) {
-                robot.base.setPower(-0.2);
-            } else {
-                robot.base.setPower(0);
+                robot.baseL.setPosition(0);
+                robot.baseR.setPosition(0);
             }
 
             telemetry.update();
