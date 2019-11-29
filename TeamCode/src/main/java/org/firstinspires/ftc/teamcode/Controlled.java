@@ -8,6 +8,7 @@ public class Controlled extends LinearOpMode {
     Hardware robot = new Hardware();
     Drive drive = new Drive(robot);
     Claw claw = new Claw(robot);
+    Base base = new Base(robot);
 
     public void runOpMode() {
 
@@ -29,22 +30,27 @@ public class Controlled extends LinearOpMode {
                 robot.arm.setPower(0);
             }
 
-            if (gamepad2.right_bumper) {
+            if (gamepad2.right_trigger > 0.5) {
                 robot.rise.setPower(-0.5); // Moves down
-            } else if (gamepad2.right_trigger > 0) {
+            } else if (gamepad2.right_bumper) {
                 robot.rise.setPower(0.5); // Moves up
             } else {
                 robot.rise.setPower(0);
             }
 
-            claw.run(gamepad2.b);
+            claw.run(gamepad2.b, gamepad1.b);
+            base.run(gamepad2.x);
 
-            if (gamepad2.dpad_down) {
-                robot.baseL.setPosition(1);
-                robot.baseR.setPosition(1);
-            } else if (gamepad2.dpad_up) {
-                robot.baseL.setPosition(0);
-                robot.baseR.setPosition(0);
+            if (gamepad1.right_trigger > 0.5) {
+                robot.dArm.setPosition(robot.dArm.getPosition()+0.03); // Goes back
+            } else if (gamepad1.right_bumper) {
+                robot.dArm.setPosition(robot.dArm.getPosition()-0.03); // Goes forward
+            }
+
+            if (gamepad1.x) {
+                robot.dClaw.setPower(1);
+            } else {
+                robot.dClaw.setPower(0);
             }
 
             telemetry.update();

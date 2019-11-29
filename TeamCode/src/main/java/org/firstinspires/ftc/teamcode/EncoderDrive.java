@@ -149,6 +149,7 @@ public class EncoderDrive {
                 telemetryInstance.addData("FR Current Position:", robot.frontRightDrive.getCurrentPosition());
                 telemetryInstance.update();
 
+                opMode.sleep(10);
             }
 
             /* Stops all motion once one of the above three conditions is exceeded. */

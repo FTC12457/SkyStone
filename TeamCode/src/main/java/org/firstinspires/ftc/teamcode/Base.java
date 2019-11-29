@@ -1,31 +1,32 @@
 package org.firstinspires.ftc.teamcode;
 
-public class Claw {
+public class Base {
     Hardware robot;
     Boolean control_pressed;
-    Boolean override_pressed;
 
-    public Claw(Hardware hardware) {
+    public Base(Hardware hardware) {
         robot = hardware;
     }
 
     public void open() {
-        robot.claw.setPosition(0.5);
+        robot.baseR.setPosition(0);
+        robot.baseL.setPosition(1);
     }
 
     public void close() {
-        robot.claw.setPosition(0.7);
+        robot.baseR.setPosition(0.9);
+        robot.baseL.setPosition(0.1);
     }
 
     public boolean isOpen() {
-        return (robot.claw.getPosition() == 0.5);
+        return (robot.baseR.getPosition() == 0 && robot.baseL.getPosition() == 1);
     }
 
     public void init() {
         control_pressed = false;
     }
 
-    public void run(Boolean control, Boolean override) {
+    public void run(Boolean control) {
         if (control) {
             if (!control_pressed) {
                 if (isOpen()) {
@@ -37,14 +38,6 @@ public class Claw {
             control_pressed = true;
         } else {
             control_pressed = false;
-        }
-        if (override) {
-            if (!override_pressed) {
-                robot.claw.setPosition(0);
-            }
-            override_pressed = true;
-        } else {
-            override_pressed = false;
         }
     }
 }

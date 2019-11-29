@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 
 public class Hardware {
     public DcMotor frontLeftDrive = null;
@@ -19,6 +21,9 @@ public class Hardware {
 
     public Servo baseL = null;
     public Servo baseR = null;
+
+    public BNO055IMU imu = null;
+    public ColorSensor color = null;
 
     public Servo dArm = null;
     public CRServo dClaw = null;
@@ -37,23 +42,25 @@ public class Hardware {
 
         // At convenience, change names and config of RL and RR to BL and BR, respectively.
 
-        frontLeftDrive      = hwMap.get(DcMotor.class, "FL");
-        frontRightDrive     = hwMap.get(DcMotor.class, "FR");
-        backLeftDrive       = hwMap.get(DcMotor.class, "RL");
-        backRightDrive      = hwMap.get(DcMotor.class, "RR");
+        frontLeftDrive      = hwMap.get(DcMotor.class,      "FL");
+        frontRightDrive     = hwMap.get(DcMotor.class,      "FR");
+        backLeftDrive       = hwMap.get(DcMotor.class,      "RL");
+        backRightDrive      = hwMap.get(DcMotor.class,      "RR");
 
-        claw                = hwMap.get(Servo.class,   "CL");
-        arm                 = hwMap.get(DcMotor.class, "AR");
-        rise                = hwMap.get(CRServo.class, "RS");
-        baseL               = hwMap.get(Servo.class,   "BL");
-        baseR               = hwMap.get(Servo.class,   "BR");
-        dArm                = hwMap.get(Servo.class,   "DA");
-        dClaw               = hwMap.get(CRServo.class, "DC");
+        claw                = hwMap.get(Servo.class,        "CL");
+        arm                 = hwMap.get(DcMotor.class,      "AR");
+        rise                = hwMap.get(CRServo.class,      "RS");
+        baseL               = hwMap.get(Servo.class,        "BL");
+        baseR               = hwMap.get(Servo.class,        "BR");
+        dArm                = hwMap.get(Servo.class,        "DA");
+        dClaw               = hwMap.get(CRServo.class,      "DC");
+        imu                 = hwMap.get(BNO055IMU.class,    "IM");
+        color               = hwMap.get(ColorSensor.class,  "CS");
 
-        frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
-        backLeftDrive.  setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        backRightDrive. setDirection(DcMotor.Direction.REVERSE); // Set to FORWARD if using AndyMark motors
+        frontLeftDrive. setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        backLeftDrive.  setDirection(DcMotor.Direction.REVERSE);
+        backRightDrive. setDirection(DcMotor.Direction.FORWARD);
 
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -64,11 +71,20 @@ public class Hardware {
         claw.setPosition(0);
 
         baseL.setPosition(0);
-        baseR.setPosition(0);
+        baseR.setPosition(1);
 
-        dArm.setPosition(0);
+        dArm.setPosition(0.9);
 
         dClaw.setDirection(CRServo.Direction.FORWARD);
         dClaw.setPower(0);
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        imu.initialize(parameters);
     }
 }
