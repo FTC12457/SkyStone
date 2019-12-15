@@ -9,17 +9,17 @@ public class Base {
     }
 
     public void open() {
-        robot.baseR.setPosition(0);
-        robot.baseL.setPosition(1);
+        robot.baseR.setPosition(1);
+        robot.baseL.setPosition(0);
     }
 
     public void close() {
-        robot.baseR.setPosition(0.9);
-        robot.baseL.setPosition(0.1);
+        robot.baseR.setPosition(0.1);
+        robot.baseL.setPosition(0.9);
     }
 
     public boolean isOpen() {
-        return (robot.baseR.getPosition() == 0 && robot.baseL.getPosition() == 1);
+        return (robot.baseR.getPosition() == 1 && robot.baseL.getPosition() == 0);
     }
 
     public void init() {

@@ -12,6 +12,7 @@ public class AutonomousLv2 extends LinearOpMode {
     Hardware robot = new Hardware();
     EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Claw claw = new Claw(robot);
+    Base base = new Base(robot);
 
     @Override
     public void runOpMode() {
@@ -28,27 +29,30 @@ public class AutonomousLv2 extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
+        /*
+        This class places a single block, without an attempt to identify the skystone. Only
+        functions for the far-from-platform position.
+         */
+
         if (color.isChecked()) {
             if (platform.isChecked()) {
                 /* Condition: Red Near */
+                encoderDrive.encoderDrive(0.3, "Forward", 30, 10);
                 claw.close();
-                sleep(200);
-                robot.rise.setPower(0.5);
-                sleep(200);
+                sleep(2000);
+                robot.rise.setPower(0.8);
+                sleep(4000);
                 robot.rise.setPower(0);
-                encoderDrive.encoderDrive(0.3, "Forward", 24, 10);
-                sleep(100);
-                encoderDrive.encoderDrive(0.3, "Turn", 22, 10);
-                sleep(100);
-                encoderDrive.encoderDrive(0.3, "Forward", 8, 10);
-                sleep(100);
+                encoderDrive.encoderDrive(0.3, "Forward", -6, 10);
+                encoderDrive.encoderDrive(0.3, "Strafe", 84, 10);
+                encoderDrive.encoderDrive(0.3, "Forward", 15, 10);
                 claw.open();
-                sleep(200);
-                encoderDrive.encoderDrive(0.3, "Forward", -8, 10);
-                sleep(100);
-                encoderDrive.encoderDrive(0.3, "Strafe", 8, 10);
-                sleep(100);
-                encoderDrive.encoderDrive(0.3, "Forward", -8, 10);
+                sleep(500);
+                base.close();
+                sleep(500);
+                encoderDrive.encoderDrive(0.3, "Strafe", 18, 10);
+                encoderDrive.encoderDrive(0.3, "Forward", -30, 10);
+                base.open();
             } else {
                 // Insert
             }

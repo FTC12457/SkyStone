@@ -73,7 +73,7 @@ public class Hardware {
         baseL.setPosition(0);
         baseR.setPosition(1);
 
-        dArm.setPosition(0.9);
+        dArm.setPosition(1);
 
         dClaw.setDirection(CRServo.Direction.FORWARD);
         dClaw.setPower(0);

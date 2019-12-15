@@ -28,26 +28,30 @@ public class AutonomousLv1 extends LinearOpMode{
         telemetry.update();
         waitForStart();
 
+        /*
+        This class merely parks. Nothing else. Highly consistent.
+         */
+
         if (color.isChecked()) {
             if (platform.isChecked()) {
-                /* Condition: Red, Near the Platform */
+                /* Condition: Red Near */
                 encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
                 encoderDrive.encoderDrive(0.3, "Strafe", -27, 10);
             } else {
-                /* Condition: Red, Far */
+                /* Condition: Red Far */
                 encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
                 encoderDrive.encoderDrive(0.3, "Strafe", 27, 10);
             }
         } else {
             if (platform.isChecked()) {
-                /* Condition: Blue, Near */
+                /* Condition: Blue Near */
                 encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
                 encoderDrive.encoderDrive(0.3, "Strafe", 27, 10);
             } else {
-                /* Condition: Blue, Far */
+                /* Condition: Blue Far */
                 encoderDrive.encoderDrive(0.3, "Forward", 27, 10);
                 sleep(100);
                 encoderDrive.encoderDrive(0.3, "Strafe", -27, 10);
