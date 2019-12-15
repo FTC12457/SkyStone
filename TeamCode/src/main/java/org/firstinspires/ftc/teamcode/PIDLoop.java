@@ -28,8 +28,8 @@ class PIDLoop {
     private double kI;
 
     private double err;
-    private double errP = 0;
     private double errS = 0;
+    private double errSS = 0;
     private double P;
     private double D;
     private double I;
@@ -53,14 +53,13 @@ class PIDLoop {
 
             err = target - value;
             errS = errS + err;
+            errSS = errSS + errS;
 
-            P = kP * err;
-            D = kD * (err - errP) / updateMilliseconds;
-            I = kI * errS * updateMilliseconds;
+            P = kP * errS * updateMilliseconds;
+            D = kD * err;
+            I = kI * errSS * updateMilliseconds;
             correction = P + D + I;
             motor.setPower(motor.getPower() + correction);
-
-            errP = target - value;
 
             telemetryInstance.addData("Error:", err);
         }
