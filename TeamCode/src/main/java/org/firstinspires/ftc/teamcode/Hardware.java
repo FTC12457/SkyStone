@@ -22,6 +22,9 @@ public class Hardware {
     public Servo baseL = null;
     public Servo baseR = null;
 
+    //public Servo autoblueArm = null;
+    //public Servo autoblueClaw = null;
+
     public BNO055IMU imu = null;
     public ColorSensor color = null;
 
@@ -56,6 +59,8 @@ public class Hardware {
         dClaw               = hwMap.get(CRServo.class,      "DC");
         imu                 = hwMap.get(BNO055IMU.class,    "IM");
         color               = hwMap.get(ColorSensor.class,  "CS");
+        //autoblueArm         = hwMap.get(Servo.class,        "BA");
+        //autoblueClaw        = hwMap.get(Servo.class,        "BC");
 
         frontLeftDrive. setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
