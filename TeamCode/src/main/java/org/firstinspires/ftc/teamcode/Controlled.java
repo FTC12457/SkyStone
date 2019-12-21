@@ -22,36 +22,10 @@ public class Controlled extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            if (gamepad2.left_bumper) {
-                robot.arm.setPower(0.5); // Moves up
-            } else if (gamepad2.left_trigger > 0) {
-                robot.arm.setPower(-0.5); // Moves down
-            } else {
-                robot.arm.setPower(0);
-            }
-
-            if (gamepad2.right_trigger > 0.5) {
-                robot.rise.setPower(-1); // Moves down
-            } else if (gamepad2.right_bumper) {
-                robot.rise.setPower(1); // Moves up
-            } else {
-                robot.rise.setPower(0);
-            }
+            robot.arm.setPower(gamepad2.left_stick_y);
 
             claw.run(gamepad2.b, gamepad2.y);
             base.run(gamepad2.x);
-
-            if (gamepad1.right_trigger > 0.5) {
-                robot.dArm.setPosition(robot.dArm.getPosition()+0.03); // Goes back
-            } else if (gamepad1.right_bumper) {
-                robot.dArm.setPosition(robot.dArm.getPosition()-0.03); // Goes forward
-            }
-
-            if (gamepad1.x) {
-                robot.dClaw.setPower(1);
-            } else {
-                robot.dClaw.setPower(0);
-            }
 
             telemetry.update();
 

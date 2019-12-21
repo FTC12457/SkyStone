@@ -17,7 +17,6 @@ public class Hardware {
     public Servo claw = null;
 
     public DcMotor arm = null;
-    //public CRServo rise = null;
 
     public Servo baseL = null;
     public Servo baseR = null;
@@ -26,11 +25,6 @@ public class Hardware {
     public Servo autoblueClaw = null;
 
     public BNO055IMU imu = null;
-    //public ColorSensor color = null;
-
-    //public Servo dArm = null;
-    //public CRServo dClaw = null;
-
 
     HardwareMap hwMap = null;
 
@@ -52,13 +46,9 @@ public class Hardware {
 
         claw                = hwMap.get(Servo.class,        "CL");
         arm                 = hwMap.get(DcMotor.class,      "AR");
-        //rise                = hwMap.get(CRServo.class,      "RS");
         baseL               = hwMap.get(Servo.class,        "BL");
         baseR               = hwMap.get(Servo.class,        "BR");
-        //dArm                = hwMap.get(Servo.class,        "DA");
-        //dClaw               = hwMap.get(CRServo.class,      "DC");
         imu                 = hwMap.get(BNO055IMU.class,    "IM");
-        //color               = hwMap.get(ColorSensor.class,  "CS");
         autoblueArm         = hwMap.get(Servo.class,        "BA");
         autoblueClaw        = hwMap.get(Servo.class,        "BC");
 
@@ -70,18 +60,11 @@ public class Hardware {
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //rise.setDirection(CRServo.Direction.FORWARD);
-        //rise.setPower(0);
-
         claw.setPosition(0);
 
         baseL.setPosition(0);
         baseR.setPosition(1);
 
-        //dArm.setPosition(1);
-
-        //dClaw.setDirection(CRServo.Direction.FORWARD);
-        //dClaw.setPower(0);
 
         autoblueArm.setPosition(0.5);
         autoblueClaw.setPosition(0.5);
