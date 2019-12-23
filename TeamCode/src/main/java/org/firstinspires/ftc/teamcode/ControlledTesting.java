@@ -23,15 +23,15 @@ public class ControlledTesting extends LinearOpMode {
             drive.drive(gamepad1, telemetry);
 
             if (gamepad2.dpad_up) {
-                robot.autoblueArm.setPosition(0.6); //down
+                robot.autoblueArm.setPosition(0.6);
             } else if (gamepad2.dpad_down) {
-                robot.autoblueArm.setPosition(0.2); //up
+                robot.autoblueArm.setPosition(0.4);
             }
 
             if (gamepad2.dpad_right) {
-                robot.autoblueClaw.setPosition(0.8); //close
+                robot.autoblueClaw.setPosition(0.6);
             } else if (gamepad2.dpad_left) {
-                robot.autoblueClaw.setPosition(0.4); //open
+                robot.autoblueClaw.setPosition(0.4);
             }
 
             robot.arm.setPower(gamepad2.left_stick_y);
