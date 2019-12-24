@@ -46,7 +46,7 @@ public class DriveConstants {
      */
     public static double WHEEL_RADIUS = 2;
     public static double GEAR_RATIO = 2; // output (wheel) speed / input (motor) speed
-    public static double TRACK_WIDTH = 14.3; //around 14.3 for hard floor, 15.3 for our black tiles
+    public static double TRACK_WIDTH = 13.85; //13.85 for shiny floor
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
