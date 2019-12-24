@@ -29,7 +29,7 @@ public class ControlledTesting extends LinearOpMode {
             }
 
             if (gamepad2.dpad_right) {
-                robot.autoblueClaw.setPosition(0.7); //close
+                robot.autoblueClaw.setPosition(0.9); //close
             } else if (gamepad2.dpad_left) {
                 robot.autoblueClaw.setPosition(0.3); //open
 
