@@ -54,7 +54,7 @@ public class SampleMecanumDriveREV extends SampleMecanumDriveBase {
         rightFront = hardwareMap.get(DcMotorEx.class, "FR");
 
         // reverse any motors using DcMotor.setDirection()
-        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
