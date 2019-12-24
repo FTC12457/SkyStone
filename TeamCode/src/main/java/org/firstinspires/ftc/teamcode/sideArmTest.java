@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Switch;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
+import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 
 @Autonomous(name = "sideArmTest", group = "Performance")
 public class sideArmTest extends LinearOpMode{
@@ -16,6 +20,7 @@ public class sideArmTest extends LinearOpMode{
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
+        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
         Context context = hardwareMap.appContext;
         int id_p = context.getResources().getIdentifier("platform", "id", context.getPackageName());
@@ -32,6 +37,12 @@ public class sideArmTest extends LinearOpMode{
         This class works to avoid interfering with the alliance partner's robot, in the possibility
         that their autonomous far outclasses ours.
          */
+
+        drive.followTrajectorySync(
+                drive.trajectoryBuilder()
+                        .splineTo(new Pose2d(30, 30, 1.5*Math.PI))
+                        .build()
+        );
 
         //drive back
         encoderDrive.encoderDrive(0.3, "Forward", -6, 10);
