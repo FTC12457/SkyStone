@@ -18,7 +18,7 @@ import java.util.Locale;
  */
 @TeleOp(name = "Skystone Detector OpMode", group="DogeCV")
 
-public class bobJOeEatsBill extends LinearOpMode {
+public class SkystoneDetectorOpMode extends LinearOpMode {
     private OpenCvCamera phoneCam;
     private SkystoneDetector skyStoneDetector;
 
