@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -15,11 +14,10 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @Autonomous(name = "sideArmTest", group = "Performance")
 public class sideArmTest extends LinearOpMode{
     Hardware robot = new Hardware();
-    EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
-        FtcDashboard.start();
+        FtcDashboard.start(); // -PROPOSITION- Integrate this method into the hardware init function.
         robot.init(hardwareMap);
 
         //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
