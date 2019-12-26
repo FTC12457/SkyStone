@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.disnodeteam.dogecv.detectors.skystone.SkystoneDetector;
+import com.disnodeteam.dogecv.detectors.skystone.StoneDetector;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -16,11 +17,11 @@ import java.util.Locale;
  * Original Work Copright(c) 2019 OpenFTC Team
  * Derived Work Copyright(c) 2019 DogeDevs
  */
-@TeleOp(name = "Skystone Detector OpMode", group="DogeCV")
+@TeleOp(name = "Stone Detector OpMode", group="DogeCV")
 
-public class SkystoneDetectorOpMode extends LinearOpMode {
+public class StoneDetectorOpMode extends LinearOpMode {
     private OpenCvCamera phoneCam;
-    private SkystoneDetector skyStoneDetector;
+    private StoneDetector stoneDetector;
 
     @Override
     public void runOpMode() {
@@ -48,8 +49,8 @@ public class SkystoneDetectorOpMode extends LinearOpMode {
          * of a frame from the camera. Note that switching pipelines on-the-fly
          * (while a streaming session is in flight) *IS* supported.
          */
-        skyStoneDetector = new SkystoneDetector();
-        phoneCam.setPipeline(skyStoneDetector);
+        stoneDetector = new StoneDetector();
+        phoneCam.setPipeline(stoneDetector);
 
         /*
          * Tell the camera to start streaming images to us! Note that you must make sure
@@ -74,8 +75,7 @@ public class SkystoneDetectorOpMode extends LinearOpMode {
             /*
              * Send some stats to the telemetry
              */
-            telemetry.addData("Stone Position X", skyStoneDetector.getScreenPosition().x);
-            telemetry.addData("Stone Position Y", skyStoneDetector.getScreenPosition().y);
+            telemetry.addData("Stone Position", stoneDetector.foundScreenPositions());
             telemetry.addData("Frame Count", phoneCam.getFrameCount());
             telemetry.addData("FPS", String.format(Locale.US, "%.2f", phoneCam.getFps()));
             telemetry.addData("Total frame time ms", phoneCam.getTotalFrameTimeMs());
