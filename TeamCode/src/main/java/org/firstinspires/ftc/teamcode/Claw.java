@@ -10,16 +10,14 @@ public class Claw {
     }
 
     public void open() {
-        robot.claw.setPosition(0.4);
+        robot.claw.setPosition(0.5);
     }
 
     public void close() {
         robot.claw.setPosition(0.7);
     }
 
-    public boolean isOpen() {
-        return (robot.claw.getPosition() == 0.4);
-    }
+    public boolean isOpen = true;
 
     public void init() {
         control_pressed = false;
@@ -28,10 +26,12 @@ public class Claw {
     public void run(Boolean control, Boolean override) {
         if (control) {
             if (!control_pressed) {
-                if (isOpen()) {
+                if (isOpen) {
                     close();
+                    isOpen = false;
                 } else {
                     open();
+                    isOpen = true;
                 }
             }
             control_pressed = true;
