@@ -4,6 +4,8 @@ public class Base {
     Hardware robot;
     Boolean control_pressed;
 
+    private boolean opened;
+
     public Base(Hardware hardware) {
         robot = hardware;
     }
@@ -11,15 +13,17 @@ public class Base {
     public void open() {
         robot.baseR.setPosition(1);
         robot.baseL.setPosition(0);
+        opened = true;
     }
 
     public void close() {
         robot.baseR.setPosition(0.1);
         robot.baseL.setPosition(0.9);
+        opened = false;
     }
 
     public boolean isOpen() {
-        return (robot.baseR.getPosition() == 1 && robot.baseL.getPosition() == 0);
+        return (opened);
     }
 
     public void init() {

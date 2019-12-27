@@ -10,7 +10,7 @@ public class Claw {
     }
 
     public void open() {
-        robot.claw.setPosition(0.5);
+        robot.claw.setPosition(0.45);
     }
 
     public void close() {
