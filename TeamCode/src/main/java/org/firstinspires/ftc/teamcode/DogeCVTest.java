@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.disnodeteam.dogecv.DogeCV;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -46,7 +47,7 @@ public class DogeCVTest extends LinearOpMode {
          * For a rear facing camera or a webcam, rotation is defined assuming the camera is facing
          * away from the user.
          */
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
 
         waitForStart();
 
@@ -54,17 +55,39 @@ public class DogeCVTest extends LinearOpMode {
         double time_init = time;
         int occurrences = 0;
 
+        skyStoneDetector.areaScoringMethod = DogeCV.AreaScoringMethod.PERFECT_AREA;
+
+        double placeholderSkystoneX;
+        double placeholderSkystoneBoxWidth;
+        double placeholderSkystoneBoxHeight;
+        double placeholderSkystoneBoxRatio;
+
         while (time - time_init < 5) {
+
+            placeholderSkystoneX = skyStoneDetector.getScreenPosition().x;
+            placeholderSkystoneBoxWidth = skyStoneDetector.foundRectangle().width;
+            placeholderSkystoneBoxHeight = skyStoneDetector.foundRectangle().height;
+            placeholderSkystoneBoxRatio = placeholderSkystoneBoxWidth / placeholderSkystoneBoxHeight;
+
+            if ((placeholderSkystoneX > 0) && (placeholderSkystoneBoxRatio > 1.5) && (placeholderSkystoneBoxRatio < 3)) {
+                x_sum += placeholderSkystoneX;
+                occurrences += 1;
+            }
+            sleep(40);
+
+            /*
+            //old stuff for this section
             x_sum += skyStoneDetector.getScreenPosition().x;
             occurrences += 1;
             sleep(40);
+            */
         }
 
         double avg_x = x_sum / occurrences;
 
         // Maximum x is 320. Biased towards right because x value is always top left.
 
-        if (avg_x < 80) {
+        if (avg_x < 100) {
             telemetry.addData("Skystone: ", "Left");
         } else if (avg_x < 170) {
             telemetry.addData("Skystone: ", "Center");
