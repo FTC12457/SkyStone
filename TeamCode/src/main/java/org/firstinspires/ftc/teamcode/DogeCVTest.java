@@ -62,9 +62,11 @@ public class DogeCVTest extends LinearOpMode {
 
         double avg_x = x_sum / occurrences;
 
-        if (avg_x < 107) {
+        // Maximum x is 320. Biased towards right because x value is always top left.
+
+        if (avg_x < 80) {
             telemetry.addData("Skystone: ", "Left");
-        } else if (avg_x < 213) {
+        } else if (avg_x < 170) {
             telemetry.addData("Skystone: ", "Center");
         } else {
             telemetry.addData("Skystone: ", "Right");
