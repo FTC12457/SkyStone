@@ -1,27 +1,23 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.disnodeteam.dogecv.DogeCV;
+import com.disnodeteam.dogecv.detectors.skystone.SkystoneDetector;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import com.disnodeteam.dogecv.DigitalCamera;
-import com.disnodeteam.dogecv.detectors.skystone.SkystoneDetector;
-
 import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraBase;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
-import org.openftc.easyopencv.OpenCvViewport;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-@Autonomous(name="Doge CV Test", group="Experimental")
-public class DogeCVTest extends LinearOpMode {
+@Autonomous(name="BlankCV Test", group="Experimental")
+public class BlankCVTest extends LinearOpMode {
     Hardware robot = new Hardware();
     private OpenCvCamera phoneCam;
-    private SkystoneDetector skyStoneDetector = new SkystoneDetector();
+    BlankDetector blankDetector = new BlankDetector();
 
     @Override
     public void runOpMode() {
@@ -40,7 +36,7 @@ public class DogeCVTest extends LinearOpMode {
          * of a frame from the camera. Note that switching pipelines on-the-fly
          * (while a streaming session is in flight) *IS* supported.
          */
-        phoneCam.setPipeline(skyStoneDetector);
+        phoneCam.setPipeline(blankDetector);
 
         /*
          * Tell the camera to start streaming images to us! Note that you must make sure
@@ -53,13 +49,14 @@ public class DogeCVTest extends LinearOpMode {
          * For a rear facing camera or a webcam, rotation is defined assuming the camera is facing
          * away from the user.
          */
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+        //phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
 
         waitForStart();
 
         double time_init = time;
 
-        skyStoneDetector.areaScoringMethod = DogeCV.AreaScoringMethod.PERFECT_AREA;
+        blankDetector.areaScoringMethod = DogeCV.AreaScoringMethod.PERFECT_AREA;
 
         double placeholderSkystoneX;
         double placeholderSkystoneBoxWidth;
@@ -75,9 +72,9 @@ public class DogeCVTest extends LinearOpMode {
 
         while (time - time_init < 1) {
 
-            placeholderSkystoneX = skyStoneDetector.getScreenPosition().x;
-            placeholderSkystoneBoxWidth = skyStoneDetector.foundRectangle().width;
-            placeholderSkystoneBoxHeight = skyStoneDetector.foundRectangle().height;
+            placeholderSkystoneX = blankDetector.getScreenPosition().x;
+            placeholderSkystoneBoxWidth = blankDetector.foundRectangle().width;
+            placeholderSkystoneBoxHeight = blankDetector.foundRectangle().height;
             placeholderSkystoneBoxRatio = placeholderSkystoneBoxWidth / placeholderSkystoneBoxHeight;
 
             if ((placeholderSkystoneX > 0) /*&& (placeholderSkystoneBoxRatio > 1.5)*/ && (placeholderSkystoneBoxRatio < 3)) {
