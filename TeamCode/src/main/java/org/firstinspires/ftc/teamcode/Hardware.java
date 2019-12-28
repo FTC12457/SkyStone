@@ -25,6 +25,8 @@ public class Hardware {
     public Servo autoblueArm = null;
     public Servo autoblueClaw = null;
 
+    public CRServo capper = null;
+
     public BNO055IMU imu = null;
 
     HardwareMap hwMap = null;
@@ -52,6 +54,7 @@ public class Hardware {
         imu                 = hwMap.get(BNO055IMU.class,    "IM");
         autoblueArm         = hwMap.get(Servo.class,        "BA");
         autoblueClaw        = hwMap.get(Servo.class,        "BC");
+        capper = hwMap.get(CRServo.class, "CA");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -65,7 +68,6 @@ public class Hardware {
 
         baseL.setPosition(0);
         baseR.setPosition(1);
-
 
         autoblueArm.setPosition(0.25);
         autoblueClaw.setPosition(0.3);

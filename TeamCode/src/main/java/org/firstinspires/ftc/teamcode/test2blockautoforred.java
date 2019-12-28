@@ -23,13 +23,19 @@ public class test2blockautoforred extends LinearOpMode{
         //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
+        Trajectory trajectory1 = drive.trajectoryBuilder() //goes to plate
+
+                .splineTo(new Pose2d(24, 32, 0))
+
+                .build();
+
         Trajectory trajectory0 = drive.trajectoryBuilder() //goes to plate
 
                 .back(30) //back 30
 
                 .reverse() //reverse spline to under the bridge
                 .splineTo(new Pose2d(-60, 10, 0))
-                .splineTo(new Pose2d(-115, -1, 0))
+                .splineTo(new Pose2d(-115, -2, 0))
 
                 .build();
 
@@ -43,37 +49,18 @@ public class test2blockautoforred extends LinearOpMode{
         Trajectory trajectorynegative2 = drive.trajectoryBuilder() //goes to plate
 
                 .reverse() //spline to under the bridge
-                .splineTo(new Pose2d(-34, 10, 0))
+                .splineTo(new Pose2d(-34, 11, 0))
                 .splineTo(new Pose2d(-78, 0, 0))
 
                 .build();
 
-        Trajectory trajectorynegative3 = drive.trajectoryBuilder() //parks
-
-                .splineTo(new Pose2d(44, 11, 0))
+        Trajectory trajectorynegative3 = drive.trajectoryBuilder()
+                .back(12)
                 .build();
 
-        // not being used anymore, but keep these as references
-        Trajectory trajectory1 = drive.trajectoryBuilder()
-                .reverse()
-                .splineTo(new Pose2d(-40, 10, 0))
-                .build();
+        Trajectory trajectorynegative4 = drive.trajectoryBuilder() //parks
 
-        Trajectory trajectory2 = drive.trajectoryBuilder()
-                .reverse()
-                .splineTo(new Pose2d(-50, -15, 0))
-                .build();
-
-        Trajectory trajectory3 = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(-60, 15, 0))
-                .build();
-
-        Trajectory trajectory4 = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(40, -5, 0))
-                .build();
-
-        Trajectory trajectory5 = drive.trajectoryBuilder()
-                .back(30)
+                .splineTo(new Pose2d(24, 24, Math.toRadians(90)))
                 .build();
 
         waitForStart();
@@ -83,8 +70,13 @@ public class test2blockautoforred extends LinearOpMode{
         that their autonomous far outclasses ours.
          */
 
-        //encoderDrive.encoderDrive(0.4, "Forward", 27, 10);
-        //encoderDrive.encoderDrive(0.4, "Strafe", 27, 10);
+
+        //drive.followTrajectorySync(trajectory1);
+
+        encoderDrive.encoderDrive(0.5, "Strafe", 32.5, 6);
+        encoderDrive.encoderDrive(0.8, "Forward", 22, 4);
+        encoderDrive.encoderDrive(0.5, "Forward", -3, 1);
+
 
         //sleep(1000);
         robot.autoblueArm.setPosition(0.65);
@@ -94,11 +86,8 @@ public class test2blockautoforred extends LinearOpMode{
         robot.autoblueArm.setPosition(0.38);
         sleep(500);
 
-
         //robot.autoblueClaw.setPosition(0.8); //temporary so it fits under the bridgeS
-
         drive.followTrajectorySync(trajectory0);
-
 
         sleep(500);
         robot.autoblueArm.setPosition(0.6);
@@ -109,9 +98,7 @@ public class test2blockautoforred extends LinearOpMode{
         robot.autoblueClaw.setPosition(0.8);
         sleep(500);
 
-
         drive.followTrajectorySync(trajectorynegative1);
-
 
         robot.autoblueClaw.setPosition(0.3);
         sleep(500);
@@ -122,10 +109,7 @@ public class test2blockautoforred extends LinearOpMode{
         robot.autoblueArm.setPosition(0.38);
         sleep(500);
 
-
-
         drive.followTrajectorySync(trajectorynegative2);
-
 
         sleep(500);
         robot.autoblueArm.setPosition(0.6);
@@ -136,8 +120,19 @@ public class test2blockautoforred extends LinearOpMode{
         robot.autoblueClaw.setPosition(0.8);
         sleep(500);
 
-
+        //pull stuff hopefully
         drive.followTrajectorySync(trajectorynegative3);
+        encoderDrive.encoderDrive(0.8, "Strafe", -4, 2);
+        drive.turnSync(Math.toRadians(-110));
+        encoderDrive.encoderDrive(0.7, "Forward", 12, 3);
+        base.close();
+        sleep(500);
+        encoderDrive.encoderDrive(0.8, "Forward", -40, 8);
+        base.open();
+        encoderDrive.encoderDrive(0.5, "Strafe", -32, 5);
+
+
+        drive.followTrajectorySync(trajectorynegative4);
 
 /*
         //drive back
