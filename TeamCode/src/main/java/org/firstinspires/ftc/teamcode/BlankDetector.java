@@ -61,7 +61,7 @@ public class BlankDetector extends DogeCVDetector {
 
     @Override
     public Mat process(Mat input) {
-        input.submat(100,200,100,200);
+        input = input.submat(100,200,100,200);
         input.copyTo(rawImage);
         input.copyTo(workingMat);
         input.copyTo(displayMat);

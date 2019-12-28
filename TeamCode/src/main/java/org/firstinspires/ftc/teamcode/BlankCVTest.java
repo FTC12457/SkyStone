@@ -50,7 +50,7 @@ public class BlankCVTest extends LinearOpMode {
          * away from the user.
          */
         //phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        phoneCam.startStreaming(100, 100, OpenCvCameraRotation.UPRIGHT);
 
         waitForStart();
 
