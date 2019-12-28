@@ -55,9 +55,7 @@ public class DogeCVTest extends LinearOpMode {
 
         waitForStart();
 
-        double x_sum = 0;
         double time_init = time;
-        int occurrences = 0;
 
         skyStoneDetector.areaScoringMethod = DogeCV.AreaScoringMethod.PERFECT_AREA;
 
@@ -66,9 +64,12 @@ public class DogeCVTest extends LinearOpMode {
         double placeholderSkystoneBoxHeight;
         double placeholderSkystoneBoxRatio;
 
-        Map<Integer, Integer> xCoordinateCount = new HashMap();
+        Map<String, Integer> xCoordinateCount = new HashMap();
+        xCoordinateCount.put("Left", 0);
+        xCoordinateCount.put("Center", 0);
+        xCoordinateCount.put("Right", 0);
 
-        while (time - time_init < 5) {
+        while (time - time_init < 1) {
 
             placeholderSkystoneX = skyStoneDetector.getScreenPosition().x;
             placeholderSkystoneBoxWidth = skyStoneDetector.foundRectangle().width;
@@ -76,17 +77,15 @@ public class DogeCVTest extends LinearOpMode {
             placeholderSkystoneBoxRatio = placeholderSkystoneBoxWidth / placeholderSkystoneBoxHeight;
 
             if ((placeholderSkystoneX > 0) && (placeholderSkystoneBoxRatio > 1.5) && (placeholderSkystoneBoxRatio < 3)) {
-                x_sum += placeholderSkystoneX;
-                occurrences += 1;
+                if (placeholderSkystoneX < 40) {
+                    xCoordinateCount.put("Left", xCoordinateCount.get("Left") + 1);
+                } else if (placeholderSkystoneX < 140) {
+                    xCoordinateCount.put("Center", xCoordinateCount.get("Center") + 1);
+                } else {
+                    xCoordinateCount.put("Right", xCoordinateCount.get("Right") + 1);
+                }
             }
             sleep(40);
-
-            Integer k = (int)2.5;
-            if (xCoordinateCount.containsKey(k)) {
-                xCoordinateCount.put(k, xCoordinateCount.get(k) + 1);
-            } else{
-                xCoordinateCount.put(k, 1);
-            }
 
             /*
             //old stuff for this section
@@ -96,18 +95,17 @@ public class DogeCVTest extends LinearOpMode {
             */
         }
 
-        double avg_x = x_sum / occurrences;
-
         // Maximum x is 320. Biased towards right because x value is always top left.
 
-        if (avg_x < 100) {
+        if (xCoordinateCount.get("Left") >= xCoordinateCount.get("Center") &&
+                xCoordinateCount.get("Left") >= xCoordinateCount.get("Right")) {
             telemetry.addData("Skystone: ", "Left");
-        } else if (avg_x < 170) {
+        } else if (xCoordinateCount.get("Center") >= xCoordinateCount.get("Left") &&
+                xCoordinateCount.get("Center") >= xCoordinateCount.get("Right")) {
             telemetry.addData("Skystone: ", "Center");
         } else {
             telemetry.addData("Skystone: ", "Right");
         }
-        telemetry.addData("Average X: ", avg_x);
 
         telemetry.update();
         sleep(10000);
