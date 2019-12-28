@@ -76,10 +76,10 @@ public class DogeCVTest extends LinearOpMode {
             placeholderSkystoneBoxHeight = skyStoneDetector.foundRectangle().height;
             placeholderSkystoneBoxRatio = placeholderSkystoneBoxWidth / placeholderSkystoneBoxHeight;
 
-            if ((placeholderSkystoneX > 0) && (placeholderSkystoneBoxRatio > 1.5) && (placeholderSkystoneBoxRatio < 3)) {
-                if (placeholderSkystoneX < 40) {
+            if ((placeholderSkystoneX > 0) /*&& (placeholderSkystoneBoxRatio > 1.5)*/ && (placeholderSkystoneBoxRatio < 3)) {
+                if (placeholderSkystoneX < 60) {
                     xCoordinateCount.put("Left", xCoordinateCount.get("Left") + 1);
-                } else if (placeholderSkystoneX < 140) {
+                } else if (placeholderSkystoneX < 180) {
                     xCoordinateCount.put("Center", xCoordinateCount.get("Center") + 1);
                 } else {
                     xCoordinateCount.put("Right", xCoordinateCount.get("Right") + 1);
@@ -106,6 +106,10 @@ public class DogeCVTest extends LinearOpMode {
         } else {
             telemetry.addData("Skystone: ", "Right");
         }
+
+        telemetry.addData("Skystone: ", xCoordinateCount.get("Left"));
+        telemetry.addData("Skystone: ", xCoordinateCount.get("Center"));
+        telemetry.addData("Skystone: ", xCoordinateCount.get("Right"));
 
         telemetry.update();
         sleep(10000);
