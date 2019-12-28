@@ -11,6 +11,10 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 @Autonomous(name="Doge CV Test", group="Experimental")
 public class DogeCVTest extends LinearOpMode {
     Hardware robot = new Hardware();
@@ -62,6 +66,8 @@ public class DogeCVTest extends LinearOpMode {
         double placeholderSkystoneBoxHeight;
         double placeholderSkystoneBoxRatio;
 
+        Map<Integer, Integer> xCoordinateCount = new HashMap();
+
         while (time - time_init < 5) {
 
             placeholderSkystoneX = skyStoneDetector.getScreenPosition().x;
@@ -74,6 +80,13 @@ public class DogeCVTest extends LinearOpMode {
                 occurrences += 1;
             }
             sleep(40);
+
+            Integer k = (int)2.5;
+            if (xCoordinateCount.containsKey(k)) {
+                xCoordinateCount.put(k, xCoordinateCount.get(k) + 1);
+            } else{
+                xCoordinateCount.put(k, 1);
+            }
 
             /*
             //old stuff for this section
