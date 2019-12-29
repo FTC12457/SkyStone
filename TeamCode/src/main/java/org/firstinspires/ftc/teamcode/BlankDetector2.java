@@ -1,11 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.disnodeteam.dogecv.detectors.DogeCVDetector;
-
-import android.util.Log;
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
-import com.disnodeteam.dogecv.filters.CbColorFilter;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
 import com.disnodeteam.dogecv.filters.GrayscaleFilter;
 import com.disnodeteam.dogecv.filters.LeviColorFilter;
@@ -18,12 +14,13 @@ import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlankDetector extends DogeCVDetector {
+public class BlankDetector2 extends DogeCVDetector {
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Setting to decide to use MaxAreaScorer or PerfectAreaScorer
 
     //Create the default filters and scorers
@@ -60,7 +57,7 @@ public class BlankDetector extends DogeCVDetector {
     }
 
 
-    public BlankDetector() {
+    public BlankDetector2() {
         detectorName = "Skystone Detector";
     }
 
@@ -73,7 +70,8 @@ public class BlankDetector extends DogeCVDetector {
         input1.copyTo(displayMat);
         input3.copyTo(blackMask);
 
-        // Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
+        Imgproc.GaussianBlur(workingMat,workingMat,new Size(20,20),0);
+        Imgproc.GaussianBlur(displayMat,displayMat,new Size(20,20),0);
         yellowFilter.process(workingMat.clone(), yellowMask);
 
         List<MatOfPoint> contoursYellow = new ArrayList<>();
@@ -89,39 +87,6 @@ public class BlankDetector extends DogeCVDetector {
         // Loop through the contours and score them, searching for the best result
         for(MatOfPoint cont : contoursYellow){
             double score = calculateScore(cont); // Get the difference score using the scoring API
-
-
-            Point[] bob = cont.toArray();
-            double maxX = -1;
-            double maxY = -1;
-            double minX = 500;
-            double minY = 500;
-
-            for (Point joe : bob) {
-                if (joe.x > maxX) {
-                    maxX = joe.x;
-                }
-                if (joe.x < minX) {
-                    minX = joe.x;
-                }
-                if (joe.y > maxY) {
-                    maxX = joe.y;
-                }
-                if (joe.y < minY) {
-                    minY = joe.y;
-                }
-            }
-
-            double ben = (maxX - minX)/(maxY - minY);
-
-            if ((ben > 3) || (ben < 1.5)) {
-                score = Double.MAX_VALUE - 1;
-            }
-            /*
-            if (((maxX - minX) > 120) || ((maxY - minY) > 120)) {
-                score = Double.MAX_VALUE - 1;
-            }
-            */
 
             // Get bounding rect of contour
             Rect rect = Imgproc.boundingRect(cont);
@@ -143,36 +108,6 @@ public class BlankDetector extends DogeCVDetector {
 
         for(MatOfPoint cont : contoursBlack){
             double score = calculateScore(cont); // Get the difference score using the scoring API
-
-            /*
-            Point[] bob = cont.toArray();
-            int maxX = -1;
-            int maxY = -1;
-            int minX = 500;
-            int minY = 500;
-
-            for (Point joe : bob) {
-                if (joe.x > maxX) {
-                    maxX = (int) joe.x;
-                }
-                if (joe.x < minX) {
-                    minX = (int) joe.x;
-                }
-                if (joe.y > maxY) {
-                    maxX = (int) joe.y;
-                }
-                if (joe.y < minY) {
-                    minY = (int) joe.y;
-                }
-            }
-
-            if (((maxX - minX) < 20) || ((maxY - minY) < 20)) {
-                score = Double.MAX_VALUE - 1;
-            }
-            if (((maxX - minX) > 120) || ((maxY - minY) > 120)) {
-                score = Double.MAX_VALUE - 1;
-            }
-            */
 
             // Get bounding rect of contour
             Rect rect = Imgproc.boundingRect(cont);
