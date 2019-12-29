@@ -115,7 +115,7 @@ public class BlankDetector extends DogeCVDetector {
         for(MatOfPoint cont : contoursBlack){
             double score = calculateScore(cont); // Get the difference score using the scoring API
 
-            if ((cont.dims() < 20) || (cont.rows() < 20)) {
+            if ((cont. < 20) || (cont < 20)) {
                 score = Double.MAX_VALUE - 1;
             }
 
