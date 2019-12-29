@@ -53,13 +53,14 @@ public class DogeCVTest extends LinearOpMode {
          * For a rear facing camera or a webcam, rotation is defined assuming the camera is facing
          * away from the user.
          */
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+        //phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
 
         waitForStart();
 
         double time_init = time;
 
-        skyStoneDetector.areaScoringMethod = DogeCV.AreaScoringMethod.PERFECT_AREA;
+        skyStoneDetector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA;
 
         double placeholderSkystoneX;
         double placeholderSkystoneBoxWidth;
@@ -81,9 +82,9 @@ public class DogeCVTest extends LinearOpMode {
             placeholderSkystoneBoxRatio = placeholderSkystoneBoxWidth / placeholderSkystoneBoxHeight;
 
             if ((placeholderSkystoneX > 0) /*&& (placeholderSkystoneBoxRatio > 1.5)*/ && (placeholderSkystoneBoxRatio < 3)) {
-                if (placeholderSkystoneX < 60) {
+                if (placeholderSkystoneX < 40) {
                     xCoordinateCount.put("Left", xCoordinateCount.get("Left") + 1);
-                } else if (placeholderSkystoneX < 180) {
+                } else if (placeholderSkystoneX < 120) {
                     xCoordinateCount.put("Center", xCoordinateCount.get("Center") + 1);
                 } else {
                     xCoordinateCount.put("Right", xCoordinateCount.get("Right") + 1);

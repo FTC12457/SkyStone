@@ -45,6 +45,11 @@ public class BlankDetector extends DogeCVDetector {
     private Mat blackMask = new Mat();
     private Mat yellowMask = new Mat();
     private Mat hierarchy  = new Mat();
+    private Mat input3 = new Mat();
+    private int rowstart = 150;
+    private int rowend = 280;
+    private int colstart = 60;
+    private int colend = 240;
 
     public Point getScreenPosition() {
         return screenPosition;
@@ -60,12 +65,13 @@ public class BlankDetector extends DogeCVDetector {
     }
 
     @Override
-    public Mat process(Mat input) {
-        input = input.submat(100,200,100,200);
-        input.copyTo(rawImage);
-        input.copyTo(workingMat);
-        input.copyTo(displayMat);
-        input.copyTo(blackMask);
+    public Mat process(Mat input1) {
+        //input3 = input1.submat(rowstart,rowend,colstart,colend); //100-250 px range vertically, 60-240 px range horizontally
+        input3 = input1;
+        input1.copyTo(rawImage);
+        input3.copyTo(workingMat);
+        input1.copyTo(displayMat);
+        input3.copyTo(blackMask);
 
         // Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
         yellowFilter.process(workingMat.clone(), yellowMask);
@@ -73,7 +79,7 @@ public class BlankDetector extends DogeCVDetector {
         List<MatOfPoint> contoursYellow = new ArrayList<>();
 
         Imgproc.findContours(yellowMask, contoursYellow, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
-        Imgproc.drawContours(displayMat,contoursYellow,-1,new Scalar(255,30,30),2);
+        Imgproc.drawContours(displayMat, contoursYellow, -1,new Scalar(255,30,30),2);
 
 
         // Current result
@@ -83,6 +89,10 @@ public class BlankDetector extends DogeCVDetector {
         // Loop through the contours and score them, searching for the best result
         for(MatOfPoint cont : contoursYellow){
             double score = calculateScore(cont); // Get the difference score using the scoring API
+
+            if ((cont.cols() < 20) || (cont.rows() < 20)) {
+                score = Double.MAX_VALUE - 1;
+            }
 
             // Get bounding rect of contour
             Rect rect = Imgproc.boundingRect(cont);
@@ -104,6 +114,10 @@ public class BlankDetector extends DogeCVDetector {
 
         for(MatOfPoint cont : contoursBlack){
             double score = calculateScore(cont); // Get the difference score using the scoring API
+
+            if ((cont.dims() < 20) || (cont.rows() < 20)) {
+                score = Double.MAX_VALUE - 1;
+            }
 
             // Get bounding rect of contour
             Rect rect = Imgproc.boundingRect(cont);
@@ -132,7 +146,7 @@ public class BlankDetector extends DogeCVDetector {
             case THRESHOLD: {
                 Imgproc.cvtColor(blackMask, blackMask, Imgproc.COLOR_GRAY2BGR);
 
-                return blackMask;
+                return input1;
             }
             case RAW_IMAGE: {
                 return rawImage;

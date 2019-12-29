@@ -9,9 +9,12 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.Arrays;
 
 @Autonomous(name="BlankCV Test", group="Experimental")
 public class BlankCVTest extends LinearOpMode {
@@ -50,13 +53,14 @@ public class BlankCVTest extends LinearOpMode {
          * away from the user.
          */
         //phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
-        phoneCam.startStreaming(100, 100, OpenCvCameraRotation.UPRIGHT);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
 
         waitForStart();
 
         double time_init = time;
 
-        blankDetector.areaScoringMethod = DogeCV.AreaScoringMethod.PERFECT_AREA;
+        blankDetector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA;
+
 
         double placeholderSkystoneX;
         double placeholderSkystoneBoxWidth;
@@ -68,26 +72,43 @@ public class BlankCVTest extends LinearOpMode {
         xCoordinateCount.put("Center", 0);
         xCoordinateCount.put("Right", 0);
 
+        ArrayList bill = new ArrayList();
+        ArrayList billy = new ArrayList();
+
+        //ArrayList bob = new ArrayList();
+        //ArrayList joe = new ArrayList();
+
         //skyStoneDetector.
 
         while (time - time_init < 1) {
+
 
             placeholderSkystoneX = blankDetector.getScreenPosition().x;
             placeholderSkystoneBoxWidth = blankDetector.foundRectangle().width;
             placeholderSkystoneBoxHeight = blankDetector.foundRectangle().height;
             placeholderSkystoneBoxRatio = placeholderSkystoneBoxWidth / placeholderSkystoneBoxHeight;
 
-            if ((placeholderSkystoneX > 0) /*&& (placeholderSkystoneBoxRatio > 1.5)*/ && (placeholderSkystoneBoxRatio < 3)) {
+            if ((placeholderSkystoneX > 0) && (placeholderSkystoneBoxRatio > 1.5) && (placeholderSkystoneBoxRatio < 3)) {
                 if (placeholderSkystoneX < 60) {
                     xCoordinateCount.put("Left", xCoordinateCount.get("Left") + 1);
-                } else if (placeholderSkystoneX < 180) {
+                } else if (placeholderSkystoneX < 140) {
                     xCoordinateCount.put("Center", xCoordinateCount.get("Center") + 1);
                 } else {
                     xCoordinateCount.put("Right", xCoordinateCount.get("Right") + 1);
                 }
             }
+
+            bill.add(placeholderSkystoneX);
+            billy.add(placeholderSkystoneBoxWidth);
+
             sleep(40);
 
+
+            /*
+            bob.add(blankDetector.getScreenPosition().x);
+            joe.add(blankDetector.getScreenPosition().y);
+            sleep(40);
+            */
             /*
             //old stuff for this section
             x_sum += skyStoneDetector.getScreenPosition().x;
@@ -112,6 +133,13 @@ public class BlankCVTest extends LinearOpMode {
         telemetry.addData("Skystone: ", xCoordinateCount.get("Center"));
         telemetry.addData("Skystone: ", xCoordinateCount.get("Right"));
 
+        telemetry.addData("bill ", bill.toString());
+        telemetry.addData("billy ", billy.toString());
+
+        /*
+        telemetry.addData("bob", bob.toString());
+        telemetry.addData("joe", joe.toString());
+        */
         telemetry.update();
         sleep(10000);
     }
