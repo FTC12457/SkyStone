@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -22,12 +20,14 @@ public class Hardware {
     public Servo baseL = null;
     public Servo baseR = null;
 
-    public Servo autoblueArm = null;
-    public Servo autoblueClaw = null;
+    public Servo autoredArm = null;
+    public Servo autoredClaw = null;
 
     public CRServo capper = null;
 
     public BNO055IMU imu = null;
+
+    public DcMotor bean = null;
 
     HardwareMap hwMap = null;
 
@@ -52,9 +52,10 @@ public class Hardware {
         baseL               = hwMap.get(Servo.class,        "BL");
         baseR               = hwMap.get(Servo.class,        "BR");
         imu                 = hwMap.get(BNO055IMU.class,    "IM");
-        autoblueArm         = hwMap.get(Servo.class,        "BA");
-        autoblueClaw        = hwMap.get(Servo.class,        "BC");
+        autoredArm = hwMap.get(Servo.class,        "BA");
+        autoredClaw = hwMap.get(Servo.class,        "BC");
         capper              = hwMap.get(CRServo.class,      "CA");
+        bean                = hwMap.get(DcMotor.class,      "Bean");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -69,8 +70,8 @@ public class Hardware {
         baseL.setPosition(0);
         baseR.setPosition(1);
 
-        autoblueArm.setPosition(0.25);
-        autoblueClaw.setPosition(0.3);
+        autoredArm.setPosition(0.25);
+        autoredClaw.setPosition(0.3);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

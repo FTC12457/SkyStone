@@ -34,7 +34,7 @@ public class fusionTest extends LinearOpMode{
 
         waitForStart();
 
-        //robot.autoblueClaw.setPosition(0.8); //temporary so it fits under the bridgeS
+        //robot.autoredClaw.setPosition(0.8); //temporary so it fits under the bridgeS
 
         drive.followTrajectorySync(trajectory0);
 
@@ -46,11 +46,11 @@ public class fusionTest extends LinearOpMode{
 
         //arm stuff
         sleep(1000);
-        robot.autoblueArm.setPosition(0.71);
+        robot.autoredArm.setPosition(0.71);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
+        robot.autoredArm.setPosition(0.25);
         sleep(1000);
 
         //drive forward
@@ -58,11 +58,11 @@ public class fusionTest extends LinearOpMode{
 
         //arm stuff
         sleep(1000);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
+        robot.autoredArm.setPosition(0.25);
         sleep(1000);
 
         //drive back

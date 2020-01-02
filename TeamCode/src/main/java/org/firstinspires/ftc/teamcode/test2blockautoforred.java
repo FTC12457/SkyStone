@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -23,20 +24,13 @@ public class test2blockautoforred extends LinearOpMode{
         //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
-        Trajectory trajectory1 = drive.trajectoryBuilder() //goes to plate
-
-                .splineTo(new Pose2d(24, 32, 0))
-
+        Trajectory trajectorya = drive.trajectoryBuilder()
+                .strafeTo(new Vector2d(25, -34.5))
                 .build();
 
         Trajectory trajectory0 = drive.trajectoryBuilder() //goes to plate
-
-                .back(30) //back 30
-
                 .reverse() //reverse spline to under the bridge
-                .splineTo(new Pose2d(-60, 10, 0))
-                .splineTo(new Pose2d(-115, -2, 0))
-
+                .splineTo(new Pose2d(-86, -10, 0))
                 .build();
 
         Trajectory trajectorynegative1 = drive.trajectoryBuilder() // goes to second block
@@ -71,53 +65,58 @@ public class test2blockautoforred extends LinearOpMode{
          */
 
 
+
         //drive.followTrajectorySync(trajectory1);
 
-        encoderDrive.encoderDrive(0.5, "Strafe", 32.5, 6);
-        encoderDrive.encoderDrive(0.8, "Forward", 22, 4);
-        encoderDrive.encoderDrive(0.5, "Forward", -3, 1);
+        drive.followTrajectorySync(trajectorya);
+        sleep(1000);
+
+//        encoderDrive.encoderDrive(0.5, "Strafe", 30, 3);
+//        sleep(1000);
+//        encoderDrive.encoderDrive(0.8, "Forward", 22, 4);
+//        encoderDrive.encoderDrive(0.5, "Forward", -3, 1);
 
 
         //sleep(1000);
-        robot.autoblueArm.setPosition(0.65);
+        robot.autoredArm.setPosition(0.65);
         sleep(500);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(500);
-        robot.autoblueArm.setPosition(0.38);
+        robot.autoredArm.setPosition(0.38);
         sleep(500);
 
-        //robot.autoblueClaw.setPosition(0.8); //temporary so it fits under the bridgeS
+        //robot.autoredClaw.setPosition(0.8); //temporary so it fits under the bridgeS
         drive.followTrajectorySync(trajectory0);
 
         sleep(500);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(500);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(500);
-        robot.autoblueArm.setPosition(0.25);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredArm.setPosition(0.25);
+        robot.autoredClaw.setPosition(0.8);
         sleep(500);
 
         drive.followTrajectorySync(trajectorynegative1);
 
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(500);
-        robot.autoblueArm.setPosition(0.65);
+        robot.autoredArm.setPosition(0.65);
         sleep(500);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(500);
-        robot.autoblueArm.setPosition(0.38);
+        robot.autoredArm.setPosition(0.38);
         sleep(500);
 
         drive.followTrajectorySync(trajectorynegative2);
 
         sleep(500);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(500);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(500);
-        robot.autoblueArm.setPosition(0.38);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredArm.setPosition(0.38);
+        robot.autoredClaw.setPosition(0.8);
         sleep(500);
 
         //pull stuff hopefully
@@ -140,11 +139,11 @@ public class test2blockautoforred extends LinearOpMode{
 
         //arm stuff
         sleep(1000);
-        robot.autoblueArm.setPosition(0.71);
+        robot.autoredArm.setPosition(0.71);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
+        robot.autoredArm.setPosition(0.25);
         sleep(1000);
 
         //drive forward
@@ -152,11 +151,11 @@ public class test2blockautoforred extends LinearOpMode{
 
         //arm stuff
         sleep(1000);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
+        robot.autoredArm.setPosition(0.25);
         sleep(1000);
 
         //drive back

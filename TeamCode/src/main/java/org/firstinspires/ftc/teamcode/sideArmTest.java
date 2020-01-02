@@ -9,11 +9,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 @Autonomous(name = "sideArmTest", group = "Performance")
 public class sideArmTest extends LinearOpMode{
     Hardware robot = new Hardware();
+    EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -52,16 +51,18 @@ public class sideArmTest extends LinearOpMode{
         that their autonomous far outclasses ours.
          */
 
+        encoderDrive.encoderDrive(0.7, "Strafe", 18, 10);
+
         sleep(1000);
-        robot.autoblueArm.setPosition(0.71);
+        robot.autoredArm.setPosition(0.71);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.4);
+        robot.autoredArm.setPosition(0.4);
         sleep(1000);
 
 
-        //robot.autoblueClaw.setPosition(0.8); //temporary so it fits under the bridgeS
+        //robot.autoredClaw.setPosition(0.8); //temporary so it fits under the bridgeS
 
         drive.followTrajectorySync(trajectory0);
 
@@ -71,36 +72,36 @@ public class sideArmTest extends LinearOpMode{
         //drive.followTrajectorySync(trajectory3);
 
         sleep(1000);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredArm.setPosition(0.25);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
 
         drive.followTrajectorySync(trajectory3);
         drive.followTrajectorySync(trajectory4);
 
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.71);
+        robot.autoredArm.setPosition(0.71);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.4);
+        robot.autoredArm.setPosition(0.4);
         sleep(1000);
 
         drive.followTrajectorySync(trajectory1); //splines
         drive.followTrajectorySync(trajectory2);
 
         sleep(1000);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.4);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredArm.setPosition(0.4);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
 
         drive.followTrajectorySync(trajectory3);
@@ -111,11 +112,11 @@ public class sideArmTest extends LinearOpMode{
 
         //arm stuff
         sleep(1000);
-        robot.autoblueArm.setPosition(0.71);
+        robot.autoredArm.setPosition(0.71);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.8);
+        robot.autoredClaw.setPosition(0.8);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
+        robot.autoredArm.setPosition(0.25);
         sleep(1000);
 
         //drive forward
@@ -123,11 +124,11 @@ public class sideArmTest extends LinearOpMode{
 
         //arm stuff
         sleep(1000);
-        robot.autoblueArm.setPosition(0.6);
+        robot.autoredArm.setPosition(0.6);
         sleep(1000);
-        robot.autoblueClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.3);
         sleep(1000);
-        robot.autoblueArm.setPosition(0.25);
+        robot.autoredArm.setPosition(0.25);
         sleep(1000);
 
         //drive back

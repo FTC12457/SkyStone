@@ -16,7 +16,8 @@ public class Odometry extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            telemetry.addData("Position of Encoder: ", robot.arm.getCurrentPosition());
+            telemetry.addData("Position of Encoder Arm: ", robot.arm.getCurrentPosition());
+            telemetry.addData("Position of Encoder Bean: ", robot.bean.getCurrentPosition());
             telemetry.update();
         }
     }
