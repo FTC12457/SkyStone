@@ -20,7 +20,8 @@ import java.util.concurrent.TimeUnit;
 import detectors.FoundationPipeline.Pipeline;
 
 /**
- * LinearOpMode class but with bluejay-type image recognition incorporated.
+ * LinearOpMode class but with bluejay-type image recognition incorporated. This unfortunately
+ * cannot simply be an extension of LinearOpMode because some methods are final.
  */
 @SuppressWarnings("unused")
 public abstract class LinearOpMode2 extends OpMode {

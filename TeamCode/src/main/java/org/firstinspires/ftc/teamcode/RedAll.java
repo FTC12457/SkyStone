@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -10,32 +9,43 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 
-import com.acmerobotics.dashboard.FtcDashboard;
+/*
+This class is the autonomous for blue that does everything, and presumes the alliance partner robot
+immediately heads to park, next to the wall.
+ */
 
 @Autonomous(name = "Red All", group = "Performance")
-public class RedAll extends LinearOpMode{
+public class RedAll extends LinearOpMode2{
     Hardware robot = new Hardware();
-    EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
+    // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
+    SkystoneReader reader = new SkystoneReader(this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
-        //FtcDashboard.start(); // -PROPOSITION- Integrate this method into the hardware init function.
+
         robot.init(hardwareMap);
 
         SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
-        Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(26, -34))
-                .build();
+        int skystoneX;
 
         waitForStart();
 
-        /*
-        This class works to avoid interfering with the alliance partner's robot, in the possibility
-        that their autonomous far outclasses ours.
-         */
+        reader.run();
+
+        if (reader.placement() == 0) {
+            skystoneX = 26;
+        } else if (reader.placement() == 1) {
+            skystoneX = 18;
+        } else {
+            skystoneX = 10;
+        }
+
+        Trajectory toFirstSkystone = drive.trajectoryBuilder()
+                .strafeTo(new Vector2d(skystoneX, -34))
+                .build();
 
         drive.followTrajectorySync(toFirstSkystone);
 
@@ -74,7 +84,7 @@ public class RedAll extends LinearOpMode{
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(-20, -26, 0))
-                .splineTo(new Pose2d(0, -34, 0))
+                .splineTo(new Pose2d(skystoneX - 26, -34, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
@@ -113,6 +123,11 @@ public class RedAll extends LinearOpMode{
 
         drive.turnSync(1.5 * Math.PI);
 
+        sleep(250);
+        base.close();
+
+        sleep(250);
+
         drive.update();
 
         Trajectory pull = drive.trajectoryBuilder()
@@ -120,5 +135,7 @@ public class RedAll extends LinearOpMode{
                 .build();
 
         drive.followTrajectorySync(pull);
+
+        base.open();
     }
 }

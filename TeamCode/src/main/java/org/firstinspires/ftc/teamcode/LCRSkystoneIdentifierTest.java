@@ -7,7 +7,7 @@ import java.util.HashMap;
 import detectors.FoundationPipeline.Pipeline;
 
 @TeleOp(name = "LCR Identifier", group = "Auto")
-public class LCRSkystoneIdentifier extends LinearOpMode2 {
+public class LCRSkystoneIdentifierTest extends LinearOpMode2 {
 
 //    private DogeCVDetector detector = new DogeCVDetector() {
 //        @Override

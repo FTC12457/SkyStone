@@ -1,9 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+// At the moment, dysfunctional, since the development of LinearOpMode2. Could be fixed, but at the
+// moment unnecessary.
 
 public class EncoderDrive {
     Hardware robot;
@@ -14,6 +18,11 @@ public class EncoderDrive {
     public EncoderDrive(Hardware hardware, LinearOpMode linearOpMode, Telemetry telemetry) {
         robot = hardware;
         opMode = linearOpMode;
+        telemetryInstance = telemetry;
+    }
+
+    public EncoderDrive(Hardware hardware, LinearOpMode2 linearOpMode2, Telemetry telemetry) {
+        robot = hardware;
         telemetryInstance = telemetry;
     }
 
