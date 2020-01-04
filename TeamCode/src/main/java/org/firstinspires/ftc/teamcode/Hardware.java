@@ -22,6 +22,8 @@ public class Hardware {
 
     public Servo autoredArm = null;
     public Servo autoredClaw = null;
+    public Servo autoblueArm = null;
+    public Servo autoblueClaw = null;
 
     public CRServo capper = null;
 
@@ -52,8 +54,10 @@ public class Hardware {
         baseL               = hwMap.get(Servo.class,        "BL");
         baseR               = hwMap.get(Servo.class,        "BR");
         imu                 = hwMap.get(BNO055IMU.class,    "IM");
-        autoredArm = hwMap.get(Servo.class,        "BA");
-        autoredClaw = hwMap.get(Servo.class,        "BC");
+        autoredArm          = hwMap.get(Servo.class,        "RA");
+        autoredClaw         = hwMap.get(Servo.class,        "RC");
+        autoblueArm         = hwMap.get(Servo.class,        "BA");
+        autoblueClaw        = hwMap.get(Servo.class,        "BC");
         capper              = hwMap.get(CRServo.class,      "CA");
         bean                = hwMap.get(DcMotor.class,      "Bean");
 
@@ -71,7 +75,9 @@ public class Hardware {
         baseR.setPosition(1);
 
         autoredArm.setPosition(0.25);
-        autoredClaw.setPosition(0.3);
+        autoredClaw.setPosition(0.5);
+        autoblueArm.setPosition(-1);
+        autoblueClaw.setPosition(0.3);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

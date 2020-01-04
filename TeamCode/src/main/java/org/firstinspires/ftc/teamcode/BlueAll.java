@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -10,14 +9,17 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 
-import com.acmerobotics.dashboard.FtcDashboard;
+/*
+This class works to avoid interfering with the alliance partner's robot, in the possibility
+that their autonomous far outclasses ours.
+ */
 
 @Autonomous(name = "Red All", group = "Performance")
-public class RedAll extends LinearOpMode{
+public class BlueAll extends LinearOpMode{
     Hardware robot = new Hardware();
     EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
-    Autored autored = new Autored(robot);
+    Autoblue autoblue = new Autoblue(robot);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,25 +29,19 @@ public class RedAll extends LinearOpMode{
         SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(26, -34))
+                .strafeTo(new Vector2d(-26, -34))
                 .build();
 
         waitForStart();
-
-        /*
-        This class works to avoid interfering with the alliance partner's robot, in the possibility
-        that their autonomous far outclasses ours.
-         */
-
         drive.followTrajectorySync(toFirstSkystone);
 
         sleep(250);
 
-        autored.lower();
+        autoblue.lower();
         sleep(250);
-        autored.close();
+        autoblue.close();
         sleep(250);
-        autored.lift();
+        autoblue.lift();
 
         sleep(500);
 
@@ -53,27 +49,27 @@ public class RedAll extends LinearOpMode{
 
         Trajectory toBase = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-20, -26, 0))
-                .splineTo(new Pose2d(-80, -34, 0))
+                .splineTo(new Pose2d(20, -26, 0))
+                .splineTo(new Pose2d(80, -34, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
 
         sleep(250);
 
-        autored.lower();
+        autoblue.lower();
         sleep(250);
-        autored.open();
+        autoblue.open();
         sleep(250);
-        autored.lift();
-        autored.close();
+        autoblue.lift();
+        autoblue.close();
 
         sleep(500);
 
         drive.update();
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(-20, -26, 0))
+                .splineTo(new Pose2d(20, -26, 0))
                 .splineTo(new Pose2d(0, -34, 0))
                 .build();
 
@@ -81,11 +77,11 @@ public class RedAll extends LinearOpMode{
 
         sleep(250);
 
-        autored.lower();
+        autoblue.lower();
         sleep(250);
-        autored.close();
+        autoblue.close();
         sleep(250);
-        autored.lift();
+        autoblue.lift();
 
         sleep(500);
 
@@ -93,8 +89,8 @@ public class RedAll extends LinearOpMode{
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-20, -26, 0))
-                .splineTo(new Pose2d(-80, -34, 0))
+                .splineTo(new Pose2d(20, -26, 0))
+                .splineTo(new Pose2d(80, -34, 0))
                 .build();
 
         drive.followTrajectorySync(toBaseAgain);
@@ -103,15 +99,15 @@ public class RedAll extends LinearOpMode{
         // but in the direction the robot wants to go in anyways. So, maybe replace?
 
         sleep(250);
-        autored.lower();
+        autoblue.lower();
         sleep(250);
-        autored.open();
+        autoblue.open();
         sleep(250);
-        autored.lift();
+        autoblue.lift();
 
         sleep(500);
 
-        drive.turnSync(1.5 * Math.PI);
+        drive.turnSync(0.5 * Math.PI);
 
         drive.update();
 
