@@ -14,7 +14,7 @@ This class is the autonomous for blue that does everything, and presumes the all
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Red All", group = "Performance")
+@Autonomous(name = "Blue All", group = "Performance")
 public class BlueAll extends LinearOpMode2{
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
@@ -34,16 +34,18 @@ public class BlueAll extends LinearOpMode2{
         waitForStart();
 
         reader.run();
-        if (reader.placement() == 0) {
-            skystoneX = -26;
-        } else if (reader.placement() == 1) {
-            skystoneX = -18;
+        if (reader.placement("Blue") == 0) {
+            skystoneX = -9;
+        } else if (reader.placement("Blue") == 1) {
+            skystoneX = -24;
         } else {
-            skystoneX = -10;
+            skystoneX = -32;
         }
 
+        autoblue.open();
+
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -34))
+                .strafeTo(new Vector2d(skystoneX, -33))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -51,7 +53,7 @@ public class BlueAll extends LinearOpMode2{
         sleep(250);
 
         autoblue.lower();
-        sleep(250);
+        sleep(500);
         autoblue.close();
         sleep(250);
         autoblue.lift();
@@ -61,9 +63,8 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory toBase = drive.trajectoryBuilder()
-                .reverse()
-                .splineTo(new Pose2d(20, -26, 0))
-                .splineTo(new Pose2d(80, -34, 0))
+                .splineTo(new Pose2d(20, -24, 0))
+                .splineTo(new Pose2d(90, -30, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -75,23 +76,23 @@ public class BlueAll extends LinearOpMode2{
         autoblue.open();
         sleep(250);
         autoblue.lift();
-        autoblue.close();
-
         sleep(500);
+        autoblue.close();
 
         drive.update();
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(20, -26, 0))
-                .splineTo(new Pose2d(skystoneX + 26, -34, 0))
+                .reverse()
+                .splineTo(new Pose2d(36, -24, 0))
+                .splineTo(new Pose2d(skystoneX + 28, -30, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
 
+        autoblue.open();
         sleep(250);
-
         autoblue.lower();
-        sleep(250);
+        sleep(500);
         autoblue.close();
         sleep(250);
         autoblue.lift();
@@ -101,9 +102,8 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
-                .reverse()
-                .splineTo(new Pose2d(20, -26, 0))
-                .splineTo(new Pose2d(80, -34, 0))
+                .splineTo(new Pose2d(36, -24, 0))
+                .splineTo(new Pose2d(80, -30, 0))
                 .build();
 
         drive.followTrajectorySync(toBaseAgain);
@@ -117,10 +117,20 @@ public class BlueAll extends LinearOpMode2{
         autoblue.open();
         sleep(250);
         autoblue.lift();
+        sleep(250);
+        autoblue.close();
 
-        sleep(500);
+        drive.update();
 
-        drive.turnSync(0.5 * Math.PI);
+        drive.turnSync(-0.5 * Math.PI);
+
+        drive.update();
+
+        Trajectory ram = drive.trajectoryBuilder()
+                .forward(8)
+                .build();
+
+        drive.followTrajectorySync(ram);
 
         sleep(250);
         base.close();
@@ -129,12 +139,36 @@ public class BlueAll extends LinearOpMode2{
 
         drive.update();
 
+        sleep(250);
+        base.close();
+
+        sleep(250);
+
         Trajectory pull = drive.trajectoryBuilder()
-                .back(40)
+                .reverse()
+                .splineTo(new Pose2d(60, -10, 0))
                 .build();
 
         drive.followTrajectorySync(pull);
 
+        drive.update();
+
+        Trajectory push = drive.trajectoryBuilder()
+                .strafeRight(11)
+                .forward(24)
+                .build();
+
+        drive.followTrajectorySync(push);
+
         base.open();
+        sleep(250);
+
+        drive.update();
+
+        Trajectory park = drive.trajectoryBuilder()
+                .back(40)
+                .build();
+
+        drive.followTrajectorySync(park);
     }
 }

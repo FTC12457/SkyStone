@@ -313,7 +313,7 @@ public abstract class LinearOpMode2 extends OpMode {
                 String serviceName = "user linear op mode";
                 ThreadPool.awaitTermination(executorService, 100, TimeUnit.DAYS, serviceName);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                // Thread.currentThread().interrupt(); Suspected to cause errors in end of autonomous.
             }
         }
     }

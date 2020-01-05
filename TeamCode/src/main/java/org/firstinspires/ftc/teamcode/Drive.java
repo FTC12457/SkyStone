@@ -30,7 +30,7 @@ public class Drive {
             if (!a_pressed) {
                 if (MASTER_DRIVE_MULTIPLIER == 0.4f) {
                     MASTER_DRIVE_MULTIPLIER = 0.7f;
-                    FORWARDNESS_MULTIPLIER  = 0.8f;
+                    FORWARDNESS_MULTIPLIER  = 0.9f;
                 } else {
                     MASTER_DRIVE_MULTIPLIER = 0.4f;
                     FORWARDNESS_MULTIPLIER  = 0.6f;

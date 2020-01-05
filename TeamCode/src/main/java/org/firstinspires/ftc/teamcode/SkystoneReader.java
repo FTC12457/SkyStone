@@ -29,7 +29,7 @@ public class SkystoneReader{
 
         double time_init = opMode.time;
 
-        while (opMode.time - time_init < 5) {
+        while (opMode.time - time_init < 1) {
             votes.put(skystoneCategory(), votes.get(skystoneCategory()) + 1);
             try {
                 Thread.sleep(100);
@@ -48,13 +48,23 @@ public class SkystoneReader{
     // Notice how the placement defaults on Right. This is important, since Right is the most
     // difficult to recognize, due to lack of contrasting yellow.
 
-    public int placement() {
-        if (votes.get("Left") > votes.get("Center") && votes.get("Left") > votes.get("Right")) {
-            return 0;
-        } else if (votes.get("Center") > votes.get("Right")) {
-            return 1;
+    public int placement(String color) {
+        if (color.equals("Red")) {
+            if (votes.get("Left") > votes.get("Center") && votes.get("Left") > votes.get("Right")) {
+                return 0;
+            } else if (votes.get("Center") > votes.get("Right")) {
+                return 1;
+            } else {
+                return 2;
+            }
         } else {
-            return 2;
+            if (votes.get("Right") > votes.get("Center") && votes.get("Right") > votes.get("Left")) {
+                return 0;
+            } else if (votes.get("Center") > votes.get("Left")) {
+                return 1;
+            } else {
+                return 2;
+            }
         }
     }
 

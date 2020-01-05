@@ -11,14 +11,14 @@ public class Base {
     }
 
     public void open() {
-        robot.baseR.setPosition(0.9);
-        robot.baseL.setPosition(0);
+        robot.baseR.setPosition(0.675);
+        robot.baseL.setPosition(0.225);
         opened = true;
     }
 
     public void close() {
-        robot.baseR.setPosition(0.45);
-        robot.baseL.setPosition(0.45);
+        robot.baseR.setPosition(0.02);
+        robot.baseL.setPosition(0.85);
         opened = false;
     }
 

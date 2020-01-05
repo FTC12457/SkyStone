@@ -16,10 +16,10 @@ public class Autored {
     }
 
     public void open() {
-        robot.autoredClaw.setPosition(0.6);
+        robot.autoredClaw.setPosition(0.5);
     }
 
     public void close() {
-        robot.autoredClaw.setPosition(0.3);
+        robot.autoredClaw.setPosition(0.8);
     }
 }
