@@ -29,7 +29,7 @@ public class Hardware {
 
     public BNO055IMU imu = null;
 
-    //public DcMotor bean = null;
+    public DcMotor bean = null;
 
     HardwareMap hwMap = null;
 
@@ -59,7 +59,7 @@ public class Hardware {
         autoblueArm         = hwMap.get(Servo.class,        "BA");
         autoblueClaw        = hwMap.get(Servo.class,        "BC");
         capper              = hwMap.get(CRServo.class,      "CA");
-        //bean                = hwMap.get(DcMotor.class,      "Bean");
+        bean                = hwMap.get(DcMotor.class,      "Bean");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -77,7 +77,7 @@ public class Hardware {
         autoredArm.setPosition(0.2);
         autoredClaw.setPosition(0.8);
         autoblueArm.setPosition(0.2);
-        autoblueClaw.setPosition(0.1);
+        autoblueClaw.setPosition(0.08);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

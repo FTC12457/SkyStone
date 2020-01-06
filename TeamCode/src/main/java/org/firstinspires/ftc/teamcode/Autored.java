@@ -11,15 +11,25 @@ public class Autored {
         robot.autoredArm.setPosition(0.38);
     }
 
-    public void lower() {
+    public void lowergrab() {
         robot.autoredArm.setPosition(0.65);
     }
 
+    public void lowerplace() {
+        robot.autoredArm.setPosition(0.52);
+    }
+
     public void open() {
-        robot.autoredClaw.setPosition(0.5);
+        robot.autoredClaw.setPosition(0.48);
     }
 
     public void close() {
+        robot.autoredClaw.setPosition(0.7);
+    }
+
+    public void initialize() {
+        robot.autoredArm.setPosition(0.21);
         robot.autoredClaw.setPosition(0.8);
     }
+
 }

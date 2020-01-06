@@ -53,7 +53,7 @@ public class RedAll extends LinearOpMode2{
 
         sleep(250);
 
-        autored.lower();
+        autored.lowergrab();
         sleep(500);
         autored.close();
         sleep(250);
@@ -73,7 +73,7 @@ public class RedAll extends LinearOpMode2{
 
         sleep(250);
 
-        autored.lower();
+        autored.lowerplace();
         sleep(250);
         autored.open();
         sleep(250);
@@ -93,7 +93,7 @@ public class RedAll extends LinearOpMode2{
 
         autored.open();
         sleep(250);
-        autored.lower();
+        autored.lowergrab();
         sleep(500);
         autored.close();
         sleep(250);
@@ -115,7 +115,7 @@ public class RedAll extends LinearOpMode2{
         // but in the direction the robot wants to go in anyways. So, maybe replace?
 
         sleep(250);
-        autored.lower();
+        autored.lowerplace();
         sleep(250);
         autored.open();
         sleep(250);

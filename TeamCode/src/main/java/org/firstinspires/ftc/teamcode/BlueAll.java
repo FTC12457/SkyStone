@@ -35,24 +35,23 @@ public class BlueAll extends LinearOpMode2{
 
         reader.run();
         if (reader.placement("Blue") == 0) {
-            skystoneX = -9;
+            skystoneX = -31;
         } else if (reader.placement("Blue") == 1) {
-            skystoneX = -24;
+            skystoneX = -23;
         } else {
-            skystoneX = -32;
+            skystoneX = -15;
         }
 
-        autoblue.open();
-
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -33))
+                .strafeTo(new Vector2d(skystoneX, -31))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
 
         sleep(250);
 
-        autoblue.lower();
+        autoblue.open();
+        autoblue.lowergrab();
         sleep(500);
         autoblue.close();
         sleep(250);
@@ -63,15 +62,15 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory toBase = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(20, -24, 0))
-                .splineTo(new Pose2d(90, -30, 0))
+                .splineTo(new Pose2d(25, -25, 0))
+                .splineTo(new Pose2d(88, -32, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
 
         sleep(250);
 
-        autoblue.lower();
+        autoblue.lowerplace();
         sleep(250);
         autoblue.open();
         sleep(250);
@@ -83,18 +82,18 @@ public class BlueAll extends LinearOpMode2{
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(36, -24, 0))
-                .splineTo(new Pose2d(skystoneX + 28, -30, 0))
+                .splineTo(new Pose2d(36, -25, 0))
+                .splineTo(new Pose2d(skystoneX + 26, -31, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
 
         autoblue.open();
         sleep(250);
-        autoblue.lower();
+        autoblue.lowergrab();
         sleep(500);
         autoblue.close();
-        sleep(250);
+        sleep(500);
         autoblue.lift();
 
         sleep(500);
@@ -102,8 +101,8 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(36, -24, 0))
-                .splineTo(new Pose2d(80, -30, 0))
+                .splineTo(new Pose2d(30, -25, 0))
+                .splineTo(new Pose2d(80, -32, 0))
                 .build();
 
         drive.followTrajectorySync(toBaseAgain);
@@ -112,13 +111,13 @@ public class BlueAll extends LinearOpMode2{
         // but in the direction the robot wants to go in anyways. So, maybe replace?
 
         sleep(250);
-        autoblue.lower();
+        autoblue.lowerplace();
         sleep(250);
         autoblue.open();
         sleep(250);
         autoblue.lift();
         sleep(250);
-        autoblue.close();
+        autoblue.initialize();
 
         drive.update();
 
@@ -154,7 +153,7 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory push = drive.trajectoryBuilder()
-                .strafeRight(11)
+                .strafeRight(18)
                 .forward(24)
                 .build();
 
@@ -166,9 +165,11 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory park = drive.trajectoryBuilder()
-                .back(40)
+                .back(15)
                 .build();
 
+        robot.bean.setPower(-1);
         drive.followTrajectorySync(park);
+        robot.bean.setPower(0);
     }
 }

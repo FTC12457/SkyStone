@@ -8,18 +8,28 @@ public class Autoblue {
     }
 
     public void lift() {
-        robot.autoblueArm.setPosition(0.55);
+        robot.autoblueArm.setPosition(0.37);
     }
 
-    public void lower() {
-        robot.autoblueArm.setPosition(0.7);
+    public void lowergrab() {
+        robot.autoblueArm.setPosition(0.69);
+    }
+
+    public void lowerplace() {
+        robot.autoblueArm.setPosition(0.58);
     }
 
     public void open() {
-        robot.autoblueClaw.setPosition(0.6);
+        robot.autoblueClaw.setPosition(0.5);
     }
 
     public void close() {
-        robot.autoblueClaw.setPosition(0.11);
+        robot.autoblueClaw.setPosition(0.15);
     }
+
+    public void initialize() {
+        robot.autoblueArm.setPosition(0.2);
+        robot.autoblueClaw.setPosition(0.08);
+    }
+
 }
