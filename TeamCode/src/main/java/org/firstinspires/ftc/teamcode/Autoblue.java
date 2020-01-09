@@ -29,7 +29,7 @@ public class Autoblue {
 
     public void initialize() {
         robot.autoblueArm.setPosition(0.2);
-        robot.autoblueClaw.setPosition(0.08);
+        robot.autoblueClaw.setPosition(0.05);
     }
 
 }

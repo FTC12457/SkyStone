@@ -10,8 +10,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Drive {
     Hardware robot;
 
-    float MASTER_DRIVE_MULTIPLIER = 0.6f; // Multipliers
-    float FORWARDNESS_MULTIPLIER = 0.5f;
+    float MASTER_DRIVE_MULTIPLIER = 0.9f; // was 0.6// Multipliers
+    float FORWARDNESS_MULTIPLIER = 1.0f; // was 0.5
     float STRAFENESS_MULTIPLIER = 1f;
     float TURNYNESS_MULTIPLIER = 0.8f;
 
@@ -29,8 +29,8 @@ public class Drive {
         if (gamepad.a) {
             if (!a_pressed) {
                 if (MASTER_DRIVE_MULTIPLIER == 0.4f) {
-                    MASTER_DRIVE_MULTIPLIER = 0.7f;
-                    FORWARDNESS_MULTIPLIER  = 0.9f;
+                    MASTER_DRIVE_MULTIPLIER = 0.9f; //was 0.7
+                    FORWARDNESS_MULTIPLIER  = 1.0f; //was 0.8 then 0.9
                 } else {
                     MASTER_DRIVE_MULTIPLIER = 0.4f;
                     FORWARDNESS_MULTIPLIER  = 0.6f;

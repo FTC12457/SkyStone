@@ -38,15 +38,15 @@ public class RedAll extends LinearOpMode2{
         if (reader.placement("Red") == 0) {
             skystoneX = 26;
         } else if (reader.placement("Red") == 1) {
-            skystoneX = 20;
+            skystoneX = 18;
         } else {
-            skystoneX = 12;
+            skystoneX = 10;
         }
 
         autored.open();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -34))
+                .strafeTo(new Vector2d(skystoneX, -33.5))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -65,8 +65,8 @@ public class RedAll extends LinearOpMode2{
 
         Trajectory toBase = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-20, -24, 0))
-                .splineTo(new Pose2d(-90, -30, 0))
+                .splineTo(new Pose2d(-20, -23, 0))
+                .splineTo(new Pose2d(-90, -31, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -85,8 +85,8 @@ public class RedAll extends LinearOpMode2{
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
-                .splineTo(new Pose2d(-36, -24, 0))
-                .splineTo(new Pose2d(skystoneX - 26, -30, 0))
+                .splineTo(new Pose2d(-36, -22, 0))
+                .splineTo(new Pose2d(skystoneX - 26, -31.5, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
@@ -105,8 +105,8 @@ public class RedAll extends LinearOpMode2{
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-36, -24, 0))
-                .splineTo(new Pose2d(-80, -30, 0))
+                .splineTo(new Pose2d(-36, -23, 0))
+                .splineTo(new Pose2d(-80, -31, 0))
                 .build();
 
         drive.followTrajectorySync(toBaseAgain);
@@ -121,7 +121,7 @@ public class RedAll extends LinearOpMode2{
         sleep(250);
         autored.lift();
         sleep(250);
-        autored.close();
+        autored.initialize();
 
         drive.update();
 
@@ -169,10 +169,12 @@ public class RedAll extends LinearOpMode2{
         drive.update();
 
         Trajectory park = drive.trajectoryBuilder()
-                .back(40)
+                .back(15)
                 .build();
 
+        robot.bean.setPower(-1);
         drive.followTrajectorySync(park);
+        robot.bean.setPower(0);
 
 //        Trajectory pull = drive.trajectoryBuilder()
 //                .back(40)

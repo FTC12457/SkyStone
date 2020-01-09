@@ -39,6 +39,7 @@ public class ControlledTesting extends LinearOpMode {
             if (gamepad2.dpad_down) {
                 autored.lowergrab();
             }
+
             if (gamepad2.dpad_left) {
                 autored.open();
             }
