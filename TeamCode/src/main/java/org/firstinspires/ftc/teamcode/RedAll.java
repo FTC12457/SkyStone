@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 
+import java.util.Vector;
+
 /*
 This class is the autonomous for blue that does everything, and presumes the alliance partner robot
 immediately heads to park, next to the wall.
@@ -46,7 +48,7 @@ public class RedAll extends LinearOpMode2{
         autored.open();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -32.5))
+                .strafeTo(new Vector2d(skystoneX, -33))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -105,7 +107,8 @@ public class RedAll extends LinearOpMode2{
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-36, -25, 0))
+                .strafeTo(new Vector2d(-20, -25))
+                //.splineTo(new Pose2d(-36, -25, 0))
                 .splineTo(new Pose2d(-80, -31, 0))
                 .build();
 
