@@ -20,7 +20,7 @@ public class RedAll extends LinearOpMode2{
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
-    SkystoneReader reader = new SkystoneReader(this, telemetry);
+    SkystoneReader reader = new SkystoneReader("Red", this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {

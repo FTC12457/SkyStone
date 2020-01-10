@@ -12,10 +12,13 @@ public class SkystoneReader{
 
     LinearOpMode2 opMode;
     Telemetry telemetryInstance;
+    String teamColor;
 
     HashMap<String, Integer> votes = new HashMap<>();
 
-    public SkystoneReader(LinearOpMode2 opMode2, Telemetry telemetry) {
+    public SkystoneReader(String color, LinearOpMode2 opMode2, Telemetry telemetry) {
+
+        teamColor = color;
         opMode = opMode2;
         telemetryInstance = telemetry;
 
@@ -72,13 +75,23 @@ public class SkystoneReader{
         System.gc();
     }
 
-    public static String skystoneCategory() {
-        if (!Pipeline.skyStones.isEmpty()) {
-            if (Pipeline.skyStones.get(0).y < 160) return "Left";
-            else if (Pipeline.skyStones.get(0).y < 320) return "Center";
-            else return "Right";
+    public String skystoneCategory() {
+        if (teamColor.equals("Blue")) {
+            if (!Pipeline.skyStones.isEmpty()) {
+                if (Pipeline.skyStones.get(0).y < 260) return "Left";
+                else if (Pipeline.skyStones.get(0).y < 380) return "Center";
+                else return "Right";
+            } else {
+                return "Null";
+            }
         } else {
-            return "Null";
+            if (!Pipeline.skyStones.isEmpty()) {
+                if (Pipeline.skyStones.get(0).y < 160) return "Left";
+                else if (Pipeline.skyStones.get(0).y < 320) return "Center";
+                else return "Right";
+            } else {
+                return "Null";
+            }
         }
     }
 }

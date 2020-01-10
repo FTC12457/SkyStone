@@ -20,7 +20,7 @@ public class BlueAll extends LinearOpMode2{
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autoblue autoblue = new Autoblue(robot);
-    SkystoneReader reader = new SkystoneReader(this, telemetry);
+    SkystoneReader reader = new SkystoneReader("Blue", this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
