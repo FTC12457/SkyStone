@@ -4,12 +4,9 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
-
-import java.util.Vector;
 
 /*
 This class is the autonomous for blue that does everything, and presumes the alliance partner robot
@@ -17,12 +14,12 @@ immediately heads to park, next to the wall.
  */
 
 @Autonomous(name = "Red All", group = "Performance")
-public class RedAll extends LinearOpMode2{
+public class RedThreeBlockTest extends LinearOpMode2{
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
-    SkystoneReader reader = new SkystoneReader("Red", this, telemetry);
+    SkystoneReader reader = new SkystoneReader(this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -48,7 +45,7 @@ public class RedAll extends LinearOpMode2{
         autored.open();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -33))
+                .strafeTo(new Vector2d(skystoneX, -32.5))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -88,7 +85,7 @@ public class RedAll extends LinearOpMode2{
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
                 .splineTo(new Pose2d(-36, -25, 0))
-                .splineTo(new Pose2d(skystoneX - 26, -29.5, 0))
+                .splineTo(new Pose2d(skystoneX - 26, -30, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
@@ -107,8 +104,7 @@ public class RedAll extends LinearOpMode2{
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .reverse()
-                .strafeTo(new Vector2d(-20, -25))
-                //.splineTo(new Pose2d(-36, -25, 0))
+                .splineTo(new Pose2d(-36, -25, 0))
                 .splineTo(new Pose2d(-80, -31, 0))
                 .build();
 
@@ -160,11 +156,14 @@ public class RedAll extends LinearOpMode2{
         drive.update();
 
         Trajectory push = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(-74, -24))
+                .strafeLeft(10)
+                .forward(24)
                 .build();
 
-        base.open();
         drive.followTrajectorySync(push);
+
+        base.open();
+        sleep(250);
 
         drive.update();
 

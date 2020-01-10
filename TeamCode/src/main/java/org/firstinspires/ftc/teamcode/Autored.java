@@ -8,7 +8,7 @@ public class Autored {
     }
 
     public void lift() {
-        robot.autoredArm.setPosition(0.35);
+        robot.autoredArm.setPosition(0.33);
     }
 
     public void lowergrab() {
