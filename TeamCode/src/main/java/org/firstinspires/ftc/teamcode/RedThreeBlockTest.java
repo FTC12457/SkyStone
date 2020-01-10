@@ -4,7 +4,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
@@ -15,7 +14,7 @@ immediately heads to park, next to the wall.
  */
 
 @Autonomous(name = "Red All", group = "Performance")
-public class RedAll extends LinearOpMode2{
+public class RedThreeBlockTest extends LinearOpMode2{
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
@@ -86,7 +85,7 @@ public class RedAll extends LinearOpMode2{
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
                 .splineTo(new Pose2d(-36, -25, 0))
-                .splineTo(new Pose2d(skystoneX - 26, -29.5, 0))
+                .splineTo(new Pose2d(skystoneX - 26, -30, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
@@ -157,11 +156,14 @@ public class RedAll extends LinearOpMode2{
         drive.update();
 
         Trajectory push = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(-74, -24))
+                .strafeLeft(10)
+                .forward(24)
                 .build();
 
-        base.open();
         drive.followTrajectorySync(push);
+
+        base.open();
+        sleep(250);
 
         drive.update();
 
