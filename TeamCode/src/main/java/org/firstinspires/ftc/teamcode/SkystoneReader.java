@@ -61,12 +61,12 @@ public class SkystoneReader{
                 return 2;
             }
         } else {
-            if (votes.get("Right") > votes.get("Center") && votes.get("Right") > votes.get("Left")) {
-                return 0;
-            } else if (votes.get("Center") > votes.get("Left")) {
+            if (votes.get("Left") > votes.get("Center") && votes.get("Left") > votes.get("Right")) {
+                return 2;
+            } else if (votes.get("Center") > votes.get("Right")) {
                 return 1;
             } else {
-                return 2;
+                return 0;
             }
         }
     }

@@ -8,7 +8,7 @@ public class Autoblue {
     }
 
     public void lift() {
-        robot.autoblueArm.setPosition(0.30);
+        robot.autoblueArm.setPosition(0.27);
     }
 
     public void lowergrab() {
@@ -24,7 +24,7 @@ public class Autoblue {
     }
 
     public void close() {
-        robot.autoblueClaw.setPosition(0.15);
+        robot.autoblueClaw.setPosition(0.12);
     }
 
     public void initialize() {

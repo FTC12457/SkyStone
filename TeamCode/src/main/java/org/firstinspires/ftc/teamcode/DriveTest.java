@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -7,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 Basic class calls only the drive functionality.
  */
 
+@Disabled
 @TeleOp(name = "DriveTest", group = "Experimental")
 public class DriveTest extends LinearOpMode {
     Hardware robot = new Hardware();

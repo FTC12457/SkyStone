@@ -48,7 +48,7 @@ public class RedAll extends LinearOpMode2{
         autored.open();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -33))
+                .strafeTo(new Vector2d(skystoneX, -32.5))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);

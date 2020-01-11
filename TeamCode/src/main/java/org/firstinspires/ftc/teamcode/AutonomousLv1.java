@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Switch;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+@Disabled
 @Autonomous(name = "LVL 1", group = "Performance")
 public class AutonomousLv1 extends LinearOpMode{
     Hardware robot = new Hardware();
