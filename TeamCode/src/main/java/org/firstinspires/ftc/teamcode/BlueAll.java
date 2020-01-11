@@ -35,15 +35,15 @@ public class BlueAll extends LinearOpMode2{
 
         reader.run();
         if (reader.placement("Blue") == 0) {
-            skystoneX = -31;
+            skystoneX = -30;
         } else if (reader.placement("Blue") == 1) {
-            skystoneX = -23;
+            skystoneX = -22;
         } else {
-            skystoneX = -15;
+            skystoneX = -14;
         }
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -31))
+                .strafeTo(new Vector2d(skystoneX, -31.5))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -62,8 +62,8 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory toBase = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(25, -25, 0))
-                .splineTo(new Pose2d(88, -32, 0))
+                .splineTo(new Pose2d(28, -26, 0))
+                .splineTo(new Pose2d(91, -32.5, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -82,8 +82,8 @@ public class BlueAll extends LinearOpMode2{
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(36, -25, 0))
-                .splineTo(new Pose2d(skystoneX + 26, -31, 0))
+                .splineTo(new Pose2d(39, -26, 0))
+                .splineTo(new Pose2d(skystoneX + 28, -31.5, 0))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
@@ -100,10 +100,20 @@ public class BlueAll extends LinearOpMode2{
 
         drive.update();
 
-        Trajectory toBaseAgain = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(30, -25, 0))
-                .splineTo(new Pose2d(80, -32, 0))
-                .build();
+        Trajectory toBaseAgain;
+
+        if (skystoneX == -14) {
+            toBaseAgain = drive.trajectoryBuilder()
+                    .strafeTo(new Vector2d(23, -26))
+                    .splineTo(new Pose2d(33, -26, 0))
+                    .splineTo(new Pose2d(83, -32.5, 0))
+                    .build();
+        } else {
+            toBaseAgain = drive.trajectoryBuilder()
+                    .splineTo(new Pose2d(33, -26, 0))
+                    .splineTo(new Pose2d(83, -32.5, 0))
+                    .build();
+        }
 
         drive.followTrajectorySync(toBaseAgain);
 
@@ -145,7 +155,7 @@ public class BlueAll extends LinearOpMode2{
 
         Trajectory pull = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(60, -10, 0))
+                .splineTo(new Pose2d(63, -10, 0))
                 .build();
 
         drive.followTrajectorySync(pull);
@@ -153,14 +163,11 @@ public class BlueAll extends LinearOpMode2{
         drive.update();
 
         Trajectory push = drive.trajectoryBuilder()
-                .strafeRight(18)
-                .forward(24)
+                .strafeTo(new Vector2d(73, -30))
                 .build();
 
-        drive.followTrajectorySync(push);
-
         base.open();
-        sleep(250);
+        drive.followTrajectorySync(push);
 
         drive.update();
 

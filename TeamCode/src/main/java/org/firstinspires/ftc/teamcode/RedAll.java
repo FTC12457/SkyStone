@@ -105,12 +105,22 @@ public class RedAll extends LinearOpMode2{
 
         drive.update();
 
-        Trajectory toBaseAgain = drive.trajectoryBuilder()
-                .reverse()
-                .strafeTo(new Vector2d(-20, -25))
-                //.splineTo(new Pose2d(-36, -25, 0))
-                .splineTo(new Pose2d(-80, -31, 0))
-                .build();
+        Trajectory toBaseAgain;
+
+        if (skystoneX == 10) {
+            toBaseAgain = drive.trajectoryBuilder()
+                    .strafeTo(new Vector2d(-20, -25))
+                    .reverse()
+                    .splineTo(new Pose2d(-36, -25, 0))
+                    .splineTo(new Pose2d(-80, -31, 0))
+                    .build();
+        } else {
+            toBaseAgain = drive.trajectoryBuilder()
+                    .reverse()
+                    .splineTo(new Pose2d(-36, -25, 0))
+                    .splineTo(new Pose2d(-80, -31, 0))
+                    .build();
+        }
 
         drive.followTrajectorySync(toBaseAgain);
 
