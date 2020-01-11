@@ -80,11 +80,27 @@ public class BlueAll extends LinearOpMode2{
 
         drive.update();
 
-        Trajectory toSecondSkystone = drive.trajectoryBuilder()
-                .reverse()
-                .splineTo(new Pose2d(39, -26, 0))
-                .splineTo(new Pose2d(skystoneX + 28, -31.5, 0))
-                .build();
+        Trajectory toSecondSkystone;
+
+        if (skystoneX == -14) {
+            toSecondSkystone = drive.trajectoryBuilder()
+                    .reverse()
+                    .splineTo(new Pose2d(39, -26, 0))
+                    .splineTo(new Pose2d(skystoneX + 28, -31.5, 0))
+                    .build();
+        } else if (skystoneX == -22) {
+            toSecondSkystone = drive.trajectoryBuilder()
+                    .reverse()
+                    .splineTo(new Pose2d(39, -26, 0))
+                    .splineTo(new Pose2d(skystoneX + 28, -31.5, 0))
+                    .build();
+        } else {
+            toSecondSkystone = drive.trajectoryBuilder()
+                    .reverse()
+                    .splineTo(new Pose2d(39, -26, 0))
+                    .splineTo(new Pose2d(skystoneX + 28, -31.5, 0))
+                    .build();
+        }
 
         drive.followTrajectorySync(toSecondSkystone);
 

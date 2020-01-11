@@ -67,8 +67,8 @@ public class RedAll extends LinearOpMode2{
 
         Trajectory toBase = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-20, -25, 0))
-                .splineTo(new Pose2d(-90, -31, 0))
+                .splineTo(new Pose2d(-20, -27, 0))
+                .splineTo(new Pose2d(-90, -33, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -85,11 +85,29 @@ public class RedAll extends LinearOpMode2{
 
         drive.update();
 
-        Trajectory toSecondSkystone = drive.trajectoryBuilder()
+        Trajectory toSecondSkystone;
+
+        if (skystoneX == 10) {
+            toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
-                .splineTo(new Pose2d(-36, -25, 0))
-                .splineTo(new Pose2d(skystoneX - 26, -29.5, 0))
-                .build();
+                    .splineTo(new Pose2d(-36, -27, 0))
+                    //.splineTo(new Pose2d(-30, -25, 0))
+                    //.strafeTo(new Vector2d(skystoneX - 26, -32))
+                    .splineTo(new Pose2d(skystoneX - 26, -32))
+                    .build();
+        } else if (skystoneX == 18) {
+            toSecondSkystone = drive.trajectoryBuilder()
+//                .forward(80 + skystoneX - 26)
+                    .splineTo(new Pose2d(-36, -27, 0))
+                    .splineTo(new Pose2d(skystoneX - 26, -32, 0))
+                    .build();
+        } else {
+            toSecondSkystone = drive.trajectoryBuilder()
+//                .forward(80 + skystoneX - 26)
+                    .splineTo(new Pose2d(-36, -27, 0))
+                    .splineTo(new Pose2d(skystoneX - 26, -32 , 0))
+                    .build();
+        }
 
         drive.followTrajectorySync(toSecondSkystone);
 
@@ -111,14 +129,14 @@ public class RedAll extends LinearOpMode2{
             toBaseAgain = drive.trajectoryBuilder()
                     .strafeTo(new Vector2d(-20, -25))
                     .reverse()
-                    .splineTo(new Pose2d(-36, -25, 0))
-                    .splineTo(new Pose2d(-80, -31, 0))
+                    .splineTo(new Pose2d(-36, -26, 0))
+                    .splineTo(new Pose2d(-80, -33, 0))
                     .build();
         } else {
             toBaseAgain = drive.trajectoryBuilder()
                     .reverse()
-                    .splineTo(new Pose2d(-36, -25, 0))
-                    .splineTo(new Pose2d(-80, -31, 0))
+                    .splineTo(new Pose2d(-36, -27, 0))
+                    .splineTo(new Pose2d(-80, -33, 0))
                     .build();
         }
 
@@ -170,7 +188,9 @@ public class RedAll extends LinearOpMode2{
         drive.update();
 
         Trajectory push = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(-74, -24))
+                .strafeLeft(6)
+                .forward(20)
+                //.strafeTo(new Vector2d(-80, -24))
                 .build();
 
         base.open();
