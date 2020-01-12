@@ -33,8 +33,8 @@ public class AutonomousLvB extends LinearOpMode{
         that their autonomous far outclasses ours.
          */
 
-        robot.bean.setPower(1);
-        sleep(100);
+        robot.bean.setPower(-1);
+        sleep(200);
         robot.bean.setPower(0);
     }
 }

@@ -45,7 +45,7 @@ public class BlueAll extends LinearOpMode2{
          */
 
         if (reader.placement("Blue") == 2) {
-            skystoneX = -12;
+            skystoneX = -13;
         } else if (reader.placement("Blue") == 1) {
             skystoneX = -21;
         } else if (reader.placement("Blue") == 0) {
@@ -55,7 +55,7 @@ public class BlueAll extends LinearOpMode2{
         }
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -31))
+                .strafeTo(new Vector2d(skystoneX, -31.7))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -94,23 +94,23 @@ public class BlueAll extends LinearOpMode2{
 
         Trajectory toSecondSkystone;
 
-        if (skystoneX == -12) {
+        if (reader.placement("Blue") == 2) {
             toSecondSkystone = drive.trajectoryBuilder()
                     .reverse()
                     .splineTo(new Pose2d(39, -27, 0))
-                    .splineTo(new Pose2d(skystoneX + 29, -31.5, 0))
+                    .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
                     .build();
-        } else if (skystoneX == -20) {
+        } else if (reader.placement("Blue") == 1) {
             toSecondSkystone = drive.trajectoryBuilder()
                     .reverse()
-                    .splineTo(new Pose2d(39, -27, 0))
-                    .splineTo(new Pose2d(skystoneX + 29, -31.5, 0))
+                    .splineTo(new Pose2d(39, -27.5, 0))
+                    .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
                     .build();
         } else {
             toSecondSkystone = drive.trajectoryBuilder()
                     .reverse()
                     .splineTo(new Pose2d(39, -27, 0))
-                    .splineTo(new Pose2d(skystoneX + 29, -31.5, 0))
+                    .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
                     .build();
         }
 
@@ -130,7 +130,7 @@ public class BlueAll extends LinearOpMode2{
 
         Trajectory toBaseAgain;
 
-        if (skystoneX == -12) {
+        if (skystoneX == -13) {
             toBaseAgain = drive.trajectoryBuilder()
                     .strafeTo(new Vector2d(23, -27))
                     .splineTo(new Pose2d(33, -27, 0))
