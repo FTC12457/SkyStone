@@ -73,12 +73,12 @@ public class SkystoneReaderInit {
                 return 2;
             }
         } else {
-            if (right > center && right > left) {
-                return 0;
-            } else if (center > left) {
+            if (left > center && left > right) {
+                return 2;
+            } else if (center > right) {
                 return 1;
             } else {
-                return 2;
+                return 0;
             }
         }
     }
