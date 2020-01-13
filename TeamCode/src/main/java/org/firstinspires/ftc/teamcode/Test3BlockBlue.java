@@ -20,8 +20,8 @@ public class Test3BlockBlue extends LinearOpMode2{
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autoblue autoblue = new Autoblue(robot);
-    //SkystoneReader reader = new SkystoneReader("Blue", this, telemetry);
-    SkystoneReaderInit initReader = new SkystoneReaderInit("Blue", this, telemetry);
+    SkystoneReader reader = new SkystoneReader("Blue", this, telemetry);
+    //SkystoneReaderInit initReader = new SkystoneReaderInit("Blue", this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -32,13 +32,13 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         int skystoneX;
 
-        initReader.run();
-        //waitForStart();
+        //initReader.run();
+        waitForStart();
 
-        //reader.run();
+        reader.run();
 
-        //int skystoneposition = reader.placement("Blue");
-        int skystoneposition = initReader.placement("Blue");
+        int skystoneposition = reader.placement("Blue");
+        //int skystoneposition = initReader.placement("Blue");
 
         if (skystoneposition == 2) {
             skystoneX = -13;
