@@ -31,6 +31,8 @@ public class addMarkerTest extends LinearOpMode2{
 
         robot.init(hardwareMap);
 
+        waitForStart();
+
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
                 .strafeTo(new Vector2d(5, -5))
                 .addMarker(() -> {autoblue.open(); return null;})
