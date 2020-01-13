@@ -57,7 +57,7 @@ public class SkystoneReaderInit {
         int right = 0;
 
         int i = 0;
-        while (i <= votes.keySet().size()) {
+        while (i < votes.keySet().size()) {
             if ("Left".equals(votes.get(i))) left += 1;
             if ("Center".equals(votes.get(i))) center += 1;
             if ("Right".equals(votes.get(i))) right += 1;
