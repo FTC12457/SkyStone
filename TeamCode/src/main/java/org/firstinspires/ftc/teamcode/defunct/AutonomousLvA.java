@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Switch;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
