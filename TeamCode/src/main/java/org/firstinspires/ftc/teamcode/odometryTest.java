@@ -15,7 +15,7 @@ This class is the autonomous for blue that does everything, and presumes the all
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Add Marker", group = "Performance")
+@Autonomous(name = "Constable Odo", group = "Performance")
 public class odometryTest extends LinearOpMode2{
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);

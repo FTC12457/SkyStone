@@ -15,8 +15,8 @@ public class Hardware {
     public DcMotor backLeftDrive = null;
     public DcMotor backRightDrive = null;
 
-    public DcMotor leftEncoder;
-    public DcMotor rightEncoder;
+//    public DcMotor leftEncoder;
+//    public DcMotor rightEncoder;
 
     public Servo claw = null;
 
@@ -49,24 +49,24 @@ public class Hardware {
 
         // At convenience, change names and config of RL and RR to BL and BR, respectively.
 
-        frontLeftDrive      = hwMap.get(DcMotor.class,      "FL");
-        frontRightDrive     = hwMap.get(DcMotor.class,      "FR");
-        backLeftDrive       = hwMap.get(DcMotor.class,      "RL");
-        backRightDrive      = hwMap.get(DcMotor.class,      "RR");
-
-        claw                = hwMap.get(Servo.class,        "CL");
-        arm                 = hwMap.get(DcMotor.class,      "AR");
-        baseL               = hwMap.get(Servo.class,        "BL");
-        baseR               = hwMap.get(Servo.class,        "BR");
-        imu                 = hwMap.get(BNO055IMU.class,    "IM");
-        autoredArm          = hwMap.get(Servo.class,        "RA");
-        autoredClaw         = hwMap.get(Servo.class,        "RC");
+//        frontLeftDrive      = hwMap.get(DcMotor.class,      "FL");
+//        frontRightDrive     = hwMap.get(DcMotor.class,      "FR");
+//        backLeftDrive       = hwMap.get(DcMotor.class,      "RL");
+//        backRightDrive      = hwMap.get(DcMotor.class,      "RR");
+//
+//        claw                = hwMap.get(Servo.class,        "CL");
+//        arm                 = hwMap.get(DcMotor.class,      "AR");
+//        baseL               = hwMap.get(Servo.class,        "BL");
+//        baseR               = hwMap.get(Servo.class,        "BR");
+//        imu                 = hwMap.get(BNO055IMU.class,    "IM");
+//        autoredArm          = hwMap.get(Servo.class,        "RA");
+//        autoredClaw         = hwMap.get(Servo.class,        "RC");
         autoblueArm         = hwMap.get(Servo.class,        "BA");
         autoblueClaw        = hwMap.get(Servo.class,        "BC");
-        capper              = hwMap.get(CRServo.class,      "CA");
-        bean                = hwMap.get(DcMotor.class,      "Bean");
-
-        leftEncoder         = hwMap.dcMotor.get("leftEncoder");
+//        capper              = hwMap.get(CRServo.class,      "CA");
+//        bean                = hwMap.get(DcMotor.class,      "Bean");
+//
+//        leftEncoder         = hwMap.dcMotor.get("leftEncoder");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
