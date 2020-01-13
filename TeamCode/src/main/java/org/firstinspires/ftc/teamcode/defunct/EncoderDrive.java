@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.defunct;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.robot.Hardware;
+import org.firstinspires.ftc.teamcode.LinearOpMode2;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 // At the moment, dysfunctional, since the development of LinearOpMode2. Could be fixed, but at the

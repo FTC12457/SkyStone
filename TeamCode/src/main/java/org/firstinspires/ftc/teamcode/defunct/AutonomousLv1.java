@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.defunct;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.widget.Switch;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
+import org.firstinspires.ftc.teamcode.robot.Claw;
+import org.firstinspires.ftc.teamcode.robot.Hardware;
 
 @Disabled
 @Autonomous(name = "LVL 1", group = "Performance")

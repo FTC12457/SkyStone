@@ -1,10 +1,14 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.defunct;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
+import org.firstinspires.ftc.teamcode.robot.Autored;
+import org.firstinspires.ftc.teamcode.robot.Base;
+import org.firstinspires.ftc.teamcode.robot.Hardware;
+import org.firstinspires.ftc.teamcode.LinearOpMode2;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 
@@ -13,8 +17,9 @@ This class is the autonomous for blue that does everything, and presumes the all
 immediately heads to park, next to the wall.
  */
 
+@Disabled
 @Autonomous(name = "Baseness", group = "Performance")
-public class BaseNew extends LinearOpMode2{
+public class BaseNew extends LinearOpMode2 {
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);

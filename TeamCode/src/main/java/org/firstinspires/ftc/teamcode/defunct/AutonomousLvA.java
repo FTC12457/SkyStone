@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.defunct;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,11 @@ import android.widget.Switch;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "LVL A", group = "Performance")
+import org.firstinspires.ftc.teamcode.robot.Claw;
+import org.firstinspires.ftc.teamcode.robot.Hardware;
+
+@Disabled
+@Autonomous(name = "0", group = "Performance")
 public class AutonomousLvA extends LinearOpMode{
     Hardware robot = new Hardware();
     EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);

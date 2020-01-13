@@ -1,15 +1,18 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.performance;
 
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Switch;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "LVL 0", group = "Performance")
-public class AutonomousLv0 extends LinearOpMode{
+import org.firstinspires.ftc.teamcode.defunct.EncoderDrive;
+import org.firstinspires.ftc.teamcode.robot.Claw;
+import org.firstinspires.ftc.teamcode.robot.Hardware;
+
+@Autonomous(name = "LVL B", group = "Performance")
+public class AutoNought extends LinearOpMode{
     Hardware robot = new Hardware();
     EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Claw claw = new Claw(robot);
@@ -34,17 +37,8 @@ public class AutonomousLv0 extends LinearOpMode{
         that their autonomous far outclasses ours.
          */
 
-        encoderDrive.encoderDrive(0.3, "Forward", 54, 10);
-        sleep(20000);
-        encoderDrive.encoderDrive(0.3, "Forward", -30, 10);
-        sleep(100);
-
-        if (color.isChecked()) {
-            /* Condition: Red Near */
-            encoderDrive.encoderDrive(0.3, "Strafe", -18, 10);
-        } else {
-            /* Condition: Blue Near */
-            encoderDrive.encoderDrive(0.3, "Strafe", 18, 10);
-        }
+        robot.bean.setPower(-1);
+        sleep(200);
+        robot.bean.setPower(0);
     }
 }
