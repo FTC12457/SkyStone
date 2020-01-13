@@ -25,13 +25,12 @@ public class RedAll extends LinearOpMode2 {
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
     SkystoneReader reader = new SkystoneReader("Red", this, telemetry);
+    SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         robot.init(hardwareMap);
-
-        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
         int skystoneX;
 

@@ -7,11 +7,16 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 
+import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
+
 public class Hardware {
     public DcMotor frontLeftDrive = null;
     public DcMotor frontRightDrive = null;
     public DcMotor backLeftDrive = null;
     public DcMotor backRightDrive = null;
+
+    public DcMotor leftEncoder;
+    public DcMotor rightEncoder;
 
     public Servo claw = null;
 
@@ -60,6 +65,8 @@ public class Hardware {
         autoblueClaw        = hwMap.get(Servo.class,        "BC");
         capper              = hwMap.get(CRServo.class,      "CA");
         bean                = hwMap.get(DcMotor.class,      "Bean");
+
+        leftEncoder         = hwMap.dcMotor.get("leftEncoder");
 
         frontLeftDrive. setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
