@@ -36,7 +36,7 @@ public class SkystoneReaderInit {
 
         while (!opMode.isStarted()) {
             votes.put(cycle, skystoneCategory());
-            if (opMode.time >= time_init + 1) {
+            if (opMode.time <= time_init + 1) {
                 cycle = 0;
                 time_init = opMode.time;
             } else cycle += 1;
