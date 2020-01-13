@@ -88,7 +88,7 @@ public class SkystoneReaderInit {
     }
 
     public String skystoneCategory() {
-        if (teamColor.equals("Blue")) {
+        if ("Blue".equals(teamColor)) {
             if (!Pipeline.skyStones.isEmpty()) {
                 if (Pipeline.skyStones.get(0).y < 260) return "Left";
                 else if (Pipeline.skyStones.get(0).y < 380) return "Center";

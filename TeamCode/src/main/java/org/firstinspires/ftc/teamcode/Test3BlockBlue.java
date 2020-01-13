@@ -90,33 +90,19 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         Trajectory toSecondSkystone;
 
-        if (skystoneposition == 2) {
-            toSecondSkystone = drive.trajectoryBuilder()
-                    .reverse()
-                    .splineTo(new Pose2d(39, -27, 0))
-                    .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
-                    .build();
-        } else if (skystoneposition == 1) {
-            toSecondSkystone = drive.trajectoryBuilder()
-                    .reverse()
-                    .splineTo(new Pose2d(39, -27.5, 0))
-                    .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
-                    .build();
-        } else {
-            toSecondSkystone = drive.trajectoryBuilder()
-                    .reverse()
-                    .splineTo(new Pose2d(39, -27, 0))
-                    .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
-                    .build();
-        }
+        toSecondSkystone = drive.trajectoryBuilder()
+                .reverse()
+                .splineTo(new Pose2d(39, -27, 0))
+                .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
+                .build();
 
         drive.followTrajectorySync(toSecondSkystone);
 
         autoblue.open();
         //sleep(250);
         autoblue.lowergrab();
-        sleep(500);
         autoblue.close();
+        sleep(500);
         sleep(250);
         autoblue.lift();
 
@@ -126,18 +112,10 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         Trajectory toBaseAgain;
 
-        if (skystoneposition == 2) {
-            toBaseAgain = drive.trajectoryBuilder()
-                    .strafeTo(new Vector2d(23, -27))
-                    .splineTo(new Pose2d(33, -27, 0))
-                    .splineTo(new Pose2d(83, -32.5, 0))
-                    .build();
-        } else {
-            toBaseAgain = drive.trajectoryBuilder()
-                    .splineTo(new Pose2d(33, -27, 0))
-                    .splineTo(new Pose2d(83, -32.5, 0))
-                    .build();
-        }
+        toBaseAgain = drive.trajectoryBuilder()
+                .splineTo(new Pose2d(33, -27, 0))
+                .splineTo(new Pose2d(83, -32.5, 0))
+                .build();
 
         drive.followTrajectorySync(toBaseAgain);
 
@@ -152,6 +130,29 @@ public class Test3BlockBlue extends LinearOpMode2{
         autoblue.lift();
         sleep(250);
         autoblue.initialize();
+
+        drive.update();
+
+        Trajectory toThirdSkystone;
+
+        toThirdSkystone = drive.trajectoryBuilder()
+                .reverse()
+                .splineTo(new Pose2d(39, -27, 0))
+                .splineTo(new Pose2d(skystoneX + 20, -31.7, 0))
+                .build();
+
+        drive.followTrajectorySync(toThirdSkystone);
+
+        drive.update();
+
+        Trajectory toBaseAgainAgain;
+
+        toBaseAgainAgain = drive.trajectoryBuilder()
+                .splineTo(new Pose2d(33, -27, 0))
+                .splineTo(new Pose2d(83, -32.5, 0))
+                .build();
+
+        drive.followTrajectorySync(toBaseAgainAgain);
 
         drive.update();
 
