@@ -131,7 +131,7 @@ public class Test3BlockBlue extends LinearOpMode2{
         //sleep(250);
         autoblue.lift();
         sleep(250);
-        autoblue.initialize();
+        autoblue.retract();
 
         drive.update();
 

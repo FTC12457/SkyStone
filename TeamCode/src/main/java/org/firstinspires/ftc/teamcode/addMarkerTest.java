@@ -23,7 +23,6 @@ immediately heads to park, next to the wall.
 public class addMarkerTest extends LinearOpMode2{
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
-    SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
     Autoblue autoblue = new Autoblue(robot);
 
     @Override
@@ -31,12 +30,16 @@ public class addMarkerTest extends LinearOpMode2{
 
         robot.init(hardwareMap);
 
+        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
+
         waitForStart();
 
+        sleep(1000);
+
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(5, -5))
-                .addMarker(() -> {autoblue.open(); return null;})
-                .strafeTo(new Vector2d(5, -5))
+                .addMarker(new Vector2d(20, -20), () -> {autoblue.open(); return null;})
+                .strafeTo(new Vector2d(30, -30))
+                .strafeTo(new Vector2d(60, -30))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);

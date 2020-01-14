@@ -27,9 +27,13 @@ public class Autoblue {
         robot.autoblueClaw.setPosition(0.05);
     }
 
-    public void initialize() {
+    public void retract() {
         robot.autoblueArm.setPosition(0.2);
-        robot.autoblueClaw.setPosition(0.05);
+        close();
     }
 
+    public void deploy() {
+        open();
+        lowergrab();
+    }
 }

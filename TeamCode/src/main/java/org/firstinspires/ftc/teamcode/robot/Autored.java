@@ -24,12 +24,16 @@ public class Autored {
     }
 
     public void close() {
-        robot.autoredClaw.setPosition(0.7);
-    }
-
-    public void initialize() {
-        robot.autoredArm.setPosition(0.21);
         robot.autoredClaw.setPosition(0.73);
     }
 
+    public void retract() {
+        robot.autoredArm.setPosition(0.21);
+        close();
+    }
+
+    public void deploy() {
+        open();
+        lowergrab();
+    }
 }

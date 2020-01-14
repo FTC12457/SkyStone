@@ -53,7 +53,7 @@ public class Controlled extends LinearOpMode {
                 autored.close();
             }
             if (gamepad2.left_bumper) {
-                autored.initialize();
+                autored.retract();
             }
             if (gamepad2.right_bumper) {
                 autored.lowerplace();

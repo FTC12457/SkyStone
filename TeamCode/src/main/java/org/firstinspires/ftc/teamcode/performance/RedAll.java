@@ -25,32 +25,24 @@ public class RedAll extends LinearOpMode2 {
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
     SkystoneReader reader = new SkystoneReader("Red", this, telemetry);
-    SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         robot.init(hardwareMap);
 
-        int skystoneX;
+        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
         waitForStart();
 
-
         reader.run();
 
-        if (reader.placement("Red") == 0) {
-            skystoneX = 28;
-        } else if (reader.placement("Red") == 1) {
-            skystoneX = 20;
-        } else {
-            skystoneX = 12;
-        }
+        drive.setPoseEstimate(new Pose2d(-36, -64, Math.PI));
 
         autored.open();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -32.25))
+                .strafeTo(new Vector2d(-64, -32))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -69,8 +61,8 @@ public class RedAll extends LinearOpMode2 {
 
         Trajectory toBase = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-20, -27, 0))
-                .splineTo(new Pose2d(-90, -33, 0))
+                .splineTo(new Pose2d(0, -38, Math.PI))
+                .splineTo(new Pose2d(64, -32, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -81,42 +73,20 @@ public class RedAll extends LinearOpMode2 {
         sleep(250);
         autored.open();
         sleep(250);
-        autored.lift();
-        sleep(500);
-        autored.close();
+        autored.retract();
 
         drive.update();
 
         Trajectory toSecondSkystone;
 
-        if (reader.placement("Red") == 2) {
-            toSecondSkystone = drive.trajectoryBuilder()
-//                .forward(80 + skystoneX - 26)
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    //.splineTo(new Pose2d(-30, -25, 0))
-                    //.strafeTo(new Vector2d(skystoneX - 26, -32))
-                    .splineTo(new Pose2d(skystoneX - 26, -30.5))
-                    .build();
-        } else if (reader.placement("Red") == 1) {
-            toSecondSkystone = drive.trajectoryBuilder()
-//                .forward(80 + skystoneX - 26)
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    .splineTo(new Pose2d(skystoneX - 27, -30.5, 0))
-                    .build();
-        } else {
-            toSecondSkystone = drive.trajectoryBuilder()
-//                .forward(80 + skystoneX - 26)
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    .splineTo(new Pose2d(skystoneX - 26, -30.25 , 0))
-                    .build();
-        }
+        toSecondSkystone = drive.trajectoryBuilder()
+                .splineTo(new Pose2d(0, -38, Math.PI))
+                .addMarker(() -> {autored.deploy(); return null;})
+                .splineTo(new Pose2d(-36, -32))
+                .build();
 
         drive.followTrajectorySync(toSecondSkystone);
 
-        autored.open();
-        sleep(250);
-        autored.lowergrab();
-        sleep(500);
         autored.close();
         sleep(250);
         autored.lift();
@@ -127,20 +97,11 @@ public class RedAll extends LinearOpMode2 {
 
         Trajectory toBaseAgain;
 
-        if (skystoneX == 12) {
-            toBaseAgain = drive.trajectoryBuilder()
-                    .strafeTo(new Vector2d(-20, -25))
-                    .reverse()
-                    .splineTo(new Pose2d(-36, -26, 0))
-                    .splineTo(new Pose2d(-80, -33, 0))
-                    .build();
-        } else {
-            toBaseAgain = drive.trajectoryBuilder()
-                    .reverse()
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    .splineTo(new Pose2d(-80, -33, 0))
-                    .build();
-        }
+        toBaseAgain = drive.trajectoryBuilder()
+                .reverse()
+                .splineTo(new Pose2d(0, -38, Math.PI))
+                .splineTo(new Pose2d(48, -32, Math.PI))
+                .build();
 
         drive.followTrajectorySync(toBaseAgain);
 
@@ -154,11 +115,39 @@ public class RedAll extends LinearOpMode2 {
         sleep(250);
         autored.lift();
         sleep(250);
-        autored.initialize();
+        autored.retract();
 
         drive.update();
 
-        drive.turnSync(-0.5 * Math.PI);
+        Trajectory toThirdSkystone;
+
+        toThirdSkystone = drive.trajectoryBuilder()
+                .splineTo(new Pose2d(0, -38, Math.PI))
+                .addMarker(() -> {autored.deploy(); return null;})
+                .splineTo(new Pose2d(-56, -32, Math.PI))
+                .build();
+
+        drive.followTrajectorySync(toThirdSkystone);
+
+        autored.close();
+        sleep(250);
+        autored.lift();
+
+        sleep(500);
+
+        drive.update();
+
+        Trajectory toBaseAgainAgain = drive.trajectoryBuilder()
+                .reverse()
+                .splineTo(new Pose2d(0, -38, Math.PI))
+                .splineTo(new Pose2d(40, -32, Math.PI))
+                .build();
+
+        drive.followTrajectorySync(toBaseAgainAgain);
+
+        drive.update();
+
+        drive.turnSync(0.5 * Math.PI);
 
         drive.update();
 
@@ -182,7 +171,7 @@ public class RedAll extends LinearOpMode2 {
 
         Trajectory pull = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-60, -10, Math.PI))
+                .splineTo(new Pose2d(32, -64, 0))
                 .build();
 
         drive.followTrajectorySync(pull);
@@ -192,7 +181,6 @@ public class RedAll extends LinearOpMode2 {
         Trajectory push = drive.trajectoryBuilder()
                 .strafeLeft(6)
                 .forward(20)
-                //.strafeTo(new Vector2d(-80, -24))
                 .build();
 
         base.open();
@@ -207,24 +195,5 @@ public class RedAll extends LinearOpMode2 {
         robot.bean.setPower(-1);
         drive.followTrajectorySync(park);
         robot.bean.setPower(0);
-
-//        Trajectory pull = drive.trajectoryBuilder()
-//                .back(40)
-//                .build();
-//
-//        drive.followTrajectorySync(pull);
-//
-//        base.open();
-//        sleep(250);
-//
-//        drive.update();
-//
-//        Trajectory park = drive.trajectoryBuilder()
-//                .strafeLeft(36)
-//                .forward(24)
-//                .strafeLeft(12)
-//                .build();
-//
-//        drive.followTrajectorySync(park);
     }
 }
