@@ -67,7 +67,7 @@ public class DriveConstants {
      * forces acceleration-limited profiling).
      */
     public static DriveConstraints BASE_CONSTRAINTS = new DriveConstraints( //increase the maxVel variable to increase the speed, also maybe increase MaxAccel? though it could lead to slipping
-            50.0, 40.0, 0.0,
+            10.0, 40.0, 0.0,
             Math.toRadians(180.0), Math.toRadians(180.0), 0.0
     );
 

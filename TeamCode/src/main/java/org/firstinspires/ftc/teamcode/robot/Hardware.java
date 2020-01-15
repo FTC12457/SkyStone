@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.robot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -36,6 +37,8 @@ public class Hardware {
 
     public DcMotor bean = null;
 
+    public DcMotor leftEncoder = null;
+
     HardwareMap hwMap = null;
 
     public Hardware()
@@ -65,6 +68,8 @@ public class Hardware {
         autoblueClaw        = hwMap.get(Servo.class,        "BC");
         capper              = hwMap.get(CRServo.class,      "CA");
         bean                = hwMap.get(DcMotor.class,      "Bean");
+
+        leftEncoder         = hwMap.get(DcMotor.class,      "LeftEncoder");
 //
 //        leftEncoder         = hwMap.dcMotor.get("leftEncoder");
 
@@ -85,6 +90,8 @@ public class Hardware {
         autoredClaw.setPosition(0.73);
         autoblueArm.setPosition(0.2);
         autoblueClaw.setPosition(0.05);
+
+        leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
