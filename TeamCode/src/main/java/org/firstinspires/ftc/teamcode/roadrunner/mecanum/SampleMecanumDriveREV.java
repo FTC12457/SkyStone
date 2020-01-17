@@ -72,6 +72,7 @@ public class SampleMecanumDriveREV extends SampleMecanumDriveBase {
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
+
     }
 
     @Override

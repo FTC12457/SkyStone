@@ -28,8 +28,8 @@ import java.util.List;
  */
 @Config
 public class TwoLocalizer extends TwoTrackingWheelLocalizer {
-    public static double TICKS_PER_REV = 8800;
-    public static double WHEEL_RADIUS = 1; // in
+    public static double TICKS_PER_REV = 1440;
+    public static double WHEEL_RADIUS = (1.5)/2.0; // in   (1.0+7.0/16.0)/2.0
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
 
     public static double LATERAL_DISTANCE = 15; // in; distance between the left and right wheels

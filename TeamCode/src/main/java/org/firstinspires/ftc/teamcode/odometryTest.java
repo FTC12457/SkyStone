@@ -39,7 +39,7 @@ public class odometryTest extends LinearOpMode2{
         sleep(1000);
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .forward(24)
+                .forward(60)
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
