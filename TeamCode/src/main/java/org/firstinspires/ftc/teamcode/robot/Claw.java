@@ -14,7 +14,7 @@ public class Claw {
     }
 
     public void close() {
-        robot.claw.setPosition(0.7);
+        robot.claw.setPosition(0.75);
     }
 
     public boolean isOpen = true;
