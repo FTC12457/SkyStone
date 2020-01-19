@@ -83,15 +83,13 @@ public class Hardware {
 
         claw.setPosition(0);
 
-        baseL.setPosition(0.225);
-        baseR.setPosition(0.675);
+        baseL.setPosition(0.25);
+        baseR.setPosition(0.65);
 
         autoredArm.setPosition(0.2);
         autoredClaw.setPosition(0.73);
         autoblueArm.setPosition(0.2);
         autoblueClaw.setPosition(0.05);
-
-        leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

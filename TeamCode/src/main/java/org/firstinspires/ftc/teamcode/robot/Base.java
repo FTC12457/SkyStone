@@ -8,17 +8,18 @@ public class Base {
 
     public Base(Hardware hardware) {
         robot = hardware;
+        opened = true;
     }
 
     public void open() {
-        robot.baseR.setPosition(0.675);
-        robot.baseL.setPosition(0.225);
+        robot.baseL.setPosition(0.25);
+        robot.baseR.setPosition(0.65);
         opened = true;
     }
 
     public void close() {
-        robot.baseR.setPosition(0.02);
-        robot.baseL.setPosition(0.85);
+        robot.baseL.setPosition(0.02);
+        robot.baseR.setPosition(0.9);
         opened = false;
     }
 

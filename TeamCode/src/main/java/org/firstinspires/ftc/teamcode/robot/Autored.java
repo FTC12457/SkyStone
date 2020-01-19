@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.robot;
 
+import org.firstinspires.ftc.teamcode.LinearOpMode2;
+
 public class Autored {
     Hardware robot;
 

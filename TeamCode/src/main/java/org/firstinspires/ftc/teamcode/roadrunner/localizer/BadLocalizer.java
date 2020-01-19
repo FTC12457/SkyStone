@@ -27,8 +27,8 @@ import java.util.List;
  */
 @Config
 public class BadLocalizer extends ThreeTrackingWheelLocalizer {
-    public static double TICKS_PER_REV = 1100;
-    public static double WHEEL_RADIUS = 1; // in
+    public static double TICKS_PER_REV = 360;
+    public static double WHEEL_RADIUS = 0.75; // in
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
 
     public static double LATERAL_DISTANCE = 15; // in; distance between the left and right wheels
@@ -36,7 +36,7 @@ public class BadLocalizer extends ThreeTrackingWheelLocalizer {
 
     private DcMotor leftEncoder, rightEncoder, frontEncoder;
 
-    public BadLocalizer(HardwareMap hardwareMap, DcMotor left, DcMotor right, DcMotor front) {
+    public BadLocalizer(DcMotor left, DcMotor right, DcMotor front) {
         super(Arrays.asList(
                 new Pose2d(0, LATERAL_DISTANCE / 2, 0), // left
                 new Pose2d(0, -LATERAL_DISTANCE / 2, 0), // right

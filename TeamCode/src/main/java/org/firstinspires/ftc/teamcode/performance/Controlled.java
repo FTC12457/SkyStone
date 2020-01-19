@@ -30,9 +30,9 @@ public class Controlled extends LinearOpMode {
 
             drive.drive(gamepad1, telemetry);
 
-            if (gamepad1.dpad_up) {
+            if (gamepad2.left_bumper) {
                 robot.capper.setPower(1);
-            } else if (gamepad1.dpad_down) {
+            } else if (gamepad2.left_trigger > 0.5) {
                 robot.capper.setPower(-1);
             } else {
                 robot.capper.setPower(0);
@@ -64,7 +64,7 @@ public class Controlled extends LinearOpMode {
             robot.arm.setPower(gamepad2.left_stick_y);
 
             claw.run(gamepad2.b, gamepad2.y);
-            base.run(gamepad2.x);
+            base.run(gamepad1.x);
 
             telemetry.update();
 
