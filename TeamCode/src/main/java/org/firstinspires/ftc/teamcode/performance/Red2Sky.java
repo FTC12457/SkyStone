@@ -31,7 +31,10 @@ public class Red2Sky extends LinearOpMode2 {
 
         robot.init(hardwareMap);
 
-        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
+        // The SampleMecanumDriveBase has been altered to use odometry.
+        // To revert changes, delete the two additional parameters.
+
+        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap, robot.leftEncoder, robot.bean);
 
         int skystoneX;
 

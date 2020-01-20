@@ -13,17 +13,13 @@ import com.acmerobotics.roadrunner.profile.MotionProfileGenerator;
 import com.acmerobotics.roadrunner.profile.MotionState;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.teamcode.LinearOpMode2;
 import org.firstinspires.ftc.teamcode.roadrunner.DriveConstants;
-import org.firstinspires.ftc.teamcode.roadrunner.localizer.BadLocalizer;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
-import org.firstinspires.ftc.teamcode.robot.AutoDrive;
-import org.firstinspires.ftc.teamcode.robot.Hardware;
 
 import java.util.List;
 

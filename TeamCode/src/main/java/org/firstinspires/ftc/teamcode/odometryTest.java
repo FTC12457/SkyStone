@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.roadrunner.localizer.BadLocalizer;
-import org.firstinspires.ftc.teamcode.roadrunner.localizer.StandardTrackingWheelLocalizer;
-import org.firstinspires.ftc.teamcode.roadrunner.localizer.TwoLocalizer;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 import org.firstinspires.ftc.teamcode.robot.Autoblue;
@@ -29,19 +26,27 @@ public class odometryTest extends LinearOpMode2{
 
         robot.init(hardwareMap);
 
-        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
-        TwoLocalizer localizer = new TwoLocalizer(hardwareMap, robot.leftEncoder, robot.bean, robot.imu);
-
-        drive.setLocalizer(localizer);
+        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap, robot.leftEncoder, robot.bean);
 
         waitForStart();
 
         sleep(1000);
+//
+//        drive.turnSync(Math.PI * 2);
 
-        Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .forward(60)
+        Trajectory trajectory0 = drive.trajectoryBuilder()
+                .splineTo(new Pose2d(24, 12, 0))
                 .build();
 
-        drive.followTrajectorySync(toFirstSkystone);
+        drive.followTrajectorySync(trajectory0);
+
+        drive.update();
+
+        Trajectory trajectory1 = drive.trajectoryBuilder()
+                .reverse()
+                .splineTo(new Pose2d(0, 0, 0))
+                .build();
+
+        drive.followTrajectorySync(trajectory1);
     }
 }

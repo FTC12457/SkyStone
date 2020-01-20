@@ -18,8 +18,8 @@ This class is the autonomous for red that does everything, and presumes the alli
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Red All", group = "Performance")
-public class RedAll extends LinearOpMode2 {
+@Autonomous(name = "Red All Exp", group = "Performance")
+public class RedAllExp extends LinearOpMode2 {
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
@@ -37,12 +37,17 @@ public class RedAll extends LinearOpMode2 {
 
         reader.run();
 
+        // Incorporate skystone detection here.
+
+        int skystoneX = -64;
+
         drive.setPoseEstimate(new Pose2d(-36, -64, Math.PI));
 
         autored.open();
+        autored.lowerplace();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(-64, -32))
+                .strafeTo(new Vector2d(skystoneX, -32))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -50,12 +55,11 @@ public class RedAll extends LinearOpMode2 {
         sleep(250);
 
         autored.lowergrab();
-        sleep(500);
         autored.close();
         sleep(250);
         autored.lift();
 
-        sleep(500);
+        sleep(250);
 
         drive.update();
 
@@ -72,32 +76,31 @@ public class RedAll extends LinearOpMode2 {
         autored.lowerplace();
         sleep(250);
         autored.open();
+        autored.lift();
         sleep(250);
-        autored.retract();
+        autored.close();
 
         drive.update();
 
-        Trajectory toSecondSkystone;
-
-        toSecondSkystone = drive.trajectoryBuilder()
+        Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(0, -38, Math.PI))
-                .addMarker(() -> {autored.deploy(); return null;})
-                .splineTo(new Pose2d(-36, -32, Math.PI))
+                .addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
+                .splineTo(new Pose2d(skystoneX + 26, -32, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
 
+        sleep(250);
+        autored.lowergrab();
         autored.close();
         sleep(250);
         autored.lift();
 
-        sleep(500);
+        sleep(250);
 
         drive.update();
 
-        Trajectory toBaseAgain;
-
-        toBaseAgain = drive.trajectoryBuilder()
+        Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(0, -38, Math.PI))
                 .splineTo(new Pose2d(48, -32, Math.PI))
@@ -105,14 +108,10 @@ public class RedAll extends LinearOpMode2 {
 
         drive.followTrajectorySync(toBaseAgain);
 
-        // drive.followTrajectorySync(toBase); It MIGHT work? There will be an error spike,
-        // but in the direction the robot wants to go in anyways. So, maybe replace?
-
         sleep(250);
         autored.lowerplace();
         sleep(250);
         autored.open();
-        sleep(250);
         autored.lift();
         sleep(250);
         autored.retract();

@@ -33,7 +33,7 @@ public class TwoLocalizer extends TwoTrackingWheelLocalizer {
     public static double WHEEL_RADIUS = (1.5)/2.0; // in   (1.0+7.0/16.0)/2.0
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
 
-    public static double LATERAL_DISTANCE = 15; // in; distance between the left and right wheels
+    public static double LATERAL_DISTANCE = 11; // in; distance between the left and right wheels
     public static double FORWARD_OFFSET = 0; // in; offset of the lateral wheel
 
     private BNO055IMU inertial;

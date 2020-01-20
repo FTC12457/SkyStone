@@ -22,8 +22,6 @@ public class Controlled extends LinearOpMode {
 
         robot.init(hardwareMap);
 
-        claw.init();
-
         waitForStart();
 
         while(opModeIsActive()) {

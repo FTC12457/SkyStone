@@ -18,7 +18,7 @@ This class is the autonomous for blue that does everything, and presumes the all
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Red Two Skystones Experimental", group = "Performance")
+@Autonomous(name = "Red Two Skystones Exp", group = "Performance")
 public class Red2SkyExp extends LinearOpMode2 {
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
@@ -139,9 +139,6 @@ public class Red2SkyExp extends LinearOpMode2 {
         }
 
         drive.followTrajectorySync(toBaseAgain);
-
-        // drive.followTrajectorySync(toBase); It MIGHT work? There will be an error spike,
-        // but in the direction the robot wants to go in anyways. So, maybe replace?
 
         sleep(250);
         autored.lowerplace();
