@@ -61,7 +61,7 @@ public class Controlled extends LinearOpMode {
 
             robot.arm.setPower(gamepad2.left_stick_y);
 
-            claw.run(gamepad2.b, gamepad2.y);
+            claw.run(gamepad2.b, gamepad2.y, gamepad2.dpad_up);
             base.run(gamepad1.x);
 
             telemetry.update();

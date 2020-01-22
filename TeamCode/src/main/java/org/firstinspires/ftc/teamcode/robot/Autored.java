@@ -20,7 +20,7 @@ public class Autored {
     public void lowerplace() {
         robot.autoredArm.setPosition(0.52);
     }
-
+x
     public void open() {
         robot.autoredClaw.setPosition(0.48);
     }

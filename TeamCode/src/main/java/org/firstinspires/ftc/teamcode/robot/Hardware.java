@@ -79,7 +79,7 @@ public class Hardware {
         arm.setDirection(DcMotor.Direction.FORWARD);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        claw.setPosition(0);
+        claw.setPosition(0.35);
 
         baseL.setPosition(0.25);
         baseR.setPosition(0.65);
