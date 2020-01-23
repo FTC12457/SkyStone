@@ -51,10 +51,11 @@ public class Red2Sky extends LinearOpMode2 {
             skystoneX = 12;
         }
 
-        autored.open();
+        autored.lift();
+        autored.semiopen();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -32.25))
+                .strafeTo(new Vector2d(skystoneX, -27))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -73,8 +74,8 @@ public class Red2Sky extends LinearOpMode2 {
 
         Trajectory toBase = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(-20, -27, 0))
-                .splineTo(new Pose2d(-90, -33, 0))
+                .splineTo(new Pose2d(-20, -24, 0))
+                .splineTo(new Pose2d(-98, -31, 0))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -82,7 +83,6 @@ public class Red2Sky extends LinearOpMode2 {
         sleep(250);
 
         autored.lowerplace();
-        sleep(250);
         autored.open();
         sleep(250);
         autored.lift();
@@ -96,22 +96,22 @@ public class Red2Sky extends LinearOpMode2 {
         if (reader.placement("Red") == 2) {
             toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
-                    .splineTo(new Pose2d(-36, -27, 0))
+                    .splineTo(new Pose2d(-36, -24, 0))
                     //.splineTo(new Pose2d(-30, -25, 0))
                     //.strafeTo(new Vector2d(skystoneX - 26, -32))
-                    .splineTo(new Pose2d(skystoneX - 26, -30.5))
+                    .splineTo(new Pose2d(skystoneX - 24, -27))
                     .build();
         } else if (reader.placement("Red") == 1) {
             toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    .splineTo(new Pose2d(skystoneX - 27, -30.5, 0))
+                    .splineTo(new Pose2d(-36, -24, 0))
+                    .splineTo(new Pose2d(skystoneX - 24, -27, 0))
                     .build();
         } else {
             toSecondSkystone = drive.trajectoryBuilder()
 //                .forward(80 + skystoneX - 26)
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    .splineTo(new Pose2d(skystoneX - 26, -30.25 , 0))
+                    .splineTo(new Pose2d(-36, -24, 0))
+                    .splineTo(new Pose2d(skystoneX - 24, -27 , 0))
                     .build();
         }
 
@@ -133,16 +133,16 @@ public class Red2Sky extends LinearOpMode2 {
 
         if (skystoneX == 12) {
             toBaseAgain = drive.trajectoryBuilder()
-                    .strafeTo(new Vector2d(-20, -25))
+                    .strafeTo(new Vector2d(-20, -24))
                     .reverse()
-                    .splineTo(new Pose2d(-36, -26, 0))
-                    .splineTo(new Pose2d(-80, -33, 0))
+                    .splineTo(new Pose2d(-36, -24, 0))
+                    .splineTo(new Pose2d(-88, -31, 0))
                     .build();
         } else {
             toBaseAgain = drive.trajectoryBuilder()
                     .reverse()
-                    .splineTo(new Pose2d(-36, -27, 0))
-                    .splineTo(new Pose2d(-80, -33, 0))
+                    .splineTo(new Pose2d(-36, -24, 0))
+                    .splineTo(new Pose2d(-88, -31, 0))
                     .build();
         }
 

@@ -84,10 +84,10 @@ public class Hardware {
         baseL.setPosition(0.25);
         baseR.setPosition(0.65);
 
-        autoredArm.setPosition(0.2);
-        autoredClaw.setPosition(0.73);
+        autoredArm.setPosition(0.32);
+        autoredClaw.setPosition(0.35);
         autoblueArm.setPosition(0.2);
-        autoblueClaw.setPosition(0.05);
+        autoblueClaw.setPosition(0.37);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

@@ -39,7 +39,8 @@ public class RedAll extends LinearOpMode2 {
 
         drive.setPoseEstimate(new Pose2d(-36, -64, Math.PI));
 
-        autored.open();
+        autored.lift();
+        autored.semiopen();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
                 .strafeTo(new Vector2d(-64, -32))
@@ -50,6 +51,7 @@ public class RedAll extends LinearOpMode2 {
         sleep(250);
 
         autored.lowergrab();
+        autored.open();
         sleep(500);
         autored.close();
         sleep(250);
@@ -70,7 +72,6 @@ public class RedAll extends LinearOpMode2 {
         sleep(250);
 
         autored.lowerplace();
-        sleep(250);
         autored.open();
         sleep(250);
         autored.retract();
@@ -87,6 +88,9 @@ public class RedAll extends LinearOpMode2 {
 
         drive.followTrajectorySync(toSecondSkystone);
 
+        autored.open();
+        autored.lowergrab();
+        sleep(250);
         autored.close();
         sleep(250);
         autored.lift();
@@ -110,10 +114,7 @@ public class RedAll extends LinearOpMode2 {
 
         sleep(250);
         autored.lowerplace();
-        sleep(250);
         autored.open();
-        sleep(250);
-        autored.lift();
         sleep(250);
         autored.retract();
 

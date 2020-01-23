@@ -10,32 +10,35 @@ public class Autored {
     }
 
     public void lift() {
-        robot.autoredArm.setPosition(0.30);
+        robot.autoredArm.setPosition(0.4);
     }
 
     public void lowergrab() {
-        robot.autoredArm.setPosition(0.68);
+        robot.autoredArm.setPosition(0.76);
     }
 
     public void lowerplace() {
-        robot.autoredArm.setPosition(0.52);
+        robot.autoredArm.setPosition(0.68);
     }
-x
+
     public void open() {
-        robot.autoredClaw.setPosition(0.48);
+        robot.autoredClaw.setPosition(0.08);
+    } //lower is open
+    public void semiopen() {
+        robot.autoredClaw.setPosition(0.18);
     }
 
     public void close() {
-        robot.autoredClaw.setPosition(0.73);
+        robot.autoredClaw.setPosition(0.35);
     }
 
     public void retract() {
-        robot.autoredArm.setPosition(0.21);
+        robot.autoredArm.setPosition(0.32);
         close();
     }
 
     public void deploy() {
-        open();
-        lowergrab();
+        semiopen();
+        lowerplace();
     }
 }
