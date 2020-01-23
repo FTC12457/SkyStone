@@ -1,0 +1,28 @@
+
+----------------------------------------------------------------------------------------------------
+                                        THE ROADRUNNER MANUAL
+----------------------------------------------------------------------------------------------------
+
+    Roadrunner is the essential library for PID-controlled movement. Implementation of the drive
+    features is quite simple: declare an instance of the SampleMecanumDriveREV class AFTER
+    initialization. There are three sets of parameters which could be used to declare the drive,
+    allowing for drive encoder, two-wheel odometer, and three-wheel odometer measurement systems
+    (localizers) respectively. Make sure the parameters are given in the correct order when giving
+    odometer wheels.
+
+    At the moment, trajectory coordinates of 0,0 are ALWAYS to be assigned to the center of the
+    field and 0 heading to be facing away from the build plates. This is done by using the
+    setPoseEstimate() method, which assigns the robot's current coordinate system and heading.
+
+    The addMarker() method is placed inside the trajectory to force the robot to do other things
+    while it drives. The main parameter that dictates what the robot does is written in the
+    following way:
+
+    () -> {<Method 1>; <Method 2>; ... return null;}
+
+    Additional parameters such as time or position to be nearest to add extra control onto when
+    the action is carried out. Otherwise, it just occurs between the two parts of the trajectory you
+    put the addMarker() in between.
+
+    Remember to use the update() method before each spline, so that doesn't freak the hell out, and
+    don't create trajectories with sharp changes in velocity. You will break the wheels.

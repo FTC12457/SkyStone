@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.teamcode.roadrunner.localizer.ThreeLocalizer;
 import org.firstinspires.ftc.teamcode.roadrunner.localizer.TwoLocalizer;
 import org.firstinspires.ftc.teamcode.util.AxesSigns;
 import org.firstinspires.ftc.teamcode.util.BNO055IMUUtil;
@@ -83,6 +84,14 @@ public class SampleMecanumDriveREV extends SampleMecanumDriveBase {
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
 
         setLocalizer(new TwoLocalizer(hardwareMap, left, front, imu));
+    }
+
+    public SampleMecanumDriveREV(HardwareMap hardwareMap, DcMotor left, DcMotor front, DcMotor right) {
+
+        this(hardwareMap);
+
+        setLocalizer(new ThreeLocalizer(left, front, right));
+
     }
 
     @Override
