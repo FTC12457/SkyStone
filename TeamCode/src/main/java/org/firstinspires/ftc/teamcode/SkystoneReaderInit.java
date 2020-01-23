@@ -13,7 +13,7 @@ waitForStart(), since both have the same while loop). After starting, use placem
 function returning skystone positions, as in the SkystoneReader class.
  */
 
-public class SkystoneReaderInit {
+public class SkystoneReaderInit { //CameraDevice.getInstance().setFlashTorchMode(true);
 
     LinearOpMode2 opMode;
     Telemetry telemetryInstance;
