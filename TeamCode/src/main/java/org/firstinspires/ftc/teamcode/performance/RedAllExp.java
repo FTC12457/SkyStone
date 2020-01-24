@@ -41,13 +41,13 @@ public class RedAllExp extends LinearOpMode2 {
 
         int skystoneX = -64;
 
-        drive.setPoseEstimate(new Pose2d(-36, -64, Math.PI));
+        drive.setPoseEstimate(new Pose2d(-33, -63, Math.PI));
 
         autored.open();
         autored.lowerplace();
 
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -32))
+                .strafeTo(new Vector2d(skystoneX, -33))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -65,8 +65,8 @@ public class RedAllExp extends LinearOpMode2 {
 
         Trajectory toBase = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(0, -38, Math.PI))
-                .splineTo(new Pose2d(64, -32, Math.PI))
+                .splineTo(new Pose2d(0, -43, Math.PI))
+                .splineTo(new Pose2d(64, -33, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toBase);
@@ -83,9 +83,9 @@ public class RedAllExp extends LinearOpMode2 {
         drive.update();
 
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(0, -38, Math.PI))
+                .splineTo(new Pose2d(0, -43, Math.PI))
                 .addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
-                .splineTo(new Pose2d(skystoneX + 26, -32, Math.PI))
+                .splineTo(new Pose2d(skystoneX + 26, -33, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toSecondSkystone);
@@ -102,8 +102,8 @@ public class RedAllExp extends LinearOpMode2 {
 
         Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(0, -38, Math.PI))
-                .splineTo(new Pose2d(48, -32, Math.PI))
+                .splineTo(new Pose2d(0, -43, Math.PI))
+                .splineTo(new Pose2d(48, -33, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toBaseAgain);
@@ -121,9 +121,9 @@ public class RedAllExp extends LinearOpMode2 {
         Trajectory toThirdSkystone;
 
         toThirdSkystone = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(0, -38, Math.PI))
+                .splineTo(new Pose2d(0, -43, Math.PI))
                 .addMarker(() -> {autored.deploy(); return null;})
-                .splineTo(new Pose2d(-56, -32, Math.PI))
+                .splineTo(new Pose2d(-56, -33, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toThirdSkystone);
@@ -138,8 +138,8 @@ public class RedAllExp extends LinearOpMode2 {
 
         Trajectory toBaseAgainAgain = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(0, -38, Math.PI))
-                .splineTo(new Pose2d(40, -32, Math.PI))
+                .splineTo(new Pose2d(0, -43, Math.PI))
+                .splineTo(new Pose2d(40, -33, Math.PI))
                 .build();
 
         drive.followTrajectorySync(toBaseAgainAgain);
