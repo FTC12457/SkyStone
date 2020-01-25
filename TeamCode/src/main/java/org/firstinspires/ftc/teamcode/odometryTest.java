@@ -47,7 +47,7 @@ public class odometryTest extends LinearOpMode2{
 
 
         Trajectory trajectorynegative3 = drive.trajectoryBuilder() //about 56 out of 60 inches traveled
-                .strafeRight(30)
+                .strafeRight(11)
                 .build();
 
         drive.followTrajectorySync(trajectorynegative3);

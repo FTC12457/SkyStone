@@ -112,14 +112,18 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .splineTo(new Pose2d(0, yInitToSplineArc, Math.PI))
                 .addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
                 .lineTo(new Vector2d(skystoneX + 24, yInitToSplineArc))
-                .strafeTo(new Vector2d(skystoneX + 24, yInitToStone-3))
-                .strafeTo(new Vector2d(skystoneX + 24, yInitToStone-3))
-                .strafeTo(new Vector2d(skystoneX + 24, yInitToStone-3))
+                //.strafeTo(new Vector2d(skystoneX + 24, yInitToStone-3))
                 //.splineTo(new Pose2d(skystoneX + 24, yInitToStone -3, Math.PI))
                 .build();
         drive.followTrajectorySync(toSecondSkystone);
-        sleep(250);
+        //sleep(250);
         drive.update();
+        Trajectory testy = drive.trajectoryBuilder()
+                .strafeTo(new Vector2d(skystoneX + 24, yInitToStone-3))
+                .build();
+        drive.followTrajectorySync(testy);
+        drive.update();
+        sleep(250);
 
         // 6. Grab the second stone
         autored.lowergrab();
