@@ -52,78 +52,72 @@ public class Test3BlockBlue extends LinearOpMode2{
             skystoneX = -30;
         }
 
+        // 1. Move to the first skyStone.
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
                 .strafeTo(new Vector2d(skystoneX, -31.7))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
-
         //sleep(250);
 
+        // 2. Grab the first skyStone.
         autoblue.open();
         autoblue.lowergrab();
-        sleep(500);
+        sleep(250);
         autoblue.close();
         sleep(250);
         autoblue.lift();
-
         //sleep(500);
-
         drive.update();
 
+        // 3. Move the first stone to the base.
         Trajectory toBase = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(28, -27, 0))
                 .splineTo(new Pose2d(91, -32.5, 0))
                 .build();
-
         drive.followTrajectorySync(toBase);
 
+        // 4. Drop the first skyStone on the base
         //sleep(250);
-
+        // should you used the Marker to move arm while you drive?
         autoblue.lowerplace();
         sleep(250);
         autoblue.open();
         //sleep(250);
         autoblue.lift();
-        sleep(500);
+        sleep(250);
         autoblue.close(); //ideally we should have the open position also fit inside of the sizing cube
-
         drive.update();
 
-        Trajectory toSecondSkystone;
-
-        toSecondSkystone = drive.trajectoryBuilder()
+        // 5. Move to the 2nd skyStone
+        Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(39, -27, 0))
-                .splineTo(new Pose2d(skystoneX + 28, -31.7, 0))
+                .splineTo(new Pose2d(skystoneX + 28, -31.7, 0)) // why 28 instead of 24? Each stone is 8 inches long.
                 .build();
-
         drive.followTrajectorySync(toSecondSkystone);
 
+        // 6. Grab the 2nd skyStone
         autoblue.open();
-        //sleep(250);
         autoblue.lowergrab();
+        sleep(250); // Originally sleep 500ms, change to 250 to be quick
         autoblue.close();
-        sleep(500);
         sleep(250);
         autoblue.lift();
-
         //sleep(500);
-
         drive.update();
 
-        Trajectory toBaseAgain;
-
-        toBaseAgain = drive.trajectoryBuilder()
+        // 7. Move the 2nd skyStone to the base
+        Trajectory toBaseAgain = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(33, -27, 0))
-                .splineTo(new Pose2d(83, -32.5, 0))
+                .splineTo(new Pose2d(83, -32.5, 0)) // this time 8=91-83 (1 skyStone length) closer
                 .build();
-
         drive.followTrajectorySync(toBaseAgain);
 
         // drive.followTrajectorySync(toBase); It MIGHT work? There will be an error spike,
         // but in the direction the robot wants to go in anyways. So, maybe replace?
 
+        // 8. Drop the 2nd skyStone on the base
         //sleep(250);
         autoblue.lowerplace();
         sleep(250);
@@ -132,77 +126,89 @@ public class Test3BlockBlue extends LinearOpMode2{
         autoblue.lift();
         sleep(250);
         autoblue.retract();
-
         drive.update();
 
-        Trajectory toThirdSkystone;
-
-        toThirdSkystone = drive.trajectoryBuilder()
+        // 9. Move to the 3rd skyStone.
+        Trajectory toThirdSkystone = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(39, -27, 0))
-                .splineTo(new Pose2d(skystoneX + 20, -31.7, 0))
+                .splineTo(new Pose2d(skystoneX + 20, -31.7, 0)) // this should be skystoneX + 16, right?
                 .build();
-
         drive.followTrajectorySync(toThirdSkystone);
-
         drive.update();
 
-        Trajectory toBaseAgainAgain;
+        // 10. Grab the 2nd skyStone
+                autoblue.open();
+                autoblue.lowergrab();
+                sleep(250); // Originally sleep 500ms, change to 250 to be quick
+                autoblue.close();
+                sleep(250);
+                autoblue.lift();
+                //sleep(500);
+                drive.update();
 
-        toBaseAgainAgain = drive.trajectoryBuilder()
+        // 11. Move the 3rd skyStone to the base
+        Trajectory toBaseAgainAgain = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(33, -27, 0))
-                .splineTo(new Pose2d(83, -32.5, 0))
+                .splineTo(new Pose2d(83, -32.5, 0)) // this will bump with the 2nd stone on the  base.
                 .build();
-
         drive.followTrajectorySync(toBaseAgainAgain);
-
         drive.update();
 
+        // 12. Drop the 3rd skyStone on the base
+        //sleep(250);
+        autoblue.lowerplace();
+        sleep(250);
+        autoblue.open();
+        //sleep(250);
+        autoblue.lift();
+        sleep(250);
+        autoblue.retract();
+        drive.update();
+
+        // 13. Turn left 180 degrees
         drive.turnSync(-0.5 * Math.PI);
-
         drive.update();
 
+        // 14. Move forward 8 inches
         Trajectory ram = drive.trajectoryBuilder()
                 .forward(8)
                 .build();
-
         drive.followTrajectorySync(ram);
-
-        //sleep(250);
-        //base.close();
-
-        //sleep(250);
-
         drive.update();
 
+        // 15. Close the base hook
         base.close();
-        sleep(500);
+        sleep(250);
 
+        // 16. Move and pull the base
         Trajectory pull = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(63, -10, 0))
                 .build();
-
         drive.followTrajectorySync(pull);
-
         drive.update();
 
+        // 17. Open the base hook
+        base.open();
+
+        // 18. move the robot only
         Trajectory push = drive.trajectoryBuilder()
                 //.strafeTo(new Vector2d(73, -30))
                 .strafeRight(18)
                 .forward(20)
                 .build();
-
-        base.open();
         drive.followTrajectorySync(push);
-
         drive.update();
 
+        // 19. Back 15 inches. Seems overlapping with step 18.
         Trajectory park = drive.trajectoryBuilder()
                 .back(15)
                 .build();
 
+        // 20. Roll out the measure ???
         robot.bean.setPower(-1);
+        // Why drive in the middle of step 20?
         drive.followTrajectorySync(park);
         robot.bean.setPower(0);
     }

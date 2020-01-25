@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode.roadrunner.opmode;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.LinearOpMode2;
-import org.firstinspires.ftc.teamcode.roadrunner.localizer.TwoLocalizer;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 import org.firstinspires.ftc.teamcode.robot.AutoDrive;
