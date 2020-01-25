@@ -92,7 +92,7 @@ public class Test3BlockBlue extends LinearOpMode2{
         autoblue.close(); //ideally we should have the open position also fit inside of the sizing cube
         drive.update();
 
-        // 5. Move to the 2nd skyStone
+        // 5. Move from the Base to the 2nd skyStone
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(39, yInitPosToSplineArc, 0))
@@ -184,7 +184,7 @@ public class Test3BlockBlue extends LinearOpMode2{
         base.close();
         sleep(250);
 
-        // 16. Move and pull the base
+        // 16. Pull the base
         Trajectory pull = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(63, -10, 0))
