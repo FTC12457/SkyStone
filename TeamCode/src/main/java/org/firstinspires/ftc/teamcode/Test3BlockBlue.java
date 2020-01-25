@@ -18,12 +18,18 @@ immediately heads to park, next to the wall.
 
 @Autonomous(name = "test3blockblue", group = "Performance")
 public class Test3BlockBlue extends LinearOpMode2{
+    // drive constants
+    String teamColor = "Blue";
+
+    final double yInitPosToBase = -32.5;
+    final double yInitPosToSplineArc = -27;
+    final double yInitPosToStoneLine = -31.7;
+
     Hardware robot = new Hardware();
-    // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autoblue autoblue = new Autoblue(robot);
-    SkystoneReader reader = new SkystoneReader("Blue", this, telemetry);
-    SkystoneReaderInit initReader = new SkystoneReaderInit("Blue", this, telemetry);
+    SkystoneReader reader = new SkystoneReader(teamColor, this, telemetry);
+    SkystoneReaderInit initReader = new SkystoneReaderInit(teamColor, this, telemetry);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -37,9 +43,6 @@ public class Test3BlockBlue extends LinearOpMode2{
         initReader.run();
         waitForStart();
 
-        //reader.run();
-
-        //int skystoneposition = reader.placement("Blue");
         int skystoneposition = initReader.placement();
 
         if (skystoneposition == 2) {
@@ -54,7 +57,7 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         // 1. Move to the first skyStone.
         Trajectory toFirstSkystone = drive.trajectoryBuilder()
-                .strafeTo(new Vector2d(skystoneX, -31.7))
+                .strafeTo(new Vector2d(skystoneX, yInitPosToStoneLine))
                 .build();
 
         drive.followTrajectorySync(toFirstSkystone);
@@ -72,8 +75,8 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         // 3. Move the first stone to the base.
         Trajectory toBase = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(28, -27, 0))
-                .splineTo(new Pose2d(91, -32.5, 0))
+                .splineTo(new Pose2d(28, yInitPosToSplineArc, 0))
+                .splineTo(new Pose2d(91, yInitPosToBase, 0))
                 .build();
         drive.followTrajectorySync(toBase);
 
@@ -92,8 +95,8 @@ public class Test3BlockBlue extends LinearOpMode2{
         // 5. Move to the 2nd skyStone
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(39, -27, 0))
-                .splineTo(new Pose2d(skystoneX + 28, -31.7, 0)) // why 28 instead of 24? Each stone is 8 inches long.
+                .splineTo(new Pose2d(39, yInitPosToSplineArc, 0))
+                .splineTo(new Pose2d(skystoneX + 28, yInitPosToStoneLine, 0)) // why 28 instead of 24? Each stone is 8 inches long.
                 .build();
         drive.followTrajectorySync(toSecondSkystone);
 
@@ -109,8 +112,8 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         // 7. Move the 2nd skyStone to the base
         Trajectory toBaseAgain = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(33, -27, 0))
-                .splineTo(new Pose2d(83, -32.5, 0)) // this time 8=91-83 (1 skyStone length) closer
+                .splineTo(new Pose2d(33, yInitPosToSplineArc, 0))
+                .splineTo(new Pose2d(83, yInitPosToBase, 0)) // this time 8=91-83 (1 skyStone length) closer
                 .build();
         drive.followTrajectorySync(toBaseAgain);
 
@@ -131,8 +134,8 @@ public class Test3BlockBlue extends LinearOpMode2{
         // 9. Move to the 3rd skyStone.
         Trajectory toThirdSkystone = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(39, -27, 0))
-                .splineTo(new Pose2d(skystoneX + 20, -31.7, 0)) // this should be skystoneX + 16, right?
+                .splineTo(new Pose2d(39, yInitPosToSplineArc, 0))
+                .splineTo(new Pose2d(skystoneX + 20, yInitPosToStoneLine, 0)) // this should be skystoneX + 16, right?
                 .build();
         drive.followTrajectorySync(toThirdSkystone);
         drive.update();
@@ -149,8 +152,8 @@ public class Test3BlockBlue extends LinearOpMode2{
 
         // 11. Move the 3rd skyStone to the base
         Trajectory toBaseAgainAgain = drive.trajectoryBuilder()
-                .splineTo(new Pose2d(33, -27, 0))
-                .splineTo(new Pose2d(83, -32.5, 0)) // this will bump with the 2nd stone on the  base.
+                .splineTo(new Pose2d(33, yInitPosToSplineArc, 0))
+                .splineTo(new Pose2d(83, yInitPosToBase, 0)) // this will bump with the 2nd stone on the  base.
                 .build();
         drive.followTrajectorySync(toBaseAgainAgain);
         drive.update();
@@ -206,7 +209,7 @@ public class Test3BlockBlue extends LinearOpMode2{
                 .back(15)
                 .build();
 
-        // 20. Roll out the measure ???
+        // 20. Roll out the measure
         robot.bean.setPower(-1);
         // Why drive in the middle of step 20?
         drive.followTrajectorySync(park);
