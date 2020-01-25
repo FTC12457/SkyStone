@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.LinearOpMode2;
 import org.firstinspires.ftc.teamcode.SkystoneReader;
+import org.firstinspires.ftc.teamcode.SkystoneReaderInit;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
 import org.firstinspires.ftc.teamcode.robot.Autored;
@@ -29,18 +30,17 @@ public class RedAllExp extends LinearOpMode2 {
     final double yInitToSplineArc = -43;
 
     // y value between initial position and the line of stones
-    final double yInitToStone = -30;
+    final double yInitToStone = -29;
 
     // default x value of the third stone
     // Todo: According to math calculation, this should be -24
-    double xThirdBlock = -22;
+    double xThirdBlock = -20;
 
     Hardware robot = new Hardware();
     // EncoderDrive encoderDrive = new EncoderDrive(robot, this, telemetry);
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
-    SkystoneReader reader = new SkystoneReader(teamColor, this, telemetry); // Todo: Why not use SkystoneReaderInit?
-
+    SkystoneReaderInit initReader = new SkystoneReaderInit(teamColor, this, telemetry);
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -51,20 +51,19 @@ public class RedAllExp extends LinearOpMode2 {
         // should use SampleMecanumDriveREVOptimized or not?
         SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
+        initReader.run();
         waitForStart();
+        position = initReader.placement();
 
-        reader.run();
+        position = 0;
 
-        if (reader.placement(teamColor) == 0) {
+        if (position == 0) {
             skystoneX = -64;
-            position = 0;
-        } else if (reader.placement(teamColor) == 1) {
+        } else if (position == 1) {
             skystoneX = -56;
-            position = 1;
         } else {
             skystoneX = -48;
             xThirdBlock = xThirdBlock - 8;
-            position = 2;
         }
         // Incorporate skystone detection here.
 
