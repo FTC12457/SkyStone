@@ -26,14 +26,31 @@ public class odometryTest extends LinearOpMode2{
 
         robot.init(hardwareMap);
 
-        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap, robot.leftEncoder, robot.bean);
+        SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap, robot.leftEncoder, robot.bean, robot.arm);
 
         waitForStart();
 
         sleep(1000);
+
+        for (int x = 0; x < 3; x++) {
+            Trajectory bob = drive.trajectoryBuilder()
+                    .splineTo(new Pose2d(24, 12, 0))
+                    .build();
+            drive.followTrajectorySync(bob);
+
+            drive.update();
+            Trajectory joe = drive.trajectoryBuilder()
+                    .reverse()
+                    .splineTo(new Pose2d(0, 0, 0))
+                    .build();
+            drive.followTrajectorySync(bob);
+            drive.update();
+        }
+
+        //drive.turnSync(Math.PI *2);
 //
 //        drive.turnSync(Math.PI * 2);
-
+        /*
         Trajectory trajectory0 = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(24, 12, 0))
                 .build();
@@ -48,5 +65,12 @@ public class odometryTest extends LinearOpMode2{
                 .build();
 
         drive.followTrajectorySync(trajectory1);
+
+        Trajectory trajectorynegative1 = drive.trajectoryBuilder()
+                .strafeRight(24)
+                .build();
+
+        drive.followTrajectorySync(trajectorynegative1);
+        */
     }
 }

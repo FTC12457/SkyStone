@@ -11,7 +11,7 @@ public class Claw {
         );
     }
 
-    public void someWhatOpen() { robot.claw.setPosition(0.7); }
+    public void someWhatOpen() { robot.claw.setPosition(0.65); }
 
     public void close() {
         robot.claw.setPosition(0.82);
