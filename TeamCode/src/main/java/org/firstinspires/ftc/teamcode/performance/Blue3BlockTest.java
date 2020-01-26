@@ -14,11 +14,11 @@ import org.firstinspires.ftc.teamcode.robot.Base;
 import org.firstinspires.ftc.teamcode.robot.Hardware;
 
 /*
-This class is the autonomous for red that does everything, and presumes the alliance partner robot
+This class is the autonomous for blue that does everything, and presumes the alliance partner robot
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "blue3BlockTest", group = "Performance")
+@Autonomous(name = "Blue3BlockTest", group = "Performance")
 @SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
 public class Blue3BlockTest extends LinearOpMode2 {
     String teamColor = "Blue";
@@ -26,20 +26,20 @@ public class Blue3BlockTest extends LinearOpMode2 {
     //                                              position==0         position==2
     //                                                          position==1
     // First skystone
-    double[] xFirstSkystone                 = new double[] {-64,  -56,   -48};
-    double[] xFirstSkystoneAdjustment       = new double[] {0,      0,     0};
-    double   ySkystone                      = 29;                            // y value between initial position and the line of stones
-    double[] yFirstSkystoneAdjustment       = new double[] {0,      0,     0};
+    double[] xFirstSkystone                 = new double[] {-64,  -56,    -48};
+    double[] xFirstSkystoneAdjustment       = new double[] {0,      0,      2};
+    double   ySkystone                      = 28;                               // y value between initial position and the line of stones
+    double[] yFirstSkystoneAdjustment       = new double[] {0,      0,      0};
 
     //       xBridge is 0
     double[] xFirstPlateBridgeAdjustment    = new double[] {0,      0,      0};
     double   yBridge                        = 36;                              // y value between initial position and the arc peak of the spline
-    double[] yFirstplateBridgeAdjustment    = new double[] {0,      0,      0};
+    double[] yFirstplateBridgeAdjustment    = new double[] {0,      0,      -1};
 
     double   xFirstPlate                    = 64;                               // x (on the plate) where the first skystone is placed.
     double[] xFirstPlateAdjustment          = new double[] {0,      0,      0};
-    double   yPlate                         = 29;                              // y value between initial position and the plate
-    double[] yFirstplateAdjustment          = new double[] {0,      0,      0};
+    double   yPlate                         = 29;                               // y value between initial position and the plate
+    double[] yFirstplateAdjustment          = new double[] {0,      0,      -1};
 
     //
     // Second skystone
@@ -50,36 +50,37 @@ public class Blue3BlockTest extends LinearOpMode2 {
     double[] ySecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
 
     //       xSecondSkystone is set as xFirstSkystone + 24
-    double[] xSecondSkystoneAdjustment      = new double[] {0,      0,      0};
+    double[] xSecondSkystoneAdjustment      = new double[] {0,      0,      4};
     //       ySecondSkystone is set as ySkystone
-    double[] ySecondSkystoneAdjustment      = new double[] {0,      0,      0};
+    double[] ySecondSkystoneAdjustment      = new double[] {2,      2,      0};
 
-    double[] xSecondPlateBridgeAdjustment   = new double[] {0,      0,      0};
-    double[] ySecondPlateBridgeAdjustment   = new double[] {0,      0,      0};
+    double[] xSecondPlateToBridgeAdjustment = new double[] {0,      0,      0};
+    double[] ySecondPlateToBridgeAdjustment = new double[] {1,      1,      4};
 
     double   xSecondPlate                   = 60;                               // x (on the plate) where the second skystone is placed.
     double[] xSecondPlateAdjustment         = new double[] {0,      0,      0};
     //       ySecondPlate is yPlate
-    double[] ySecondPlateAdjustment         = new double[] {0,      0,      0};
+    double[] ySecondPlateAdjustment         = new double[] {2,      2,      2};
 
     //
     // Third skystone
     //
     double[] xThirdSkystoneBridgeAdjustment = new double[] {0,      0,      0};
-    double[] yThirdSkystoneBridgeAdjustment = new double[] {0,      0,      0};
+    double[] yThirdSkystoneBridgeAdjustment = new double[] {2,      2,      2};
 
-    double   xThirdSkystone                 = -24;                              // default x value of the third stone
+    // default x value of the third stone, default position is skystone *** 4 ***.
+    double   xThirdSkystone                 = -32;
     double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      12};
     //       yThirdSkystone is set as ySkystone
-    double[] yThirdSkystoneAdjustment       = new double[] {0,      0,      0};
+    double[] yThirdSkystoneAdjustment       = new double[] {3,      3,      6};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
-    double[] yThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
+    double[] yThirdPlateBridgeAdjustment    = new double[] {7,      7,      5};
 
     double   xThirdPlate                    = 56;                               // x (on the plate) where the third skystone is placed.
     double[] xThirdPlateAdjustment          = new double[] {0,      0,      0};
     //       yThirdPlate is yPlate
-    double[] yThirdPlateAdjustment          = new double[] {0,      0,      0};
+    double[] yThirdPlateAdjustment          = new double[] {6,      6,      4};
 
     // default sleep time in ms
     final int DEFAULT_SLEEP_200_MS = 200;
@@ -103,7 +104,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
         // set the position of the initial place
         drive.setPoseEstimate(new Pose2d(-33, 63, 0));
 
-        // 0. Open red claw, lower claw
+        // 0. Open blue claw, lower claw
         autoblue.open();
         autoblue.lowerplace();
 
@@ -139,7 +140,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
         sleep(DEFAULT_SLEEP_200_MS);
         autoblue.retract();
 
-        // 5. Move from the plate to the second skyStone, while lower the Red claw and open it up
+        // 5. Move from the plate to the second skyStone, while lower the claw and open it up
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
                 .reverse()
                 .splineTo(new Pose2d(0 + xSecondSkystoneBridgeAdjustment[position],
@@ -153,6 +154,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
                     .reverse()
                     .splineTo(new Pose2d(0 + xSecondSkystoneBridgeAdjustment[position],
                             yBridge + ySecondSkystoneBridgeAdjustment[position], 0))
+                    .addMarker(() -> {autoblue.lowerplace(); autoblue.open(); return null;})
                     .splineTo(new Pose2d(xFirstSkystone[position] + 24 + xSecondSkystoneAdjustment[position],
                             ySkystone + ySecondSkystoneAdjustment[position], 0))
                     .build();
@@ -161,40 +163,28 @@ public class Blue3BlockTest extends LinearOpMode2 {
         drive.update();
 
         // 6. Grab the second stone
-        if (position == 2) {
-            autoblue.lowergrab();
-            autoblue.open();
-            sleep(DEFAULT_SLEEP_200_MS * 2);
-            autoblue.close();
-            sleep(DEFAULT_SLEEP_200_MS);
-            autoblue.lift();
-            sleep(DEFAULT_SLEEP_200_MS);
-        } else {
-            autoblue.lowergrab();
-            autoblue.close();
-            sleep(DEFAULT_SLEEP_200_MS);
-            autoblue.lift();
-            sleep(DEFAULT_SLEEP_200_MS);
-        }
+        autoblue.lowergrab();
+        autoblue.close();
+        sleep(DEFAULT_SLEEP_200_MS);
+        autoblue.lift();
+        sleep(DEFAULT_SLEEP_200_MS);
+
 
         // 7. Move the 2nd skyStone to the plate.
         // If the position is 2, actual block is 2+3=5, then apply a sharp spline to avoid a clision with the bridge.
         if (position == 2) {
             toPlate = drive.trajectoryBuilder()
-                    //.lineTo(new Vector2d(xFirstSkystone[position] + 16, ySkystone + ySecondPlateAdjustment[position]))
-                    .splineTo(new Pose2d(-10 + xSecondPlateBridgeAdjustment[position],
-                            yBridge + ySecondPlateBridgeAdjustment[position], 0))
+                    //.lineTo(new Vector2d(xFirstSkystone[position] + 16, ySkystone - 3))
+                    .back(8) // Todo: is back(8) more reliable than the commented line above?
                     .splineTo(new Pose2d(0 + xSecondPlateAdjustment[position],
-                            yBridge + ySecondPlateBridgeAdjustment[position], 0))
-                    //.strafeTo(new Vector2d(0, yBridge))
+                            yBridge + ySecondPlateToBridgeAdjustment[position], 0))
                     .splineTo(new Pose2d(xSecondPlate + xSecondPlateAdjustment[position],
                             yPlate + ySecondPlateAdjustment[position], 0))
                     .build();
         } else {
             toPlate = drive.trajectoryBuilder()
-                    .splineTo(new Pose2d(0 + xSecondPlateBridgeAdjustment[position],
-                            yBridge + ySecondPlateBridgeAdjustment[position], 0))
-                    //.strafeTo(new Vector2d(0, yBridge))
+                    .splineTo(new Pose2d(0 + xSecondPlateToBridgeAdjustment[position],
+                            yBridge + ySecondPlateToBridgeAdjustment[position], 0))
                     .splineTo(new Pose2d(xSecondPlate + xSecondPlateAdjustment[position],
                             yPlate + ySecondPlateAdjustment[position], 0))
                     .build();
@@ -216,14 +206,13 @@ public class Blue3BlockTest extends LinearOpMode2 {
                 .reverse()
                 .splineTo(new Pose2d(0 + xThirdSkystoneBridgeAdjustment[position],
                         yBridge + yThirdSkystoneBridgeAdjustment[position], 0))
-                //.addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
+                .addMarker(() -> {autoblue.lowerplace(); autoblue.open(); return null;})
                 .splineTo(new Pose2d(xThirdSkystone + xThirdSkystoneAdjustment[position],
                         ySkystone + yThirdSkystoneAdjustment[position], 0))
                 .build();
-        if (position == 2) {
+        if (position == 1) {
             xThirdSkystone = xThirdSkystone - 8;
             toThirdSkystone = drive.trajectoryBuilder()
-                    .reverse()
                     .splineTo(new Pose2d(0 + xThirdSkystoneBridgeAdjustment[position],
                             yBridge + yThirdSkystoneBridgeAdjustment[position], 0))
                     .addMarker(() -> {autoblue.lowerplace(); autoblue.open(); return null;})
@@ -235,43 +224,20 @@ public class Blue3BlockTest extends LinearOpMode2 {
         drive.update();
 
         // 10. Grab the 3rd skyStone
-        if (position != 2) {
-            autoblue.lowergrab();
-            autoblue.open();
-            sleep(DEFAULT_SLEEP_200_MS * 2);
-            autoblue.close();
-            sleep(DEFAULT_SLEEP_200_MS);
-            autoblue.lift();
-            sleep(DEFAULT_SLEEP_200_MS);
-        } else {
-            autoblue.lowergrab();
-            autoblue.close();
-            sleep(DEFAULT_SLEEP_200_MS);
-            autoblue.lift();
-            sleep(DEFAULT_SLEEP_200_MS);
-        }
+        autoblue.lowergrab();
+        autoblue.close();
+        sleep(DEFAULT_SLEEP_200_MS);
+        autoblue.lift();
+        sleep(DEFAULT_SLEEP_200_MS);
 
         // 11. Move the 3rd skyStone to the plate
-        if (position != 2) {
-            toPlate = drive.trajectoryBuilder()
-                    .lineTo(new Vector2d(xThirdSkystone - 8 + xThirdSkystoneAdjustment[position],
-                            ySkystone + yThirdSkystoneAdjustment[position]))
-                    .splineTo(new Pose2d(-10 + xThirdPlateBridgeAdjustment[position],
-                            yBridge + yThirdPlateBridgeAdjustment[position], 0))
-                    .splineTo(new Pose2d(0 + xThirdPlateBridgeAdjustment[position],
-                            yBridge + yThirdPlateBridgeAdjustment[position], 0))
-                    .splineTo(new Pose2d(xThirdPlate + xThirdPlateAdjustment[position],
-                            yPlate + yThirdPlateAdjustment[position], 0))
-                    .build();
-        } else {
-            toPlate = drive.trajectoryBuilder()
-                    .splineTo(new Pose2d(0 + xThirdPlateBridgeAdjustment[position],
-                            yBridge + yThirdPlateBridgeAdjustment[position], 0))
-                    .splineTo(new Pose2d(xThirdPlate + xThirdPlateAdjustment[position],
-                            yPlate + yThirdPlateAdjustment[position], 0))
-                    .build();
-        }
-
+        // Note that because the 3rd skystone is never at position 5, the drive is easier
+        toPlate = drive.trajectoryBuilder()
+                .splineTo(new Pose2d(0 + xThirdPlateBridgeAdjustment[position],
+                        yBridge + yThirdPlateBridgeAdjustment[position], 0))
+                .splineTo(new Pose2d(xThirdPlate + xThirdPlateAdjustment[position],
+                        yPlate + yThirdPlateAdjustment[position], 0))
+                .build();
         drive.followTrajectorySync(toPlate);
         drive.update();
 
@@ -304,11 +270,11 @@ public class Blue3BlockTest extends LinearOpMode2 {
         drive.followTrajectorySync(pull);
         drive.update();
 
-        // 17. Push the plate while open the plate hooks.
-        base.open(); // Todo: Should we use a marker here?
+        // 17. Open the plate hooks then push the plate to base.
+        base.open();
 
         Trajectory push = drive.trajectoryBuilder()
-                .strafeRight(6)
+                .strafeRight(18)
                 .addMarker(() -> {robot.bean.setPower(-1); return null;})
                 .forward(20)
                 .build();

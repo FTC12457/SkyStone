@@ -28,8 +28,8 @@ public class Red3BlockTest extends LinearOpMode2 {
     // First skystone
     double[] xFirstSkystone                 = new double[] {-64,  -56,    -48};
     double[] xFirstSkystoneAdjustment       = new double[] {0,      0,      2};
-    double   ySkystone                      = -29;                            // y value between initial position and the line of stones
-    double[] yFirstSkystoneAdjustment       = new double[] {1,      1,      1};
+    double   ySkystone                      = -28;                            // y value between initial position and the line of stones
+    double[] yFirstSkystoneAdjustment       = new double[] {0,      0,      0};
 
     //       xBridge is 0
     double[] xFirstPlateBridgeAdjustment    = new double[] {0,      0,      0};
@@ -52,7 +52,7 @@ public class Red3BlockTest extends LinearOpMode2 {
     //       xSecondSkystone is set as xFirstSkystone + 24
     double[] xSecondSkystoneAdjustment      = new double[] {0,      0,      4};
     //       ySecondSkystone is set as ySkystone
-    double[] ySecondSkystoneAdjustment      = new double[] {-1,     -1,     1};
+    double[] ySecondSkystoneAdjustment      = new double[] {-2,     -2,     0};
 
     double[] xSecondPlateToBridgeAdjustment = new double[] {0,      0,      0};
     double[] ySecondPlateToBridgeAdjustment = new double[] {-1,     -1,     -4};
@@ -60,7 +60,7 @@ public class Red3BlockTest extends LinearOpMode2 {
     double   xSecondPlate                   = 60;                               // x (on the plate) where the second skystone is placed.
     double[] xSecondPlateAdjustment         = new double[] {0,      0,      0};
     //       ySecondPlate is yPlate
-    double[] ySecondPlateAdjustment         = new double[] {-2,   -2,   -2};
+    double[] ySecondPlateAdjustment         = new double[] {-2,     -2,     -2};
 
     //
     // Third skystone
@@ -72,7 +72,7 @@ public class Red3BlockTest extends LinearOpMode2 {
     double   xThirdSkystone                 = -32;
     double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      12};
     //       yThirdSkystone is set as ySkystone
-    double[] yThirdSkystoneAdjustment       = new double[] {-2,     -2,     -5};
+    double[] yThirdSkystoneAdjustment       = new double[] {-3,     -3,     -6};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
     double[] yThirdPlateBridgeAdjustment    = new double[] {-7,     -7,     -5};
