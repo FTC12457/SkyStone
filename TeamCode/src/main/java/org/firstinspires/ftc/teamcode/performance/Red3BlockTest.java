@@ -29,17 +29,17 @@ public class Red3BlockTest extends LinearOpMode2 {
     double[] xFirstSkystone                 = new double[] {-64,  -56,    -48};
     double[] xFirstSkystoneAdjustment       = new double[] {0,      0,      2};
     double   ySkystone                      = -29;                            // y value between initial position and the line of stones
-    double[] yFirstSkystoneAdjustment       = new double[] {0,      0,      0};
+    double[] yFirstSkystoneAdjustment       = new double[] {1,      1,      1};
 
     //       xBridge is 0
     double[] xFirstPlateBridgeAdjustment    = new double[] {0,      0,      0};
     double   yBridge                        = -36;                              // y value between initial position and the arc peak of the spline
-    double[] yFirstplateBridgeAdjustment    = new double[] {0,      0,      0};
+    double[] yFirstplateBridgeAdjustment    = new double[] {0,      0,      1};
 
     double   xFirstPlate                    = 64;                               // x (on the plate) where the first skystone is placed.
     double[] xFirstPlateAdjustment          = new double[] {0,      0,      0};
     double   yPlate                         = -29;                              // y value between initial position and the plate
-    double[] yFirstplateAdjustment          = new double[] {0,      0,      0};
+    double[] yFirstplateAdjustment          = new double[] {0,      0,      1};
 
     //
     // Second skystone
@@ -50,9 +50,9 @@ public class Red3BlockTest extends LinearOpMode2 {
     double[] ySecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
 
     //       xSecondSkystone is set as xFirstSkystone + 24
-    double[] xSecondSkystoneAdjustment      = new double[] {0,      0,      0};
+    double[] xSecondSkystoneAdjustment      = new double[] {0,      0,      4};
     //       ySecondSkystone is set as ySkystone
-    double[] ySecondSkystoneAdjustment      = new double[] {-1,     -1,     -1};
+    double[] ySecondSkystoneAdjustment      = new double[] {-1,     -1,     1};
 
     double[] xSecondPlateBridgeAdjustment   = new double[] {0,      0,      0};
     double[] ySecondPlateBridgeAdjustment   = new double[] {-1,     -1,     -4};
@@ -69,9 +69,9 @@ public class Red3BlockTest extends LinearOpMode2 {
     double[] yThirdSkystoneBridgeAdjustment = new double[] {-2,     -2,     -2};
 
     double   xThirdSkystone                 = -24;                              // default x value of the third stone
-    double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      4};
+    double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      8};
     //       yThirdSkystone is set as ySkystone
-    double[] yThirdSkystoneAdjustment       = new double[] {-2,     -2,     -2};
+    double[] yThirdSkystoneAdjustment       = new double[] {-2,     -2,     -5};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
     double[] yThirdPlateBridgeAdjustment    = new double[] {-7,     -7,     -5};
@@ -212,7 +212,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         // 10. Grab the 3rd skyStone
         autored.lowergrab();
         autored.open();
-        sleep(DEFAULT_SLEEP_200_MS);
+        sleep(DEFAULT_SLEEP_200_MS * 2);
         autored.close();
         sleep(DEFAULT_SLEEP_200_MS);
         autored.lift();
