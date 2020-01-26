@@ -12,7 +12,7 @@ public class Autoblue {
     } //lower number lifts
 
     public void lowergrab() {
-        robot.autoblueArm.setPosition(0.58);
+        robot.autoblueArm.setPosition(0.6);
     }
 
     public void lowerplace() {

@@ -217,6 +217,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
         if (position == 1) {
             xThirdSkystone = xThirdSkystone - 8;
             toThirdSkystone = drive.trajectoryBuilder()
+                    .reverse()
                     .splineTo(new Pose2d(0 + xThirdSkystoneBridgeAdjustment[position],
                             yBridge + yThirdSkystoneBridgeAdjustment[position], 0))
                     .addMarker(() -> {autoblue.lowerplace(); autoblue.open(); return null;})
