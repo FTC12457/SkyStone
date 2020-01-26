@@ -57,7 +57,7 @@ public class Red3BlockTest extends LinearOpMode2 {
     double[] xSecondPlateBridgeAdjustment   = new double[] {0,      0,      0};
     double[] ySecondPlateBridgeAdjustment   = new double[] {-1,     -1,     -4};
 
-    double   xSecondPlate                   = 58;                               // x (on the plate) where the second skystone is placed.
+    double   xSecondPlate                   = 60;                               // x (on the plate) where the second skystone is placed.
     double[] xSecondPlateAdjustment         = new double[] {0,      0,      0};
     //       ySecondPlate is yPlate
     double[] ySecondPlateAdjustment         = new double[] {-2,   -2,   -2};
@@ -69,14 +69,14 @@ public class Red3BlockTest extends LinearOpMode2 {
     double[] yThirdSkystoneBridgeAdjustment = new double[] {-2,     -2,     -2};
 
     double   xThirdSkystone                 = -24;                              // default x value of the third stone
-    double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      8};
+    double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      12};
     //       yThirdSkystone is set as ySkystone
     double[] yThirdSkystoneAdjustment       = new double[] {-2,     -2,     -5};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
     double[] yThirdPlateBridgeAdjustment    = new double[] {-7,     -7,     -5};
 
-    double   xThirdPlate                    = 52;                               // x (on the plate) where the third skystone is placed.
+    double   xThirdPlate                    = 56;                               // x (on the plate) where the third skystone is placed.
     double[] xThirdPlateAdjustment          = new double[] {0,      0,      0};
     //       yThirdPlate is yPlate
     double[] yThirdPlateAdjustment          = new double[] {-6,     -6,     -4};
@@ -160,7 +160,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         drive.update();
 
         // 6. Grab the second stone
-        if (position != 2) {
+        if (position == 2) {
             autored.lowergrab();
             autored.open();
             sleep(DEFAULT_SLEEP_200_MS * 2);
