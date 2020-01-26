@@ -100,12 +100,6 @@ public class Red3BlockTest extends LinearOpMode2 {
         waitForStart();
         position = initReader.placement();
 
-        // If the skystone is at position 2, then the second skystone is at position 5.
-        // In this case, the third skystone has to be at position 4.
-        if (position == 2) {
-            xThirdSkystone = xThirdSkystone - 8;
-        }
-
         // set the position of the initial place
         drive.setPoseEstimate(new Pose2d(-33, -63, Math.PI));
 
@@ -198,6 +192,13 @@ public class Red3BlockTest extends LinearOpMode2 {
         autored.retract();
 
         // 9. Move to the 3rd skyStone.
+
+        // If the skystone is at position 2, then the second skystone is at position 5.
+        // In this case, the third skystone has to be the one at position 4.
+        if (position == 2) {
+            xThirdSkystone = xThirdSkystone - 8;
+        }
+
         Trajectory toThirdSkystone = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(0 + xThirdSkystoneBridgeAdjustment[position],
                         yInitToSplineArc + yThirdSkystoneBridgeAdjustment[position], Math.PI))
@@ -259,7 +260,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         drive.followTrajectorySync(ram);
         drive.update();
 
-        // 15. Close the plate hook
+        // 15. Close the plate hooks
         base.close();
         sleep(DEFAULT_SLEEP_200_MS);
 
@@ -271,24 +272,24 @@ public class Red3BlockTest extends LinearOpMode2 {
         drive.followTrajectorySync(pull);
         drive.update();
 
-        // 17. Push the plate while open the plate hook.
+        // 17. Push the plate while open the plate hooks.
+        base.open(); // Todo: Should we use a marker here?
+
         Trajectory push = drive.trajectoryBuilder()
                 .strafeLeft(6)
                 .addMarker(() -> {robot.bean.setPower(-1); return null;})
                 .forward(20)
                 .build();
-
-        base.open(); // Should we use a marker here?
-
         drive.followTrajectorySync(push);
         drive.update();
 
-        // 18. Park. Move back 15 inches while rolling out the measure tape.
+        // 18. Park. Move back 15 inches.
         Trajectory park = drive.trajectoryBuilder()
                 .back(15)
                 .build();
 
-        robot.bean.setPower(0);
+        robot.bean.setPower(0); // Stop rolling the measuring tape.
         drive.followTrajectorySync(park);
+        drive.update();
     }
 }
