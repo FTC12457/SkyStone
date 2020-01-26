@@ -147,16 +147,34 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
                 .splineTo(new Pose2d(xFirstSkystone[position] + 24 + xSecondSkystoneAdjustment[position],
                         ySkystone + ySecondSkystoneAdjustment[position], Math.PI))
-                .build();
+                .build();;
+        if (position == 2) {
+            toSecondSkystone = drive.trajectoryBuilder()
+                    .splineTo(new Pose2d(0 + xSecondSkystoneBridgeAdjustment[position],
+                            yBridge + ySecondSkystoneBridgeAdjustment[position], Math.PI))
+                    .splineTo(new Pose2d(xFirstSkystone[position] + 24 + xSecondSkystoneAdjustment[position],
+                            ySkystone + ySecondSkystoneAdjustment[position], Math.PI))
+                    .build();
+        }
         drive.followTrajectorySync(toSecondSkystone);
         drive.update();
 
         // 6. Grab the second stone
-        autored.lowergrab();
-        autored.close();
-        sleep(DEFAULT_SLEEP_200_MS);
-        autored.lift();
-        sleep(DEFAULT_SLEEP_200_MS);
+        if (position != 2) {
+            autored.lowergrab();
+            autored.open();
+            sleep(DEFAULT_SLEEP_200_MS * 2);
+            autored.close();
+            sleep(DEFAULT_SLEEP_200_MS);
+            autored.lift();
+            sleep(DEFAULT_SLEEP_200_MS);
+        } else {
+            autored.lowergrab();
+            autored.close();
+            sleep(DEFAULT_SLEEP_200_MS);
+            autored.lift();
+            sleep(DEFAULT_SLEEP_200_MS);
+        }
 
         // 7. Move the 2nd skyStone to the plate.
         // If the position is 2, actual block is 2+3=5, then apply a sharp spline to avoid a clision with the bridge.
@@ -186,29 +204,15 @@ public class Red3BlockTest extends LinearOpMode2 {
         drive.update();
 
         // 8. Drop the 2nd skyStone on the plate
-        if (position == 2) {
-            autored.lowergrab();
-            autored.open();
-            sleep(DEFAULT_SLEEP_200_MS * 2);
-            autored.close();
-            sleep(DEFAULT_SLEEP_200_MS);
-            autored.lift();
-            sleep(DEFAULT_SLEEP_200_MS);
-        } else {
-            autored.lowerplace();
-            autored.open();
-            sleep(DEFAULT_SLEEP_200_MS);
-            autored.retract();
-        }
+        autored.lowerplace();
+        autored.open();
+        sleep(DEFAULT_SLEEP_200_MS);
+        autored.retract();
 
         // 9. Move to the 3rd skyStone.
 
         // If the skystone is at position 2, then the second skystone is at position 5.
         // In this case, the third skystone has to be the one at position 4.
-        if (position == 2) {
-            xThirdSkystone = xThirdSkystone - 8;
-        }
-
         Trajectory toThirdSkystone = drive.trajectoryBuilder()
                 .splineTo(new Pose2d(0 + xThirdSkystoneBridgeAdjustment[position],
                         yBridge + yThirdSkystoneBridgeAdjustment[position], Math.PI))
@@ -216,6 +220,16 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .splineTo(new Pose2d(xThirdSkystone + xThirdSkystoneAdjustment[position],
                         ySkystone + yThirdSkystoneAdjustment[position], Math.PI))
                 .build();
+        if (position == 2) {
+            xThirdSkystone = xThirdSkystone - 8;
+            toThirdSkystone = drive.trajectoryBuilder()
+                    .splineTo(new Pose2d(0 + xThirdSkystoneBridgeAdjustment[position],
+                            yBridge + yThirdSkystoneBridgeAdjustment[position], Math.PI))
+                    .addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
+                    .splineTo(new Pose2d(xThirdSkystone + xThirdSkystoneAdjustment[position],
+                            ySkystone + yThirdSkystoneAdjustment[position], Math.PI))
+                    .build();
+        }
         drive.followTrajectorySync(toThirdSkystone);
         drive.update();
 
@@ -229,10 +243,11 @@ public class Red3BlockTest extends LinearOpMode2 {
             autored.lift();
             sleep(DEFAULT_SLEEP_200_MS);
         } else {
-            autored.lowerplace();
-            autored.open();
+            autored.lowergrab();
+            autored.close();
             sleep(DEFAULT_SLEEP_200_MS);
-            autored.retract();
+            autored.lift();
+            sleep(DEFAULT_SLEEP_200_MS);
         }
 
         // 11. Move the 3rd skyStone to the plate
