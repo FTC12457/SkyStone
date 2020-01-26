@@ -18,7 +18,7 @@ This class is the autonomous for red that does everything, and presumes the alli
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Red3BlockTest", group = "Performance")
+@Autonomous(name = "Red3BlockTestOld", group = "Performance")
 public class Red3BlockTestOld extends LinearOpMode2 {
     String teamColor = "Red";
 
