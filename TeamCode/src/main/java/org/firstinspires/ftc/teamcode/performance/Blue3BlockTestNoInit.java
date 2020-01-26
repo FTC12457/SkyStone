@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.performance;
 
-import android.database.DefaultDatabaseErrorHandler;
-
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.LinearOpMode2;
+import org.firstinspires.ftc.teamcode.SkystoneReader;
 import org.firstinspires.ftc.teamcode.SkystoneReaderInit;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveBase;
 import org.firstinspires.ftc.teamcode.roadrunner.mecanum.SampleMecanumDriveREV;
@@ -20,9 +19,9 @@ This class is the autonomous for blue that does everything, and presumes the all
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Blue3BlockTest", group = "Performance")
+@Autonomous(name = "Blue3BlockNoInit", group = "Performance")
 @SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
-public class Blue3BlockTest extends LinearOpMode2 {
+public class Blue3BlockTestNoInit extends LinearOpMode2 {
     String teamColor = "Blue";
 
     //                                              position==0         position==2
@@ -31,7 +30,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
     double[] xFirstSkystone                 = new double[] {-64,  -56,    -48};
     double[] xFirstSkystoneAdjustment       = new double[] {0,      1,      2};
     double   ySkystone                      = 29;                               // y value between initial position and the line of stones
-    double[] yFirstSkystoneAdjustment       = new double[] {0,      0,      0};
+    double[] yFirstSkystoneAdjustment       = new double[] {1,      1,      1};
 
     //       xBridge is 0
     double[] xFirstPlateBridgeAdjustment    = new double[] {0,      0,      0};
@@ -52,9 +51,9 @@ public class Blue3BlockTest extends LinearOpMode2 {
     double[] ySecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
 
     //       xSecondSkystone is set as xFirstSkystone + 24
-    double[] xSecondSkystoneAdjustment      = new double[] {-1,      1,      4};
+    double[] xSecondSkystoneAdjustment      = new double[] {0,      1,      4};
     //       ySecondSkystone is set as ySkystone
-    double[] ySecondSkystoneAdjustment      = new double[] {2,      2,      0};
+    double[] ySecondSkystoneAdjustment      = new double[] {2.5 ,   2,      0};
 
     double[] xSecondPlateToBridgeAdjustment = new double[] {0,      0,      0};
     double[] ySecondPlateToBridgeAdjustment = new double[] {1,      1,      4};
@@ -62,7 +61,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
     double   xSecondPlate                   = 60;                               // x (on the plate) where the second skystone is placed.
     double[] xSecondPlateAdjustment         = new double[] {0,      0,      0};
     //       ySecondPlate is yPlate
-    double[] ySecondPlateAdjustment         = new double[] {2,      2,      2};
+    double[] ySecondPlateAdjustment         = new double[] {2,      1,      2};
 
     //
     // Third skystone
@@ -72,17 +71,17 @@ public class Blue3BlockTest extends LinearOpMode2 {
 
     // default x value of the third stone, default position is skystone *** 4 ***.
     double   xThirdSkystone                 = -32;
-    double[] xThirdSkystoneAdjustment       = new double[] {1,      1,      4};
+    double[] xThirdSkystoneAdjustment       = new double[] {2,      0,      4};
     //       yThirdSkystone is set as ySkystone
-    double[] yThirdSkystoneAdjustment       = new double[] {3,      3,      6};
+    double[] yThirdSkystoneAdjustment       = new double[] {3,      4,      6};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
-    double[] yThirdPlateBridgeAdjustment    = new double[] {5,      7,      5};
+    double[] yThirdPlateBridgeAdjustment    = new double[] {2,      4,      5};
 
     double   xThirdPlate                    = 56;                               // x (on the plate) where the third skystone is placed.
     double[] xThirdPlateAdjustment          = new double[] {0,      0,      0};
     //       yThirdPlate is yPlate
-    double[] yThirdPlateAdjustment          = new double[] {4,      6,      4};
+    double[] yThirdPlateAdjustment          = new double[] {2,      4,      4};
 
     // default sleep time in ms
     final int DEFAULT_SLEEP_200_MS = 200;
@@ -90,7 +89,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
     Hardware robot = new Hardware();
     Base base = new Base(robot);
     Autoblue autoblue = new Autoblue(robot);
-    SkystoneReaderInit initReader = new SkystoneReaderInit(teamColor, this, telemetry);
+    SkystoneReader reader = new SkystoneReader(teamColor, this, telemetry);
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -99,9 +98,9 @@ public class Blue3BlockTest extends LinearOpMode2 {
 
         SampleMecanumDriveBase drive = new SampleMecanumDriveREV(hardwareMap);
 
-        initReader.run();
         waitForStart();
-        position = initReader.placement();
+        reader.run();
+        position = reader.placement("Blue");
 
         // set the position of the initial place
         drive.setPoseEstimate(new Pose2d(-33, 63, 0));
@@ -152,7 +151,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
                 .addMarker(() -> {autoblue.lowerplace(); autoblue.open(); return null;})
                 .splineTo(new Pose2d(xFirstSkystone[position] + 24 + xSecondSkystoneAdjustment[position],
                         ySkystone + ySecondSkystoneAdjustment[position], 0))
-                .build();;
+                .build();
         if (position == 2) {
             toSecondSkystone = drive.trajectoryBuilder()
                     .reverse()
@@ -307,7 +306,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
 
         drive.followTrajectorySync(park);
         robot.bean.setPower(0); // Stop rolling the measuring tape.
-
+        
         drive.update();
     }
 }
