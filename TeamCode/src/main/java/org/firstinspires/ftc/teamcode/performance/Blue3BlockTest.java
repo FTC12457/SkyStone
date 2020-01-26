@@ -26,10 +26,10 @@ public class Blue3BlockTest extends LinearOpMode2 {
     //                                              position==0         position==2
     //                                                          position==1
     // First skystone
-    double[] xFirstSkystone                 = new double[] {-64,  -56,    -48};
-    double[] xFirstSkystoneAdjustment       = new double[] {0,      0,      0};
+    double[] xFirstSkystone                 = new double[] {-64,  -56,   -48};
+    double[] xFirstSkystoneAdjustment       = new double[] {0,      0,     0};
     double   ySkystone                      = 29;                            // y value between initial position and the line of stones
-    double[] yFirstSkystoneAdjustment       = new double[] {0,    0,     0};
+    double[] yFirstSkystoneAdjustment       = new double[] {0,      0,     0};
 
     //       xBridge is 0
     double[] xFirstPlateBridgeAdjustment    = new double[] {0,      0,      0};
@@ -46,40 +46,40 @@ public class Blue3BlockTest extends LinearOpMode2 {
     //
     //       xBridge is 0
     double[] xSecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
-    //       yBriddge is -36
+    //       yBriddge is 36
     double[] ySecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
 
     //       xSecondSkystone is set as xFirstSkystone + 24
     double[] xSecondSkystoneAdjustment      = new double[] {0,      0,      0};
     //       ySecondSkystone is set as ySkystone
-    double[] ySecondSkystoneAdjustment      = new double[] {0,     0,     0};
+    double[] ySecondSkystoneAdjustment      = new double[] {0,      0,      0};
 
     double[] xSecondPlateBridgeAdjustment   = new double[] {0,      0,      0};
-    double[] ySecondPlateBridgeAdjustment   = new double[] {0,     0,     0};
+    double[] ySecondPlateBridgeAdjustment   = new double[] {0,      0,      0};
 
     double   xSecondPlate                   = 60;                               // x (on the plate) where the second skystone is placed.
     double[] xSecondPlateAdjustment         = new double[] {0,      0,      0};
     //       ySecondPlate is yPlate
-    double[] ySecondPlateAdjustment         = new double[] {0,   0,   0};
+    double[] ySecondPlateAdjustment         = new double[] {0,      0,      0};
 
     //
     // Third skystone
     //
     double[] xThirdSkystoneBridgeAdjustment = new double[] {0,      0,      0};
-    double[] yThirdSkystoneBridgeAdjustment = new double[] {0,     0,     0};
+    double[] yThirdSkystoneBridgeAdjustment = new double[] {0,      0,      0};
 
     double   xThirdSkystone                 = -24;                              // default x value of the third stone
     double[] xThirdSkystoneAdjustment       = new double[] {4,      4,      12};
     //       yThirdSkystone is set as ySkystone
-    double[] yThirdSkystoneAdjustment       = new double[] {0,     0,     0};
+    double[] yThirdSkystoneAdjustment       = new double[] {0,      0,      0};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
-    double[] yThirdPlateBridgeAdjustment    = new double[] {0,     0,     0};
+    double[] yThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
 
     double   xThirdPlate                    = 56;                               // x (on the plate) where the third skystone is placed.
     double[] xThirdPlateAdjustment          = new double[] {0,      0,      0};
     //       yThirdPlate is yPlate
-    double[] yThirdPlateAdjustment          = new double[] {0,     0,     0};
+    double[] yThirdPlateAdjustment          = new double[] {0,      0,      0};
 
     // default sleep time in ms
     final int DEFAULT_SLEEP_200_MS = 200;
