@@ -186,10 +186,20 @@ public class Red3BlockTest extends LinearOpMode2 {
         drive.update();
 
         // 8. Drop the 2nd skyStone on the plate
-        autored.lowerplace();
-        autored.open();
-        sleep(DEFAULT_SLEEP_200_MS);
-        autored.retract();
+        if (position == 2) {
+            autored.lowergrab();
+            autored.open();
+            sleep(DEFAULT_SLEEP_200_MS * 2);
+            autored.close();
+            sleep(DEFAULT_SLEEP_200_MS);
+            autored.lift();
+            sleep(DEFAULT_SLEEP_200_MS);
+        } else {
+            autored.lowerplace();
+            autored.open();
+            sleep(DEFAULT_SLEEP_200_MS);
+            autored.retract();
+        }
 
         // 9. Move to the 3rd skyStone.
 
@@ -210,16 +220,23 @@ public class Red3BlockTest extends LinearOpMode2 {
         drive.update();
 
         // 10. Grab the 3rd skyStone
-        autored.lowergrab();
-        autored.open();
-        sleep(DEFAULT_SLEEP_200_MS * 2);
-        autored.close();
-        sleep(DEFAULT_SLEEP_200_MS);
-        autored.lift();
-        sleep(DEFAULT_SLEEP_200_MS);
+        if (position != 2) {
+            autored.lowergrab();
+            autored.open();
+            sleep(DEFAULT_SLEEP_200_MS * 2);
+            autored.close();
+            sleep(DEFAULT_SLEEP_200_MS);
+            autored.lift();
+            sleep(DEFAULT_SLEEP_200_MS);
+        } else {
+            autored.lowerplace();
+            autored.open();
+            sleep(DEFAULT_SLEEP_200_MS);
+            autored.retract();
+        }
 
         // 11. Move the 3rd skyStone to the plate
-        if (position == 2) {
+        if (position != 2) {
             toPlate = drive.trajectoryBuilder()
                     .lineTo(new Vector2d(xThirdSkystone - 8 + xThirdSkystoneAdjustment[position],
                             ySkystone + yThirdSkystoneAdjustment[position]))
