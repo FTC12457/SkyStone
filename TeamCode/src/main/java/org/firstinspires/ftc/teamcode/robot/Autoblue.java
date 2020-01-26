@@ -12,15 +12,15 @@ public class Autoblue {
     } //lower number lifts
 
     public void lowergrab() {
-        robot.autoblueArm.setPosition(0.67);
-    }
-
-    public void lowerplace() {
         robot.autoblueArm.setPosition(0.58);
     }
 
+    public void lowerplace() {
+        robot.autoblueArm.setPosition(0.45);
+    }
+
     public void open() {
-        robot.autoblueClaw.setPosition(0.55);
+        robot.autoblueClaw.setPosition(0.65);
     } //lower number closes
 
     public void semiopen() {
