@@ -19,6 +19,7 @@ immediately heads to park, next to the wall.
  */
 
 @Autonomous(name = "Red3BlockTest", group = "Performance")
+@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
 public class Red3BlockTest extends LinearOpMode2 {
     String teamColor = "Red";
 
