@@ -89,6 +89,7 @@ public class Red3BlockTest extends LinearOpMode2 {
     Base base = new Base(robot);
     Autored autored = new Autored(robot);
     SkystoneReaderInit initReader = new SkystoneReaderInit(teamColor, this, telemetry);
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -116,6 +117,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .build();
         drive.followTrajectorySync(toFirstSkystone);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 1st stone");
 
         // 2. Grab the first stone
         autored.lowergrab();
@@ -134,6 +136,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .build();
         drive.followTrajectorySync(toPlate);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 1st plate");
 
         // 4. Drop the first skyStone on the plate
         autored.lowerplace();
@@ -160,6 +163,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         }
         drive.followTrajectorySync(toSecondSkystone);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 2nd stone");
 
         // 6. Grab the second stone
         autored.lowergrab();
@@ -192,6 +196,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         }
         drive.followTrajectorySync(toPlate);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 2nd plate");
 
         // 8. Drop the 2nd skyStone on the plate
         autored.lowerplace();
@@ -222,6 +227,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         }
         drive.followTrajectorySync(toThirdSkystone);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 3rd stone");
 
         // 10. Grab the 3rd skyStone
         autored.lowergrab();
@@ -240,6 +246,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .build();
         drive.followTrajectorySync(toPlate);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 3rd plate");
 
         // 12. Drop the 3rd skyStone on the plate
         autored.lowerplace();

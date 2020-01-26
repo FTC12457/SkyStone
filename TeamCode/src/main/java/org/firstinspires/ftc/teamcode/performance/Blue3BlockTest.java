@@ -116,6 +116,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
                 .build();
         drive.followTrajectorySync(toFirstSkystone);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 1st stone");
 
         // 2. Grab the first stone
         autoblue.lowergrab();
@@ -133,6 +134,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
                 .build();
         drive.followTrajectorySync(toPlate);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 1st plate");
 
         // 4. Drop the first skyStone on the plate
         autoblue.lowerplace();
@@ -161,6 +163,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
         }
         drive.followTrajectorySync(toSecondSkystone);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 2nd stone");
 
         // 6. Grab the second stone
         autoblue.lowergrab();
@@ -191,6 +194,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
         }
         drive.followTrajectorySync(toPlate);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 2nd plate");
 
         // 8. Drop the 2nd skyStone on the plate
         autoblue.lowerplace();
@@ -222,6 +226,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
         }
         drive.followTrajectorySync(toThirdSkystone);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 3rd stone");
 
         // 10. Grab the 3rd skyStone
         autoblue.lowergrab();
@@ -240,6 +245,7 @@ public class Blue3BlockTest extends LinearOpMode2 {
                 .build();
         drive.followTrajectorySync(toPlate);
         drive.update();
+        // drive.debugCurrentPosAndSleep60Seconds("At 3rd plate");
 
         // 12. Drop the 3rd skyStone on the plate
         autoblue.lowerplace();

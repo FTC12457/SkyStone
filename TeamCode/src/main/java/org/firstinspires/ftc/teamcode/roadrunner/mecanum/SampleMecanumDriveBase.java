@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.roadrunner.mecanum;
 
+import android.util.Log;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.canvas.Canvas;
 import com.acmerobotics.dashboard.config.Config;
@@ -238,4 +240,22 @@ public abstract class SampleMecanumDriveBase extends MecanumDrive {
     public abstract PIDCoefficients getPIDCoefficients(DcMotor.RunMode runMode);
 
     public abstract void setPIDCoefficients(DcMotor.RunMode runMode, PIDCoefficients coefficients);
+
+    public void log(String message) {
+        Log.i("Drive", message);
+    }
+
+    public void debugCurrentPosAndSleep60Seconds(String context) {
+        Pose2d currentPos = getPoseEstimate();
+
+        log(context + " current Position:" + currentPos.getX() + "," + currentPos.getY()
+                + ", heading:" + Math.toDegrees(currentPos.getHeading()));
+        //+ "\n imu:" + Math.toDegrees(drive.getRawExternalHeading()));
+
+        try {
+            Thread.sleep(60 * 1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
