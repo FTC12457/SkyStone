@@ -31,19 +31,22 @@ public class Red3BlockTest extends LinearOpMode2 {
     double   ySkystone                      = -29.5;                            // y value between initial position and the line of stones
     double[] yFirstSkystoneAdjustment       = new double[] {0,      0,      0};
 
+    //       xBridge is 0
     double[] xFirstPlateBridgeAdjustment    = new double[] {0,      0,      0};
     double   yBridge                        = -36;                              // y value between initial position and the arc peak of the spline
     double[] yFirstplateBridgeAdjustment    = new double[] {0,      0,      0};
 
     double   xFirstPlate                    = 64;                               // x (on the plate) where the first skystone is placed.
     double[] xFirstPlateAdjustment          = new double[] {0,      0,      0};
-    double   yInitToPlate                   = -29;                              // y value between initial position and the plate
+    double   yPlate                         = -29;                              // y value between initial position and the plate
     double[] yFirstplateAdjustment          = new double[] {0,      0,      0};
 
     //
     // Second skystone
     //
+    //       xBridge is 0
     double[] xSecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
+    //       yBriddge is -36
     double[] ySecondSkystoneBridgeAdjustment= new double[] {0,      0,      0};
 
     //       xSecondSkystone is set as xFirstSkystone + 24
@@ -56,7 +59,7 @@ public class Red3BlockTest extends LinearOpMode2 {
 
     double   xSecondPlate                   = 60;                               // x (on the plate) where the second skystone is placed.
     double[] xSecondPlateAdjustment         = new double[] {0,      0,      0};
-    //       ySecondPlate is yInitToPlate
+    //       ySecondPlate is yPlate
     double[] ySecondPlateAdjustment         = new double[] {-3.5,   -3.5,   -4};
 
     //
@@ -75,7 +78,7 @@ public class Red3BlockTest extends LinearOpMode2 {
 
     double   xThirdPlate                    = 56;                               // x (on the plate) where the third skystone is placed.
     double[] xThirdPlateAdjustment          = new double[] {0,      0,      0};
-    //       yThirdPlate is yInitToPlate
+    //       yThirdPlate is yPlate
     double[] yThirdPlateAdjustment          = new double[] {-8,     -8,     -6};
 
     // default sleep time in ms
@@ -126,7 +129,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .splineTo(new Pose2d(0 + xFirstPlateBridgeAdjustment[position],
                         yBridge + yFirstplateBridgeAdjustment[position], Math.PI))
                 .splineTo(new Pose2d(xFirstPlate + xFirstPlateAdjustment[position],
-                        yInitToPlate + yFirstplateAdjustment[position], Math.PI))
+                        yPlate + yFirstplateAdjustment[position], Math.PI))
                 .build();
         drive.followTrajectorySync(toPlate);
         drive.update();
@@ -167,7 +170,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                             yBridge + ySecondPlateBridgeAdjustment[position], Math.PI))
                     //.strafeTo(new Vector2d(0, yBridge))
                     .splineTo(new Pose2d(xSecondPlate + xSecondPlateAdjustment[position],
-                            yInitToPlate + ySecondPlateAdjustment[position], Math.PI))
+                            yPlate + ySecondPlateAdjustment[position], Math.PI))
                     .build();
         } else {
             toPlate = drive.trajectoryBuilder()
@@ -176,7 +179,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                             yBridge + ySecondPlateBridgeAdjustment[position], Math.PI))
                     //.strafeTo(new Vector2d(0, yBridge))
                     .splineTo(new Pose2d(xSecondPlate + xSecondPlateAdjustment[position],
-                            yInitToPlate + ySecondPlateAdjustment[position], Math.PI))
+                            yPlate + ySecondPlateAdjustment[position], Math.PI))
                     .build();
         }
         drive.followTrajectorySync(toPlate);
@@ -224,7 +227,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                     .splineTo(new Pose2d(0 + xThirdPlateBridgeAdjustment[position],
                             yBridge + yThirdPlateBridgeAdjustment[position], Math.PI))
                     .splineTo(new Pose2d(xThirdPlate + xThirdPlateAdjustment[position],
-                            yInitToPlate + yThirdPlateAdjustment[position], Math.PI))
+                            yPlate + yThirdPlateAdjustment[position], Math.PI))
                     .build();
         } else {
             toPlate = drive.trajectoryBuilder()
@@ -232,7 +235,7 @@ public class Red3BlockTest extends LinearOpMode2 {
                     .splineTo(new Pose2d(0 + xThirdPlateBridgeAdjustment[position],
                             yBridge + yThirdPlateBridgeAdjustment[position], Math.PI))
                     .splineTo(new Pose2d(xThirdPlate + xThirdPlateAdjustment[position],
-                            yInitToPlate + yThirdPlateAdjustment[position], Math.PI))
+                            yPlate + yThirdPlateAdjustment[position], Math.PI))
                     .build();
         }
 
