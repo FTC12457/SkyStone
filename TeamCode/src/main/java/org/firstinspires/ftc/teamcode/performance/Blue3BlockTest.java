@@ -18,18 +18,18 @@ This class is the autonomous for red that does everything, and presumes the alli
 immediately heads to park, next to the wall.
  */
 
-@Autonomous(name = "Red3BlockTest", group = "Performance")
-public class Red3BlockTest extends LinearOpMode2 {
-    String teamColor = "Red";
+@Autonomous(name = "Blue3BlockTest", group = "Performance")
+public class Blue3BlockTest extends LinearOpMode2 {
+    String teamColor = "Blue";
 
     // y value between initial position and the Base
-    final double yInitToBase = -29;
+    final double yInitToBase = 29;
 
     // y value between initial position and the arc peak of the spline
-    final double yInitToSplineArc = -36;
+    final double yInitToSplineArc = 38;
 
     // y value between initial position and the line of stones
-    final double yInitToStone = -29.5;
+    final double yInitToStone = 29;
 
     // default x value of the third stone
     // Todo: According to math calculation, this should be -24
@@ -54,49 +54,41 @@ public class Red3BlockTest extends LinearOpMode2 {
         waitForStart();
         position = initReader.placement();
 
-        //position = 0;
+        position = 0;
 
         if (position == 0) {
             skystoneX = -64;
         } else if (position == 1) {
             skystoneX = -56;
         } else {
-            skystoneX = -46;
+            skystoneX = -48;
             xThirdBlock = xThirdBlock - 8;
         }
         // Incorporate skystone detection here.
 
         // set the position of the initial place
-        drive.setPoseEstimate(new Pose2d(-33, -63, Math.PI));
+        drive.setPoseEstimate(new Pose2d(-33, 63, Math.PI));
 
         // 0. Open red claw, lower claw
         autored.open();
         autored.lowerplace();
 
         // 1. Move to the first stone.
-        Trajectory toFirstSkystone;
-        if (position == 0) {
-            toFirstSkystone = drive.trajectoryBuilder()
-                    .strafeTo(new Vector2d(skystoneX, yInitToStone))
-                    .build();
-        } else {
-            toFirstSkystone = drive.trajectoryBuilder()
-                    .strafeTo(new Vector2d(skystoneX, yInitToStone))
-                    .build();
-        }
+        Trajectory toFirstSkystone = drive.trajectoryBuilder()
+                .strafeTo(new Vector2d(skystoneX, yInitToStone))
+                .build();
         drive.followTrajectorySync(toFirstSkystone);
         drive.update();
 
         // 2. Grab the first stone
         autored.lowergrab();
         autored.close();
-        sleep(200);
+        sleep(250);
         autored.lift();
-        sleep(200);
+        sleep(250);
 
         // 3. Move the first stone to the base.
         Trajectory toBase = drive.trajectoryBuilder()
-                .reverse()
                 .splineTo(new Pose2d(0, yInitToSplineArc, Math.PI))
                 .splineTo(new Pose2d(64, yInitToBase, Math.PI))
                 .build();
@@ -111,9 +103,10 @@ public class Red3BlockTest extends LinearOpMode2 {
 
         // 5. Move from the Base to the second skyStone, while lower the Red claw and open it up
         Trajectory toSecondSkystone = drive.trajectoryBuilder()
+                .reverse()
                 .splineTo(new Pose2d(0, yInitToSplineArc, Math.PI))
                 .addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
-                .splineTo(new Pose2d(skystoneX + 24, yInitToStone - 2, Math.PI))
+                .splineTo(new Pose2d(skystoneX + 24, yInitToStone + 2, Math.PI))
                 .build();
         drive.followTrajectorySync(toSecondSkystone);
         drive.update();
@@ -121,27 +114,24 @@ public class Red3BlockTest extends LinearOpMode2 {
         // 6. Grab the second stone
         autored.lowergrab();
         autored.close();
-        sleep(200);
+        sleep(250);
         autored.lift();
-        sleep(200);
+        sleep(250);
 
         // 7. Move the 2nd skyStone to the Base
         Trajectory toBaseAgain;
         if (position == 2) {
             toBaseAgain = drive.trajectoryBuilder()
-                    .lineTo(new Vector2d(skystoneX + 16, yInitToStone - 3))
-                    .reverse()
-                    .splineTo(new Pose2d(-10, yInitToSplineArc - 4, Math.PI))
-                    .splineTo(new Pose2d(0, yInitToSplineArc - 4, Math.PI))
+                    .lineTo(new Vector2d(skystoneX + 16, yInitToStone + 3))
+                    .splineTo(new Pose2d(0, yInitToSplineArc, Math.PI))
                     //.strafeTo(new Vector2d(0, yInitToSplineArc))
-                    .splineTo(new Pose2d(60, yInitToBase - 4, Math.PI))
+                    .splineTo(new Pose2d(56, yInitToBase + 3, Math.PI))
                     .build();
         } else {
             toBaseAgain = drive.trajectoryBuilder()
-                    .reverse()
-                    .splineTo(new Pose2d(0, yInitToSplineArc - 1, Math.PI))
+                    .splineTo(new Pose2d(0, yInitToSplineArc, Math.PI))
                     //.strafeTo(new Vector2d(0, yInitToSplineArc))
-                    .splineTo(new Pose2d(60, yInitToBase - 3.5, Math.PI))
+                    .splineTo(new Pose2d(56, yInitToBase - 3, Math.PI))
                     .build();
         }
         drive.followTrajectorySync(toBaseAgain);
@@ -150,25 +140,18 @@ public class Red3BlockTest extends LinearOpMode2 {
         // 8. Drop the 2nd skyStone on the Base
         autored.lowerplace();
         autored.open();
-        sleep(200);
+        sleep(250);
         autored.retract();
 
         // 9. Move to the 3rd skyStone.
         Trajectory toThirdSkystone;
 
-        if (position == 2) {
-            toThirdSkystone = drive.trajectoryBuilder()
-                    .splineTo(new Pose2d(0, yInitToSplineArc - 2, Math.PI))
-                    //.addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
-                    .splineTo(new Pose2d(xThirdBlock, yInitToStone - 6, Math.PI))
-                    .build();
-        } else {
-            toThirdSkystone = drive.trajectoryBuilder()
-                    .splineTo(new Pose2d(0, yInitToSplineArc - 2, Math.PI))
-                    //.addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
-                    .splineTo(new Pose2d(xThirdBlock, yInitToStone - 4, Math.PI))
-                    .build();
-        }
+        toThirdSkystone = drive.trajectoryBuilder()
+                .reverse()
+                .splineTo(new Pose2d(0, yInitToSplineArc, Math.PI))
+                //.addMarker(() -> {autored.lowerplace(); autored.open(); return null;})
+                .splineTo(new Pose2d(xThirdBlock, yInitToStone - 4, Math.PI))
+                .build();
         drive.followTrajectorySync(toThirdSkystone);
         drive.update();
 
@@ -177,26 +160,23 @@ public class Red3BlockTest extends LinearOpMode2 {
         autored.open();
         sleep(500);
         autored.close();
-        sleep(200);
+        sleep(250);
         autored.lift();
-        sleep(200);
+        sleep(250);
 
         // 11. Move the 3rd skyStone to the base
         Trajectory toBaseAgainAgain;
 
         if (position == 2) {
             toBaseAgainAgain = drive.trajectoryBuilder()
-                    .reverse()
-                    .splineTo(new Pose2d(0, yInitToSplineArc - 5, Math.PI))
-                    .splineTo(new Pose2d(56, yInitToBase - 6, Math.PI))
+                    .splineTo(new Pose2d(0, yInitToSplineArc-2, Math.PI))
+                    .splineTo(new Pose2d(48, yInitToBase - 7, Math.PI))
                     .build();
         } else {
             toBaseAgainAgain = drive.trajectoryBuilder()
                     .lineTo(new Vector2d(xThirdBlock - 8, yInitToStone - 4))
-                    .reverse()
-                    .splineTo(new Pose2d(-10, yInitToSplineArc - 8, Math.PI))
-                    .splineTo(new Pose2d(0, yInitToSplineArc - 7, Math.PI))
-                    .splineTo(new Pose2d(56, yInitToBase - 8, Math.PI))
+                    .splineTo(new Pose2d(0, yInitToSplineArc-2, Math.PI))
+                    .splineTo(new Pose2d(48, yInitToBase - 7, Math.PI))
                     .build();
         }
         drive.followTrajectorySync(toBaseAgainAgain);
@@ -205,7 +185,7 @@ public class Red3BlockTest extends LinearOpMode2 {
         // 12. Drop the 3rd skyStone on the base
         autored.lowerplace();
         autored.open();
-        sleep(200);
+        sleep(250);
         autored.retract();
 
         // 13. Turn left 180 degrees
@@ -221,20 +201,19 @@ public class Red3BlockTest extends LinearOpMode2 {
 
         // 15. Close the base hook
         base.close();
-        sleep(200);
+        sleep(250);
 
         // 16. Pull the base
         Trajectory pull = drive.trajectoryBuilder()
                 .reverse()
-                .splineTo(new Pose2d(32, -55, 0))
+                .splineTo(new Pose2d(32, 50, 0))
                 .build();
         drive.followTrajectorySync(pull);
         drive.update();
 
         // 17. Push the base while open the base hook.
         Trajectory push = drive.trajectoryBuilder()
-                .strafeLeft(6)
-                .addMarker(() -> {robot.bean.setPower(-1); return null;})
+                .strafeRight(6)
                 .forward(20)
                 .build();
 
@@ -248,7 +227,8 @@ public class Red3BlockTest extends LinearOpMode2 {
                 .back(15)
                 .build();
 
-        robot.bean.setPower(0);
+        robot.bean.setPower(-1);
         drive.followTrajectorySync(park);
+        robot.bean.setPower(0);
     }
 }

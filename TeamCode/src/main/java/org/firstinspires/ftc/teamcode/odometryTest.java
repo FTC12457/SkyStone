@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -47,7 +48,7 @@ public class odometryTest extends LinearOpMode2{
 
 
         Trajectory trajectorynegative3 = drive.trajectoryBuilder() //about 56 out of 60 inches traveled
-                .strafeRight(11)
+                .strafeRight(60)
                 .build();
 
         drive.followTrajectorySync(trajectorynegative3);
