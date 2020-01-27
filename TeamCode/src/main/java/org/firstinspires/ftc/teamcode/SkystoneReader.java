@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.Camera;
 
 import java.util.HashMap;
 
@@ -32,10 +33,10 @@ public class SkystoneReader{
 
         double time_init = opMode.time;
 
-        while (opMode.time - time_init < 1) {
+        while (opMode.time - time_init < 0.5) {
             votes.put(skystoneCategory(), votes.get(skystoneCategory()) + 1);
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -46,6 +47,8 @@ public class SkystoneReader{
         telemetryInstance.addData("Center: ", votes.get("Center"));
         telemetryInstance.addData("Right: ", votes.get("Right"));
         telemetryInstance.update();
+
+
     }
 
     // Notice how the placement defaults on Right. This is important, since Right is the most
@@ -94,4 +97,5 @@ public class SkystoneReader{
             }
         }
     }
+
 }

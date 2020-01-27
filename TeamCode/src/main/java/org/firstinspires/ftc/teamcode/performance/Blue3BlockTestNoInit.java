@@ -71,17 +71,17 @@ public class Blue3BlockTestNoInit extends LinearOpMode2 {
 
     // default x value of the third stone, default position is skystone *** 4 ***.
     double   xThirdSkystone                 = -32;
-    double[] xThirdSkystoneAdjustment       = new double[] {2,      0,      4};
+    double[] xThirdSkystoneAdjustment       = new double[] {2,      -1,     4};
     //       yThirdSkystone is set as ySkystone
-    double[] yThirdSkystoneAdjustment       = new double[] {3,      4,      6};
+    double[] yThirdSkystoneAdjustment       = new double[] {3,      4,      4};
 
     double[] xThirdPlateBridgeAdjustment    = new double[] {0,      0,      0};
-    double[] yThirdPlateBridgeAdjustment    = new double[] {2,      4,      5};
+    double[] yThirdPlateBridgeAdjustment    = new double[] {2,      4,      3};
 
     double   xThirdPlate                    = 56;                               // x (on the plate) where the third skystone is placed.
     double[] xThirdPlateAdjustment          = new double[] {0,      0,      0};
     //       yThirdPlate is yPlate
-    double[] yThirdPlateAdjustment          = new double[] {2,      4,      4};
+    double[] yThirdPlateAdjustment          = new double[] {2,      4,      3};
 
     // default sleep time in ms
     final int DEFAULT_SLEEP_200_MS = 200;

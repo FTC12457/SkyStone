@@ -19,7 +19,7 @@ public class Base {
 
     public void close() {
         robot.baseL.setPosition(0.02);
-        robot.baseR.setPosition(0.9);
+        robot.baseR.setPosition(0.94);
         opened = false;
     }
 
