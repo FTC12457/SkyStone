@@ -24,5 +24,11 @@ Thumbs.db
 .gradle
 build/
 
+# Open SCAD
+*.stl
+
+# Visual Studio
+.vs/
+
 *ASUS_PC_01*
 
